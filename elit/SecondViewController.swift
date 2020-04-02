@@ -3,7 +3,7 @@
 //  elit
 //
 //  Created by XCodeClub on 2020-04-02.
-//  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
+//  Copyright © 2020 Abhaya Tamrakar and Abigail Tran. All rights reserved.
 //
 
 import UIKit
