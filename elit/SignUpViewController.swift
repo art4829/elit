@@ -15,6 +15,22 @@ class SignUpViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+//    @IBAction func signup(sender: UIButton) {
+//        let plistDict: Dictionary<String,Any> = [
+//            "username": username,
+//            "password": password
+//        ]
+//        
+//        print(plistDict);
+//        
+//        do {
+//            let plistData = try PropertyListSerialization.data(fromPropertyList: plistDict, format: .xml, options: 0)
+//            try plistData.write(to: plistPath)
+//            print(plistData);
+//        } catch {
+//            print(error)
+//        }
+//    }
     
 
     /*

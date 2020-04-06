@@ -11,6 +11,7 @@
 		9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */; };
 		9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A70243A802000AE5105 /* SignUpViewController.swift */; };
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
+		9EB74A76243BE2E700AE5105 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A75243BE2E700AE5105 /* user.plist */; };
 		C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215524363BD4009B14F7 /* AppDelegate.swift */; };
 		C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215724363BD4009B14F7 /* SceneDelegate.swift */; };
 		C965215A24363BD4009B14F7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215924363BD4009B14F7 /* FirstViewController.swift */; };
@@ -25,6 +26,7 @@
 		9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
+		9EB74A75243BE2E700AE5105 /* user.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = user.plist; sourceTree = "<group>"; };
 		C965215224363BD4009B14F7 /* elit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C965215524363BD4009B14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C965215724363BD4009B14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				9EB74A6A243A7C6A00AE5105 /* StartViewController.swift */,
 				9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */,
 				9EB74A70243A802000AE5105 /* SignUpViewController.swift */,
+				9EB74A75243BE2E700AE5105 /* user.plist */,
 			);
 			path = elit;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C965216424363BDB009B14F7 /* LaunchScreen.storyboard in Resources */,
+				9EB74A76243BE2E700AE5105 /* user.plist in Resources */,
 				C965216124363BDB009B14F7 /* Assets.xcassets in Resources */,
 				9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */,
 				C965215F24363BD4009B14F7 /* Main.storyboard in Resources */,
