@@ -46,12 +46,10 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func login(sender: UIButton) {
-        print(username)
-        print(password)
             
         //Check if the username and password are correct
         if (username == usernameEntered.text! && password == passwordEntered.text!) {
-            performSegue(withIdentifier: "LaunchToHome", sender: self)
+            performSegue(withIdentifier: "LoginToHome", sender: self)
         } else {
             let alertController = UIAlertController(title: "Error", message: "Incorrect Username or Password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
