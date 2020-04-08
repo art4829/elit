@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             var plistPath = documentsPathURL.appendingPathComponent("user.plist").path
             if !FileManager.default.fileExists(atPath: plistPath) {

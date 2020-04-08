@@ -19,6 +19,8 @@
 		C965215F24363BD4009B14F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965215D24363BD4009B14F7 /* Main.storyboard */; };
 		C965216124363BDB009B14F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C965216024363BDB009B14F7 /* Assets.xcassets */; };
 		C965216424363BDB009B14F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965216224363BDB009B14F7 /* LaunchScreen.storyboard */; };
+		EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D15243CDA100015A1E9 /* GradientView.swift */; };
+		EB594D19243D08340015A1E9 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D18243D08340015A1E9 /* color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		C965216024363BDB009B14F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C965216324363BDB009B14F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C965216524363BDB009B14F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB594D15243CDA100015A1E9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		EB594D18243D08340015A1E9 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +72,8 @@
 		C965215424363BD4009B14F7 /* elit */ = {
 			isa = PBXGroup;
 			children = (
-				9EB74A72243BD8F000AE5105 /* Pacifico.ttf */,
+				EB594D17243D07F00015A1E9 /* Font */,
+				EB594D14243CD8830015A1E9 /* Constants */,
 				C965215524363BD4009B14F7 /* AppDelegate.swift */,
 				C965215724363BD4009B14F7 /* SceneDelegate.swift */,
 				C965215924363BD4009B14F7 /* FirstViewController.swift */,
@@ -81,8 +86,25 @@
 				9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */,
 				9EB74A70243A802000AE5105 /* SignUpViewController.swift */,
 				9EB74A75243BE2E700AE5105 /* user.plist */,
+				EB594D15243CDA100015A1E9 /* GradientView.swift */,
 			);
 			path = elit;
+			sourceTree = "<group>";
+		};
+		EB594D14243CD8830015A1E9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EB594D18243D08340015A1E9 /* color.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		EB594D17243D07F00015A1E9 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9EB74A72243BD8F000AE5105 /* Pacifico.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +186,9 @@
 				C965215C24363BD4009B14F7 /* SecondViewController.swift in Sources */,
 				C965215A24363BD4009B14F7 /* FirstViewController.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
+				EB594D19243D08340015A1E9 /* color.swift in Sources */,
 				C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */,
+				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
