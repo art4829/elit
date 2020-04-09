@@ -21,6 +21,8 @@
 		C965216424363BDB009B14F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965216224363BDB009B14F7 /* LaunchScreen.storyboard */; };
 		EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D15243CDA100015A1E9 /* GradientView.swift */; };
 		EB594D19243D08340015A1E9 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D18243D08340015A1E9 /* color.swift */; };
+		EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */; };
+		EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1F243E55A30015A1E9 /* LoginTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C965216524363BDB009B14F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB594D15243CDA100015A1E9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EB594D18243D08340015A1E9 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
+		EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin_SignupButton.swift; sourceTree = "<group>"; };
+		EB594D1F243E55A30015A1E9 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		C965215424363BD4009B14F7 /* elit */ = {
 			isa = PBXGroup;
 			children = (
+				EB594D1A243E41D20015A1E9 /* CustomClasses */,
 				EB594D17243D07F00015A1E9 /* Font */,
 				EB594D14243CD8830015A1E9 /* Constants */,
 				C965215524363BD4009B14F7 /* AppDelegate.swift */,
@@ -86,7 +91,6 @@
 				9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */,
 				9EB74A70243A802000AE5105 /* SignUpViewController.swift */,
 				9EB74A75243BE2E700AE5105 /* user.plist */,
-				EB594D15243CDA100015A1E9 /* GradientView.swift */,
 			);
 			path = elit;
 			sourceTree = "<group>";
@@ -105,6 +109,16 @@
 				9EB74A72243BD8F000AE5105 /* Pacifico.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		EB594D1A243E41D20015A1E9 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				EB594D15243CDA100015A1E9 /* GradientView.swift */,
+				EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */,
+				EB594D1F243E55A30015A1E9 /* LoginTextField.swift */,
+			);
+			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,9 +200,11 @@
 				C965215C24363BD4009B14F7 /* SecondViewController.swift in Sources */,
 				C965215A24363BD4009B14F7 /* FirstViewController.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
+				EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */,
 				EB594D19243D08340015A1E9 /* color.swift in Sources */,
 				C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */,
 				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,
+				EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,10 @@ class SignUpViewController: UIViewController {
     var username = ""
     var password = ""
     
+    @IBAction func goToLogin(_ sender: UIButton) {
+        performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -95,7 +99,7 @@ class SignUpViewController: UIViewController {
                 }
                 
             }
-            performSegue(withIdentifier: "SignupToLogin", sender: self)
+            performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
         }
     }
         

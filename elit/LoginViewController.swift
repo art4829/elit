@@ -44,8 +44,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
 
     
+    @IBAction func goToSignUp(_ sender: Any) {
+        performSegue(withIdentifier: "LoginToSignUpSegue", sender: self)
+    }
     @IBAction func login(sender: UIButton) {
             
         //Check if the username and password are correct

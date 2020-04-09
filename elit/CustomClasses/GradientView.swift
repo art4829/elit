@@ -25,7 +25,7 @@ class GradientView: UIView {
             updateView()
         }
     }
-    
+
     // override layerclass to use gradientlayer
     override class var layerClass: AnyClass {
         get {
@@ -44,13 +44,7 @@ class GradientView: UIView {
         layer.endPoint = CGPoint(x: 0.70, y: 1)
         layer.position = center
         layer.compositingFilter = "darkenBlendMode"
-
-//        layer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1.29, b: 0.57, c: -0.57, d: 0.41, tx: 0.36, ty: 0.59))
-//
-//        layer.compositingFilter = "darkenBlendMode"
-
-//        layer.bounds = self.view.bounds.insetBy(dx: -0.5*self.view.bounds.size.width, dy: -0.5*view.bounds.size.height)
-//
-//        layer.position = self.view.center
     }
+    
+    
 }
