@@ -45,7 +45,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     
     @IBAction func goToSignUp(_ sender: Any) {
         performSegue(withIdentifier: "LoginToSignUpSegue", sender: self)

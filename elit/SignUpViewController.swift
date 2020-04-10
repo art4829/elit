@@ -52,6 +52,7 @@ class SignUpViewController: UIViewController {
         }
 
     }
+    
     @IBAction func signup(sender: UIButton)  {
         //Check if the username has already existed:
         if (username == usernameEntered.text!) {
@@ -103,6 +104,7 @@ class SignUpViewController: UIViewController {
         }
     }
         
+    
     
     
 
