@@ -14,7 +14,6 @@
 		C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215524363BD4009B14F7 /* AppDelegate.swift */; };
 		C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215724363BD4009B14F7 /* SceneDelegate.swift */; };
 		C965215A24363BD4009B14F7 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215924363BD4009B14F7 /* MoviesViewController.swift */; };
-		C965215C24363BD4009B14F7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215B24363BD4009B14F7 /* SecondViewController.swift */; };
 		C965215F24363BD4009B14F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965215D24363BD4009B14F7 /* Main.storyboard */; };
 		C965216124363BDB009B14F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C965216024363BDB009B14F7 /* Assets.xcassets */; };
 		C965216424363BDB009B14F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965216224363BDB009B14F7 /* LaunchScreen.storyboard */; };
@@ -22,6 +21,7 @@
 		EB594D19243D08340015A1E9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D18243D08340015A1E9 /* constants.swift */; };
 		EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */; };
 		EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1F243E55A30015A1E9 /* LoginTextField.swift */; };
+		EBD76DDB2444ED5700F3A34F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD76DDA2444ED5700F3A34F /* UserProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,6 @@
 		C965215524363BD4009B14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C965215724363BD4009B14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C965215924363BD4009B14F7 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
-		C965215B24363BD4009B14F7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C965215E24363BD4009B14F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C965216024363BDB009B14F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C965216324363BDB009B14F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		EB594D18243D08340015A1E9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin_SignupButton.swift; sourceTree = "<group>"; };
 		EB594D1F243E55A30015A1E9 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		EBD76DDA2444ED5700F3A34F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 				C965215524363BD4009B14F7 /* AppDelegate.swift */,
 				C965215724363BD4009B14F7 /* SceneDelegate.swift */,
 				C965215924363BD4009B14F7 /* MoviesViewController.swift */,
-				C965215B24363BD4009B14F7 /* SecondViewController.swift */,
+				EBD76DDA2444ED5700F3A34F /* UserProfileViewController.swift */,
 				C965215D24363BD4009B14F7 /* Main.storyboard */,
 				C965216024363BDB009B14F7 /* Assets.xcassets */,
 				C965216224363BDB009B14F7 /* LaunchScreen.storyboard */,
@@ -192,8 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */,
+				EBD76DDB2444ED5700F3A34F /* UserProfileViewController.swift in Sources */,
 				9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */,
-				C965215C24363BD4009B14F7 /* SecondViewController.swift in Sources */,
 				C965215A24363BD4009B14F7 /* MoviesViewController.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
 				EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */,

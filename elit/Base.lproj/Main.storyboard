@@ -49,7 +49,7 @@
         <!--UserProfileScene-->
         <scene sceneID="TBN-14-oTz">
             <objects>
-                <viewController title="UserProfileScene" id="HBl-eC-IRq" sceneMemberID="viewController">
+                <viewController title="UserProfileScene" id="HBl-eC-IRq" customClass="UserProfileViewController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H7e-SK-gv7" customClass="GradientView" customModule="elit" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
