@@ -88,9 +88,15 @@ class SignUpViewController: UIViewController {
             
             if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let path = documentsPathURL.appendingPathComponent("users.plist")
-
+                let pathString = path.path
+                
                 do {
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
+                    if !FileManager.default.fileExists(atPath: pathString) {
+                        let bundle = Bundle.main.path(forResource: "users", ofType: "plist")!
+                        try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
+                    }
+                    
+                    let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
                     var tempArray = try PropertyListSerialization.propertyList(from: data, format: nil) as! [Dictionary<String, Any>]
                     
                     tempArray.append(plistDict)
