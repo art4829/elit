@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E5707162442653C00506DA3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5707152442653C00506DA3 /* User.swift */; };
-		9E57071824426AFD00506DA3 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E57071724426AFD00506DA3 /* Users.swift */; };
-		9EB74A6B243A7C6A00AE5105 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A6A243A7C6A00AE5105 /* StartViewController.swift */; };
 		9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */; };
 		9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A70243A802000AE5105 /* SignUpViewController.swift */; };
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
@@ -25,12 +22,11 @@
 		EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */; };
 		EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB594D1F243E55A30015A1E9 /* LoginTextField.swift */; };
 		EBD76DDB2444ED5700F3A34F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD76DDA2444ED5700F3A34F /* UserProfileViewController.swift */; };
+		EBD76DDD2444EF2400F3A34F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD76DDC2444EF2400F3A34F /* User.swift */; };
+		EBD76DDF2444EF5400F3A34F /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD76DDE2444EF5400F3A34F /* Users.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E5707152442653C00506DA3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9E57071724426AFD00506DA3 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		9EB74A6A243A7C6A00AE5105 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
@@ -48,6 +44,8 @@
 		EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin_SignupButton.swift; sourceTree = "<group>"; };
 		EB594D1F243E55A30015A1E9 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		EBD76DDA2444ED5700F3A34F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		EBD76DDC2444EF2400F3A34F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EBD76DDE2444EF5400F3A34F /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +92,8 @@
 				9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */,
 				9EB74A70243A802000AE5105 /* SignUpViewController.swift */,
 				9EB74A75243BE2E700AE5105 /* users.plist */,
-				9E5707152442653C00506DA3 /* User.swift */,
-				9E57071724426AFD00506DA3 /* Users.swift */,
+				EBD76DDC2444EF2400F3A34F /* User.swift */,
+				EBD76DDE2444EF5400F3A34F /* Users.swift */,
 			);
 			path = elit;
 			sourceTree = "<group>";
@@ -203,12 +201,14 @@
 				EBD76DDB2444ED5700F3A34F /* UserProfileViewController.swift in Sources */,
 				9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */,
 				C965215A24363BD4009B14F7 /* MoviesViewController.swift in Sources */,
+				EBD76DDF2444EF5400F3A34F /* Users.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
 				EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */,
 				EB594D19243D08340015A1E9 /* constants.swift in Sources */,
 				C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */,
 				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,
 				EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */,
+				EBD76DDD2444EF2400F3A34F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
