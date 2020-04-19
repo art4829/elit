@@ -15,3 +15,6 @@ let soybean = UIColor(red:0.84, green:0.77, blue:0.62, alpha:1.00)
 
 // Api key
 let api_key = "87c79f9342a6ad65c9524d97b0ca9a9d"
+
+//defualt font
+let elitFont = "Mukta Mahee"

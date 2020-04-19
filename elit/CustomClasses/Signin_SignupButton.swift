@@ -22,16 +22,22 @@ class LoginButton: UIButton{
         setupButton()
     }
     
-
+    // the button color
+    @IBInspectable var firstColor: UIColor = UIColor.white {
+       didSet {
+           setupButton()
+       }
+    }
+        
     func setupButton(){
         setShadow()
-        backgroundColor      = UIColor.white
-        titleLabel?.font     = UIFont(name: "Mukta-Regular", size: 18)
+        backgroundColor      = firstColor
+        titleLabel?.font     = UIFont(name: elitFont, size: 18)
         layer.cornerRadius   = 20
     }
     
     private func setShadow() {
-        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
         layer.shadowOpacity = 1
         layer.shadowOffset  = CGSize(width: 0.0, height: 4)
         layer.shadowRadius  = 4

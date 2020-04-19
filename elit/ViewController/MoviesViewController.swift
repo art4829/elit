@@ -10,6 +10,33 @@ import UIKit
 
 class MoviesViewController: UIViewController {
 
+    let transition = SlideInTransition()
+    var filterMenuOpen = false
+    
+    @IBAction func didTapFilter(_ sender: UIButton) {
+        guard let filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController") else {return}
+        
+        filterViewController.modalPresentationStyle = .overCurrentContext
+        filterViewController.transitioningDelegate = self
+        present(filterViewController, animated: true)
+//        toggleFilterMenu()
+    }
+    
+    @IBOutlet weak var filterMenuConstraint: NSLayoutConstraint!
+    public weak var delegate:filterProtocol?
+    
+    
+    func toggleFilterMenu(){
+        print("yes")
+        if filterMenuOpen{
+            filterMenuConstraint.constant = -240
+        } else {
+            filterMenuConstraint?.constant = 0
+            print("here")
+        }
+        filterMenuOpen = !filterMenuOpen
+    }
+    
     var movies = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +67,20 @@ class MoviesViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
-
 }
 
+extension MoviesViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = true
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
+    }
+  }
+
+protocol filterProtocol: class {
+    func changeConstraint()
+}
