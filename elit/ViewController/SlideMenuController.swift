@@ -5,7 +5,6 @@
 //  Created by Abhaya Tamrakar on 4/14/20.
 //  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -24,19 +23,39 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var scifiBtn: GenreButton!
     @IBOutlet weak var dropDownBtn: UIButton!
     
+    
+    var languageParam = "&language="
+    var ratingParam = ""
+    var genreParam = "&with_genres="
     let transparentView = UIView()
     let tableView = UITableView()
     var dataSource = [String]()
+    var genreArray = Genres()
+    var filterURL = DISCOVER_URL
     
     @IBAction func closeFilter(_ sender: UIButton) {
+      
         dismiss(animated: true)
     }
     override func viewDidLoad() {
+        super.viewDidLoad()
         rating.rating = 0
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
-        super.viewDidLoad()
+        
+        let url = URL(string: "\(GENREID_URL)api_key=\(API_KEY)")!
+        print(url)
+        let data = try? Data(contentsOf: url)
+        if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
+            if let genres = json["genres"] as? Array<[String:Any]> {
+               for genre in genres{
+                    let g = Genre(name: genre["name"] as! String, id: genre["id"] as! Int)
+                    print(g.getName())
+                self.genreArray.genreList.append(g)
+                }
+            }
+        }
     }
     
        // MARK: - IBActions
@@ -77,7 +96,56 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func applyFilter(_ sender: UIButton) {
         print("Rating: \(rating.rating)")
         dismiss(animated: true)
-        print(actionbtn.isOn)
+        if rating.rating != 0 {
+            ratingParam = "&vote_average.gte=\(rating.rating * 2)"
+            filterURL = "\(DISCOVER_URL)\(ratingParam)"
+        }
+        print(filterURL)
+        let genreIdList = getGenreIdList()
+        if genreIdList.count != 0{
+            print("list: \(genreIdList)")
+            for (idx, element) in genreIdList.enumerated() {
+                print(genreIdList.endIndex)
+                    if idx != genreIdList.endIndex - 1 {
+                        // handling the last element
+                        genreParam = "\(genreParam)\(element)%2C"
+                    }else{
+                        genreParam = "\(genreParam)\(element)"
+                    }
+            }
+            filterURL=("\(filterURL)\(genreParam)")
+        }
+        if dropDownBtn.titleLabel?.text != "All Languages"{
+            print(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)
+            filterURL=(filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)")
+        }
+        print(filterURL)
+    }
+    
+    func getGenreIdList() -> [Int]{
+        var genreIdList = [Int]()
+        if self.actionbtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Action"))
+        }
+        if self.comedyBtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Comedy"))
+        }
+        if self.dramaBtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Drama"))
+        }
+        if self.animationBtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Animation"))
+        }
+        if self.romanceBtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Romance"))
+        }
+        if self.thrillerBtn.isOn {
+            genreIdList.append(genreArray.getId(name: "Thriller"))
+        }
+        if self.scifiBtn.isOn {
+           genreIdList.append(genreArray.getId(name: "Science Fiction"))
+       }
+        return genreIdList
     }
     
     @IBAction func clearClicked(_ sender: UIButton) {
@@ -87,6 +155,8 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             btn?.reset()
         }
     }
+    
+  
     // MARK: - DropDownMenu Config
      func addTansparentView(frame: CGRect){
          let window = UIApplication.shared.windows.first { $0.isKeyWindow }
@@ -117,7 +187,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
      }
     
     
-
     // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
@@ -127,8 +196,8 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         cell.textLabel?.text = dataSource[indexPath.row]
-        cell.textLabel?.font = UIFont(name: elitFont, size: 14)
-        cell.backgroundColor = soybean.withAlphaComponent(0.4)
+        cell.textLabel?.font = UIFont(name: ELIT_FONT, size: 14)
+        cell.backgroundColor = SOYBEAN.withAlphaComponent(0.4)
         return cell
     }
     
@@ -142,4 +211,5 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         removeTransparentView()
     }
 
+   
 }

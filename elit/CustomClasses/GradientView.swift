@@ -13,14 +13,14 @@ import UIKit
 class GradientView: UIView {
 
     // the gradient start colour
-    @IBInspectable var firstColor: UIColor = eclipse {
+    @IBInspectable var firstColor: UIColor = ECLIPSE {
         didSet {
             updateView()
         }
     }
 
     // the gradient end colour
-    @IBInspectable var secondColor: UIColor = soybean {
+    @IBInspectable var secondColor: UIColor = SOYBEAN {
         didSet {
             updateView()
         }

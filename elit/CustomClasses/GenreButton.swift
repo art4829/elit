@@ -26,7 +26,7 @@ class GenreButton: UIButton {
         layer.borderWidth = 2.0
         layer.borderColor = UIColor.white.cgColor
         layer.cornerRadius = frame.size.height/2
-        backgroundColor = eclipse
+        backgroundColor = ECLIPSE
         setTitleColor(UIColor.white, for: .normal)
         
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -42,8 +42,8 @@ class GenreButton: UIButton {
     
     func activateButton(bool: Bool){
         isOn = bool
-        let color = bool ? soybean : .clear
-        let titleColor = bool ? eclipse : .white
+        let color = bool ? SOYBEAN : .clear
+        let titleColor = bool ? ECLIPSE : .white
         setTitleColor(titleColor, for: .normal)
         backgroundColor = color
     }
