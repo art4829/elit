@@ -32,7 +32,7 @@ class LoginButton: UIButton{
     func setupButton(){
         setShadow()
         backgroundColor      = firstColor
-        titleLabel?.font     = UIFont(name: elitFont, size: 18)
+        titleLabel?.font     = UIFont(name: ELIT_FONT, size: 18)
         layer.cornerRadius   = 20
     }
     

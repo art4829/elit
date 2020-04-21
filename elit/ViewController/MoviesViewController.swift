@@ -40,7 +40,7 @@ class MoviesViewController: UIViewController {
     var movies = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(api_key)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(API_KEY)")!
         print(url)
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
