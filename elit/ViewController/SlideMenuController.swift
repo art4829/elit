@@ -120,6 +120,8 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             filterURL=(filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)")
         }
         print(filterURL)
+        //Segue way link
+        
     }
     
     func getGenreIdList() -> [Int]{

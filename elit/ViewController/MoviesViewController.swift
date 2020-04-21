@@ -72,6 +72,7 @@ class MoviesViewController: UIViewController {
              } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
               
+                print(dataDictionary)
                 self.movies = dataDictionary["results"] as! [[String:Any]]     // instantiates variable movies as results then casts as dictionary
                 print(" \n Number of Dictionaries/Hashes: ", (dataDictionary["results"] as! Array<Any>).count, "\n")
 
