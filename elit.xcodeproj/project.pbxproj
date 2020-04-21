@@ -11,6 +11,11 @@
 		9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A70243A802000AE5105 /* SignUpViewController.swift */; };
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
 		9EB74A76243BE2E700AE5105 /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A75243BE2E700AE5105 /* users.plist */; };
+		9EFC3466244E41F70049A894 /* MovieCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC3465244E41F70049A894 /* MovieCardModel.swift */; };
+		9EFC346B244E43280049A894 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346A244E43280049A894 /* SwipeCardView.swift */; };
+		9EFC346D244E43520049A894 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346C244E43520049A894 /* StackContainerView.swift */; };
+		9EFC346F244E43960049A894 /* SwipeCardsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346E244E43960049A894 /* SwipeCardsDataSource.swift */; };
+		9EFC3471244E6AA40049A894 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC3470244E6AA40049A894 /* Movie.swift */; };
 		C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215524363BD4009B14F7 /* AppDelegate.swift */; };
 		C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215724363BD4009B14F7 /* SceneDelegate.swift */; };
 		C965215F24363BD4009B14F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965215D24363BD4009B14F7 /* Main.storyboard */; };
@@ -40,6 +45,11 @@
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		9EB74A75243BE2E700AE5105 /* users.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
+		9EFC3465244E41F70049A894 /* MovieCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardModel.swift; sourceTree = "<group>"; };
+		9EFC346A244E43280049A894 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
+		9EFC346C244E43520049A894 /* StackContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		9EFC346E244E43960049A894 /* SwipeCardsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsDataSource.swift; sourceTree = "<group>"; };
+		9EFC3470244E6AA40049A894 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C965215224363BD4009B14F7 /* elit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C965215524363BD4009B14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C965215724363BD4009B14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9EFC3469244E42EF0049A894 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EFC346A244E43280049A894 /* SwipeCardView.swift */,
+				9EFC346C244E43520049A894 /* StackContainerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C965214924363BD4009B14F7 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +115,7 @@
 		C965215424363BD4009B14F7 /* elit */ = {
 			isa = PBXGroup;
 			children = (
+				9EFC3469244E42EF0049A894 /* View */,
 				EBD76DE82446245300F3A34F /* Utils */,
 				EBD76DE52446228200F3A34F /* Model */,
 				EBD76DE42446225C00F3A34F /* ViewController */,
@@ -156,6 +176,8 @@
 			children = (
 				EBD76DDC2444EF2400F3A34F /* User.swift */,
 				EBD76DDE2444EF5400F3A34F /* Users.swift */,
+				9EFC3465244E41F70049A894 /* MovieCardModel.swift */,
+				9EFC3470244E6AA40049A894 /* Movie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +189,7 @@
 				EB594D14243CD8830015A1E9 /* Constants */,
 				EB594D17243D07F00015A1E9 /* Font */,
 				EB4C0B11244BA5B100E00FDE /* ComosDistrib.swift */,
+				9EFC346E244E43960049A894 /* SwipeCardsDataSource.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -264,6 +287,9 @@
 				9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */,
 				EBD76DDB2444ED5700F3A34F /* UserProfileViewController.swift in Sources */,
 				9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */,
+				9EFC346D244E43520049A894 /* StackContainerView.swift in Sources */,
+				9EFC3466244E41F70049A894 /* MovieCardModel.swift in Sources */,
+				9EFC346F244E43960049A894 /* SwipeCardsDataSource.swift in Sources */,
 				EBD76DE22446217400F3A34F /* SlideMenuController.swift in Sources */,
 				EB4C0B12244BA5B100E00FDE /* ComosDistrib.swift in Sources */,
 				EBD76DDF2444EF5400F3A34F /* Users.swift in Sources */,
@@ -272,11 +298,13 @@
 				EB594D19243D08340015A1E9 /* constants.swift in Sources */,
 				EB4C0B1A244C096E00E00FDE /* GenreButton.swift in Sources */,
 				EBD76DF5244644B000F3A34F /* MoviesViewController.swift in Sources */,
+				9EFC3471244E6AA40049A894 /* Movie.swift in Sources */,
 				C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */,
 				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,
 				EBD76DF924464AF900F3A34F /* SlideInTransition.swift in Sources */,
 				EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */,
 				EBD76DDD2444EF2400F3A34F /* User.swift in Sources */,
+				9EFC346B244E43280049A894 /* SwipeCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
