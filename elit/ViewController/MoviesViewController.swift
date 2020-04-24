@@ -13,7 +13,9 @@ class MoviesViewController: UIViewController {
     var viewModelData = [MovieCardModel]()
     
     var stackContainer : StackContainerView!
-    
+    var filterURL = ""
+    var search_url = NOW_PLAYING_URL
+
     
     //MARK: - Configurations
     func configureStackContainer() {
@@ -32,37 +34,24 @@ class MoviesViewController: UIViewController {
     }
 
     let transition = SlideInTransition()
-    var filterMenuOpen = false
-    
+
     @IBAction func didTapFilter(_ sender: UIButton) {
         guard let filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController") else {return}
-        
+
         filterViewController.modalPresentationStyle = .overCurrentContext
         filterViewController.transitioningDelegate = self
         present(filterViewController, animated: true)
-//        toggleFilterMenu()
     }
     
-    @IBOutlet weak var filterMenuConstraint: NSLayoutConstraint!
-    public weak var delegate:filterProtocol?
-    
-    
-    func toggleFilterMenu(){
-        print("yes")
-        if filterMenuOpen{
-            filterMenuConstraint.constant = -240
-        } else {
-            filterMenuConstraint?.constant = 0
-            print("here")
-        }
-        filterMenuOpen = !filterMenuOpen
-    }
-    
+
     var movies = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(API_KEY)")!
-        print(url)
+        print("FILTER URL: ", filterURL)
+        if filterURL != ""{
+             search_url = filterURL
+        }
+        let url = URL(string: search_url)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -74,7 +63,7 @@ class MoviesViewController: UIViewController {
               
                 print(dataDictionary)
                 self.movies = dataDictionary["results"] as! [[String:Any]]     // instantiates variable movies as results then casts as dictionary
-                print(" \n Number of Dictionaries/Hashes: ", (dataDictionary["results"] as! Array<Any>).count, "\n")
+//                print(" \n Number of Dictionaries/Hashes: ", (dataDictionary["results"] as! Array<Any>).count, "\n")
 
                 for m in self.movies {
                     var movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
@@ -88,12 +77,6 @@ class MoviesViewController: UIViewController {
                 self.configureNavigationBarButtonItem()
                 
                 self.stackContainer.dataSource = self
-                
-                  
-              
-                // TODO: Get the array of movies
-                // TODO: Store the movies in a property to use elsewhere
-                // TODO: Reload your table view data
                 
              }
           }
@@ -113,13 +96,12 @@ extension MoviesViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
+
         return transition
     }
   }
 
-protocol filterProtocol: class {
-    func changeConstraint()
-}
+
 
 extension MoviesViewController : SwipeCardsDataSource {
 

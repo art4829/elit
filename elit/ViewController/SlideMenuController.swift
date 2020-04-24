@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 
+
 class CellClass: UITableViewCell {
 }
 
 class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
 
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var actionbtn: GenreButton!
@@ -51,7 +53,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             if let genres = json["genres"] as? Array<[String:Any]> {
                for genre in genres{
                     let g = Genre(name: genre["name"] as! String, id: genre["id"] as! Int)
-                    print(g.getName())
                 self.genreArray.genreList.append(g)
                 }
             }
@@ -66,7 +67,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func actionClicked(_ sender: GenreButton) {
         actionbtn.buttonPressed()
-        print("Clicked")
     }
     
     @IBAction func comedyClicked(_ sender: GenreButton) {
@@ -94,35 +94,42 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func applyFilter(_ sender: UIButton) {
-        print("Rating: \(rating.rating)")
-        dismiss(animated: true)
+//        print("Rating: \(rating.rating)")
+//        dismiss(animated: true)
         if rating.rating != 0 {
             ratingParam = "&vote_average.gte=\(rating.rating * 2)"
-            filterURL = "\(DISCOVER_URL)\(ratingParam)"
+            filterURL = DISCOVER_URL+"\(ratingParam)"
         }
-        print(filterURL)
+//        print(filterURL)
         let genreIdList = getGenreIdList()
         if genreIdList.count != 0{
-            print("list: \(genreIdList)")
+//            print("list: \(genreIdList)")
             for (idx, element) in genreIdList.enumerated() {
-                print(genreIdList.endIndex)
+//                print(genreIdList.endIndex)
                     if idx != genreIdList.endIndex - 1 {
                         // handling the last element
-                        genreParam = "\(genreParam)\(element)%2C"
+                        genreParam = genreParam+"\(element)%2C"
                     }else{
-                        genreParam = "\(genreParam)\(element)"
+                        genreParam = genreParam+"\(element)"
                     }
             }
-            filterURL=("\(filterURL)\(genreParam)")
+            filterURL = filterURL+"\(genreParam)"
         }
         if dropDownBtn.titleLabel?.text != "All Languages"{
             print(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)
-            filterURL=(filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)")
+            filterURL = filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)"
         }
-        print(filterURL)
-        //Segue way link
-        
+        let vc = storyboard?.instantiateViewController(identifier: "MoviesViewController") as! MoviesViewController
+        vc.filterURL = filterURL
+        vc.viewDidLoad()
+        dismiss(animated: true, completion: nil)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let vc = segue.destination as! MoviesViewController
+//        vc.filterURL = self.filterURL
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+//    }
     
     func getGenreIdList() -> [Int]{
         var genreIdList = [Int]()

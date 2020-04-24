@@ -25,4 +25,5 @@ let LANG_DICT = ["English": "en-US", "Spanish": "es", "Korean": "kr", "Japanese"
 
 // URLS
 let DISCOVER_URL = "https://api.themoviedb.org/3/discover/movie?api_key=\(API_KEY)&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
+let NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(API_KEY)"
 let GENREID_URL = "https://api.themoviedb.org/3/genre/movie/list?"
