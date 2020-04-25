@@ -47,7 +47,9 @@ class LoginViewController: UIViewController {
             }
         }
         if (username != "" && password != "") {
-             performSegue(withIdentifier: "LoginToHome", sender: self)
+            performSegue(withIdentifier: "LoginToHome", sender: self)
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.synchronize()
         } else {
             alertUser(message: "Incorrect Username or Password")
         }

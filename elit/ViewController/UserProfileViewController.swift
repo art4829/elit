@@ -17,6 +17,10 @@ class UserProfileViewController: UIViewController {
     }
     
 
+    @IBAction func LogoutClicked(_ sender: LoginButton) {
+         performSegue(withIdentifier: "LogoutSegue", sender: self)
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+    }
     /*
     // MARK: - Navigation
 

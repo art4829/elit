@@ -296,6 +296,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXP-Ha-rbO" customClass="LoginButton" customModule="elit" customModuleProvider="target">
+                                <rect key="frame" x="270" y="648" width="100" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                        <color key="value" red="0.84313725490000002" green="0.76862745099999996" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LogoutClicked:" destination="HBl-eC-IRq" eventType="touchUpInside" id="F9L-w5-bO1"/>
+                                    <segue destination="mrw-ho-f9j" kind="show" identifier="LogoutSegue" id="ORF-VV-Fr9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ecO-Oe-mpW"/>
@@ -407,6 +424,11 @@
                                     <action selector="goToSignUp:" destination="mrw-ho-f9j" eventType="touchUpInside" id="wH5-Xs-7k7"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wuP-0Q-Osv">
+                                <rect key="frame" x="87" y="831" width="240" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4pE-Fo-ht8"/>
                         <userDefinedRuntimeAttributes>
@@ -552,6 +574,11 @@
                                     <action selector="goToLogin:" destination="9oF-US-0U7" eventType="touchUpInside" id="bdB-7l-kWh"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0YC-QR-sK9">
+                                <rect key="frame" x="87" y="831" width="240" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.19215686269999999" blue="0.28235294119999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="371-ST-4al"/>
@@ -581,7 +608,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="qtZ-iF-sgl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -973,6 +1000,9 @@
             <point key="canvasLocation" x="-559" y="-805"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ORF-VV-Fr9"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="icons8-slider-80.png" width="80" height="80"/>
         <image name="lock" catalog="system" width="128" height="128"/>
