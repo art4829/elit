@@ -11,6 +11,7 @@ import UIKit
 class MoviesViewController: UIViewController {
     //MARK: - Properties
     var viewModelData = [MovieCardModel]()
+
     
     var stackContainer : StackContainerView!
     var filterURL = ""
@@ -51,40 +52,58 @@ class MoviesViewController: UIViewController {
         if filterURL != ""{
              search_url = filterURL
         }
-        let url = URL(string: search_url)!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-             // This will run when the network request returns
-             if let error = error {
-                print(error.localizedDescription)
-             } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-              
-                print(dataDictionary)
-                self.movies = dataDictionary["results"] as! [[String:Any]]     // instantiates variable movies as results then casts as dictionary
-//                print(" \n Number of Dictionaries/Hashes: ", (dataDictionary["results"] as! Array<Any>).count, "\n")
-
-                for m in self.movies {
-                    var movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
-                    self.viewModelData.append(movie);
-                }
-
-                self.stackContainer = StackContainerView()
-                self.view.addSubview(self.stackContainer)
-                self.configureStackContainer()
-                self.stackContainer.translatesAutoresizingMaskIntoConstraints = false
-                self.configureNavigationBarButtonItem()
-                
-                self.stackContainer.dataSource = self
-                
-             }
-          }
+        self.viewModelData = getMovies(filterURL: search_url)
+        self.stackContainer = StackContainerView()
+        self.view.addSubview(self.stackContainer)
+        self.configureStackContainer()
+        self.stackContainer.translatesAutoresizingMaskIntoConstraints = false
+        self.configureNavigationBarButtonItem()
         
-        task.resume()
-        
+        self.stackContainer.dataSource = self
         
         // Do any additional setup after loading the view.
+    }
+    
+    func getMovies(filterURL: String) -> [MovieCardModel]{
+        var moviesData = [MovieCardModel]()
+        var furl = filterURL
+        var moviesURLS = [String]()
+        let url = URL(string: furl)!
+        let data = try? Data(contentsOf: url)
+        
+        if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
+            let total_pages = json["total_pages"] as! Int
+            var page_index = 1
+            var replace_text = "page=\(page_index)"
+            while(page_index < total_pages){
+                furl = furl.replacingOccurrences(of: replace_text, with: "page=\(page_index)")
+                replace_text = "page=\(page_index)"
+                page_index += 1
+                moviesURLS.append(furl)
+                if page_index == 10{
+                    break
+                }
+            }
+        }
+        print(moviesURLS.count)
+       for val in moviesURLS{
+        print(val)
+        let url = URL(string: val)!
+        let data = try? Data(contentsOf: url)
+            if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
+              if let mv = json["results"] as? Array<[String:Any]> {
+                 for m in mv {
+                    if !(m["poster_path"] is NSNull){
+                         let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
+                         moviesData.append(movie)
+                    }
+                 }
+              }
+            }
+        }
+        return moviesData
+
+        
     }
 }
 
@@ -119,4 +138,9 @@ extension MoviesViewController : SwipeCardsDataSource {
         return nil
     }
 
+}
+extension StringProtocol {
+    func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
+        range(of: string, options: options)?.lowerBound
+    }
 }
