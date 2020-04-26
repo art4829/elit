@@ -46,10 +46,12 @@ class MoviesViewController: UIViewController {
     
 
     var movies = [[String: Any]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("FILTER URL: ", filterURL)
         if filterURL != ""{
+            // if not filtered, present inital movies data, else get the filters cardmodel array
              search_url = filterURL
         }
         self.viewModelData = getMovies(filterURL: search_url)
@@ -71,21 +73,25 @@ class MoviesViewController: UIViewController {
         let url = URL(string: furl)!
         let data = try? Data(contentsOf: url)
         
+        // get the total pages number
         if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
             let total_pages = json["total_pages"] as! Int
             var page_index = 1
             var replace_text = "page=\(page_index)"
             while(page_index < total_pages){
+                // create a list of api urls based on the page numbers
                 furl = furl.replacingOccurrences(of: replace_text, with: "page=\(page_index)")
                 replace_text = "page=\(page_index)"
                 page_index += 1
                 moviesURLS.append(furl)
                 if page_index == 10{
+                    // if pages more than 10, break else app keeps on requesting data and lags.
                     break
                 }
             }
         }
         print(moviesURLS.count)
+        // for every url, make request and add data to the card model and return it
        for val in moviesURLS{
         print(val)
         let url = URL(string: val)!
