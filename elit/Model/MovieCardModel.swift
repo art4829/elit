@@ -19,4 +19,20 @@ struct MovieCardModel {
         self.title = text
         self.image = image
     }
+    
+    func getTitle() -> String {
+        title
+    }
+}
+
+class FavMovies: NSObject{
+    var movieList: [String] = []
+    func hasMovie(movie : MovieCardModel) -> Bool {
+        for m in self.movieList {
+            if (m == movie.getTitle()) {
+                return true
+            }
+        }
+        return false
+    }
 }

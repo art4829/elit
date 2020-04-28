@@ -121,8 +121,9 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         let vc = storyboard?.instantiateViewController(identifier: "MoviesViewController") as! MoviesViewController
         vc.filterURL = filterURL
-        vc.viewDidLoad()
-        dismiss(animated: true, completion: nil)
+        self.present(vc, animated:true, completion:nil)
+        //vc.viewDidLoad()
+        //dismiss(animated: true, completion: nil)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

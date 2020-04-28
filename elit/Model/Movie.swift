@@ -32,6 +32,7 @@ class Movie: NSObject {
     
     init(id: Int, genreIds: [Int], popularity: Int, releaseDate: Date, orginalLanguage: String, posterPath: String, backdropPath: String, voteAverage : Float, title: String, originalTitle: String, overview: String, voteCount: Int, email: String = "") {
         super.init()
+        self.set(id: id)
     }
     
     func getId() -> Int {
@@ -74,6 +75,27 @@ class Movie: NSObject {
     }
     func set(posterPath: String) {
         self.posterPath = posterPath
+    }
+    
+    func getBackDropPath() -> String {
+        backdropPath
+    }
+    func set(backdropPath : String) {
+        self.backdropPath = backdropPath
+    }
+    
+    func getVoteAverage() -> Float {
+        voteAverage
+    }
+    func set(voteAverage : Float) {
+        self.voteAverage = voteAverage
+    }
+    
+    func getTitle() -> String {
+        title
+    }
+    func set(title: String) {
+        self.title = title
     }
     
 }

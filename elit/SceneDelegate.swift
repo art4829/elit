@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let genreArray = Genres()
+    var tabBarController: UITabBarController!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -55,6 +56,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.rootViewController = initialViewController
 //            self.window?.makeKeyAndVisible()
         }
+        let favMovies = FavMovies()
+        favMovies.movieList = []
+        
+        tabBarController = window?.rootViewController as? UITabBarController
+        
+
+        let movieVC = tabBarController!.viewControllers![0] as! MoviesViewController
+        
+        let favMoviesTableVC = tabBarController!.viewControllers![2] as! FavoriteMoviesTableVC
+        
+        movieVC.favMovies = favMovies
+        favMoviesTableVC.favMovies = favMovies
+        
     }
 
     fileprivate func isLoggedIn() -> Bool {

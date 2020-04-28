@@ -605,6 +605,35 @@
             </objects>
             <point key="canvasLocation" x="-1304" y="607"/>
         </scene>
+        <!--Favorites-->
+        <scene sceneID="yYe-Qs-NIO">
+            <objects>
+                <tableViewController id="WS0-xh-05u" customClass="FavoriteMoviesTableVC" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MeN-Fr-cbl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" id="HsG-UZ-r1f">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HsG-UZ-r1f" id="oIf-r8-FvL">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WS0-xh-05u" id="uwM-pE-BUq"/>
+                            <outlet property="delegate" destination="WS0-xh-05u" id="TNa-sP-I8X"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star.fill" catalog="system" id="NwS-g1-q3u"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0LO-lF-UNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="646"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -618,6 +647,7 @@
                     <connections>
                         <segue destination="zBV-Mh-hsQ" kind="relationship" relationship="viewControllers" id="7kL-fv-Gfh"/>
                         <segue destination="HBl-eC-IRq" kind="relationship" relationship="viewControllers" id="y2D-Kx-0Ff"/>
+                        <segue destination="WS0-xh-05u" kind="relationship" relationship="viewControllers" id="B1a-Ib-ERE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1007,6 +1037,7 @@
         <image name="icons8-slider-80.png" width="80" height="80"/>
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark.rectangle" catalog="system" width="128" height="93"/>
     </resources>
 </document>

@@ -24,7 +24,9 @@ class SwipeCardView : UIView {
     var divisor : CGFloat = 0
     let baseView = UIView()
 
-    
+    var favMovies: FavMovies!
+    let defaults = UserDefaults.standard
+
     
     var dataSource : MovieCardModel? {
         didSet {
@@ -138,6 +140,7 @@ class SwipeCardView : UIView {
     //MARK: - Handlers
     @objc func handlePanGesture(sender: UIPanGestureRecognizer){
         let card = sender.view as! SwipeCardView
+        let cardContent = card.dataSource!
         let point = sender.translation(in: self)
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
@@ -147,6 +150,7 @@ class SwipeCardView : UIView {
        
         switch sender.state {
         case .ended:
+            //Swipe Right
             if (card.center.x) > 400 {
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -154,8 +158,15 @@ class SwipeCardView : UIView {
                     card.alpha = 0
                     self.layoutIfNeeded()
                 }
+                if !favMovies!.hasMovie(movie: cardContent) {
+                    favMovies!.movieList.append(cardContent.getTitle())
+                }
+                print(favMovies!.movieList)
+                defaults.set(favMovies!.movieList, forKey:"movies")
                 return
-            }else if card.center.x < -65 {
+            }
+            //Swipe Left
+            else if card.center.x < -65 {
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)

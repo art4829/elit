@@ -16,6 +16,7 @@ class MoviesViewController: UIViewController {
     var stackContainer : StackContainerView!
     var filterURL = ""
     var search_url = NOW_PLAYING_URL
+    var favMovies : FavMovies!
 
     
     //MARK: - Configurations
@@ -49,6 +50,10 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if favMovies == nil {
+            favMovies = FavMovies()
+            favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
+        }
         print("FILTER URL: ", filterURL)
         if filterURL != ""{
             // if not filtered, present inital movies data, else get the filters cardmodel array
@@ -65,6 +70,7 @@ class MoviesViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
     
     func getMovies(filterURL: String) -> [MovieCardModel]{
         var moviesData = [MovieCardModel]()
@@ -136,6 +142,7 @@ extension MoviesViewController : SwipeCardsDataSource {
     
     func card(at index: Int) -> SwipeCardView {
         let card = SwipeCardView()
+        card.favMovies = favMovies
         card.dataSource = viewModelData[index]
         return card
     }
