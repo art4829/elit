@@ -103,9 +103,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
 //        print(filterURL)
         let genreIdList = getGenreIdList()
         if genreIdList.count != 0{
-//            print("list: \(genreIdList)")
             for (idx, element) in genreIdList.enumerated() {
-//                print(genreIdList.endIndex)
                     if idx != genreIdList.endIndex - 1 {
                         // handling the last element
                         genreParam = genreParam+"\(element)%2C"

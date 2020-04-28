@@ -47,24 +47,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error)
             }
         }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         
         if isLoggedIn(){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-
-            self.window?.rootViewController = initialViewController
-//            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController = tabBarController
+            self.window?.makeKeyAndVisible()
         }
         let favMovies = FavMovies()
         favMovies.movieList = []
+    
         
-        tabBarController = window?.rootViewController as? UITabBarController
-        
-
-        let movieVC = tabBarController!.viewControllers![0] as! MoviesViewController
-        
-        let favMoviesTableVC = tabBarController!.viewControllers![2] as! FavoriteMoviesTableVC
+        let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
+        let favMoviesTableVC = tabBarController.viewControllers![2] as! FavoriteMoviesTableVC
         
         movieVC.favMovies = favMovies
         favMoviesTableVC.favMovies = favMovies
