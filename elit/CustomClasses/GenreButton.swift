@@ -33,7 +33,6 @@ class GenreButton: UIButton {
         layer.shadowOpacity = 2
         layer.shadowOffset  = CGSize(width: 1.0, height: 4)
         layer.shadowRadius  = 4
-            
     }
     
     func buttonPressed(){

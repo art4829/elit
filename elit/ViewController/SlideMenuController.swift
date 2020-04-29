@@ -34,6 +34,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     var dataSource = [String]()
     var genreArray = Genres()
     var filterURL = DISCOVER_URL
+    let defaults = UserDefaults.standard
     
     @IBAction func closeFilter(_ sender: UIButton) {
       
@@ -41,22 +42,33 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        rating.rating = 0
+        rating.rating = defaults.double(forKey: "rating")
+        dropDownBtn.setTitle(defaults.string(forKey: "language"), for: .normal)
+        let genresbtn = defaults.object(forKey: "genreList") as? [Int] ?? [Int]()
+        for id in genresbtn{
+            switch id {
+            case ACTION_ID:
+                actionbtn.buttonPressed()
+            case ANIMATION_ID:
+                animationBtn.buttonPressed()
+            case COMEDY_ID:
+                comedyBtn.buttonPressed()
+            case DRAMA_ID:
+                dramaBtn.buttonPressed()
+            case SCIFI_ID:
+                scifiBtn.buttonPressed()
+            case THRILLER_ID:
+                thrillerBtn.buttonPressed()
+            case ROMANCE_ID:
+                romanceBtn.buttonPressed()
+            default:
+                break
+            }
+        }
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         
-        let url = URL(string: "\(GENREID_URL)api_key=\(API_KEY)")!
-        print(url)
-        let data = try? Data(contentsOf: url)
-        if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
-            if let genres = json["genres"] as? Array<[String:Any]> {
-               for genre in genres{
-                    let g = Genre(name: genre["name"] as! String, id: genre["id"] as! Int)
-                self.genreArray.genreList.append(g)
-                }
-            }
-        }
     }
     
        // MARK: - IBActions
@@ -94,13 +106,13 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func applyFilter(_ sender: UIButton) {
-//        print("Rating: \(rating.rating)")
-//        dismiss(animated: true)
+        var filterCount = 0
         if rating.rating != 0 {
             ratingParam = "&vote_average.gte=\(rating.rating * 2)"
             filterURL = DISCOVER_URL+"\(ratingParam)"
+            filterCount += 1
         }
-//        print(filterURL)
+        defaults.set(rating.rating, forKey: "rating")
         let genreIdList = getGenreIdList()
         if genreIdList.count != 0{
             for (idx, element) in genreIdList.enumerated() {
@@ -112,48 +124,58 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
             }
             filterURL = filterURL+"\(genreParam)"
+            filterCount += 1
         }
         if dropDownBtn.titleLabel?.text != "All Languages"{
-            print(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)
             filterURL = filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)"
+            filterCount += 1
         }
+        defaults.set((dropDownBtn.titleLabel?.text)!, forKey: "language")
+        print(filterURL)
         let vc = storyboard?.instantiateViewController(identifier: "MoviesViewController") as! MoviesViewController
-        vc.filterURL = filterURL
-        self.present(vc, animated:true, completion:nil)
-        //vc.viewDidLoad()
-        //dismiss(animated: true, completion: nil)
+        if filterCount == 0 {
+            vc.nowPlaying = true
+        }else{
+            vc.nowPlaying = false
+            vc.filterURL = filterURL
+            print("ONLY FILTERS")
+            print(genreIdList)
+            print("filter count: \(filterCount)")
+        }
+        vc.randomPages = [Int]()
+//        self.present(vc, animated:true, completion:nil)
+        vc.viewDidLoad()
+//        vc.stackContainer.reloadData()
+        dismiss(animated: true, completion: nil)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let vc = segue.destination as! MoviesViewController
-//        vc.filterURL = self.filterURL
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-//    }
-    
+
     func getGenreIdList() -> [Int]{
         var genreIdList = [Int]()
         if self.actionbtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Action"))
+            genreIdList.append(GENRE_DICT["Action"]!)
         }
         if self.comedyBtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Comedy"))
+            genreIdList.append(GENRE_DICT["Comedy"]!)
         }
         if self.dramaBtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Drama"))
+            genreIdList.append(GENRE_DICT["Drama"]!)
         }
         if self.animationBtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Animation"))
+            genreIdList.append(GENRE_DICT["Animation"]!)
         }
         if self.romanceBtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Romance"))
+            genreIdList.append(GENRE_DICT["Romance"]!)
         }
         if self.thrillerBtn.isOn {
-            genreIdList.append(genreArray.getId(name: "Thriller"))
+            genreIdList.append(GENRE_DICT["Thriller"]!)
         }
         if self.scifiBtn.isOn {
-           genreIdList.append(genreArray.getId(name: "Science Fiction"))
+            genreIdList.append(GENRE_DICT["Science Fiction"]!)
        }
+        defaults.set(genreIdList, forKey: "genreList")
         return genreIdList
+        
     }
     
     @IBAction func clearClicked(_ sender: UIButton) {

@@ -19,6 +19,8 @@ class MoviesViewController: UIViewController {
     var search_url = NOW_PLAYING_URL
     var favMovies : FavMovies!
     var total_pages = 1
+    var nowPlaying = true
+    var defaults = UserDefaults.standard
 
     
     //MARK: - Configurations
@@ -52,19 +54,21 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if nowPlaying == true{
+             defaults.set(0, forKey: "rating")
+             defaults.set([], forKey: "genreList")
+             defaults.set("All Languages", forKey: "language")
+        }
         if favMovies == nil {
             favMovies = FavMovies()
             favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
         }
-        print("FILTER URL: ", filterURL)
-         var start = true
-        if filterURL != ""{
+//        print("FILTER URL: ", filterURL)
+        if nowPlaying == false {
            // if not filtered, present inital movies data, else get the filters cardmodel array
             search_url = filterURL
-           start = false
-            
         }
-        self.viewModelData = getMovies(filterURL: search_url, start: start)
+        self.viewModelData = getMovies(filterURL: search_url)
         self.stackContainer = StackContainerView()
         self.view.addSubview(self.stackContainer)
         self.configureStackContainer()
@@ -77,7 +81,7 @@ class MoviesViewController: UIViewController {
     }
     
     
-    func getMovies(filterURL: String, start: Bool) -> [MovieCardModel]{
+    func getMovies(filterURL: String) -> [MovieCardModel]{
            var moviesData = [MovieCardModel]()
            var furl = filterURL
            var url = URL(string: furl)!
@@ -96,13 +100,19 @@ class MoviesViewController: UIViewController {
                randomPages.append(randPageNum)
            }
     //       furl = furl.replacingOccurrences(of: replace_text, with: "page=\(randPageNum)")
-            if start {
+            if nowPlaying {
+                while true{
+                    let a = furl.last
+                    if a == "="{
+                        break
+                    }
                 furl = String(furl.dropLast())
+                }
                 furl.append("\(randPageNum)")
             }else{
                 let strIndex = furl.index(furl.startIndex, offsetBy: 154)
                 let endIndex = furl.index(furl.startIndex, offsetBy: 155)
-                print(randPageNum)
+//                print(randPageNum)
                 furl = furl.replacingCharacters(in: strIndex..<endIndex, with: "\(randPageNum)")
             }
           
@@ -110,7 +120,7 @@ class MoviesViewController: UIViewController {
            url = URL(string: furl)!
            data = try? Data(contentsOf: url)
            if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
-             print(url)
+//             print(url)
              if let mv = json["results"] as? Array<[String:Any]> {
                 for m in mv {
                    if !(m["poster_path"] is NSNull){
@@ -150,15 +160,12 @@ extension MoviesViewController : SwipeCardsDataSource {
         card.favMovies = favMovies
         card.dataSource = viewModelData[index]
         self.viewModelData.remove(at: index)
-        if (index == numberOfCardsToShow() - 3){
-            print("YESSSSSS")
-            var start = true
-            if filterURL != "" {
-            // if not filtered, present inital movies data, else get the filters cardmodel array
+        if (index == numberOfCardsToShow() - 2){
+//            print("YESSSSSS")
+            if nowPlaying == false {
                search_url = filterURL
-               start = false
             }
-            let movies = getMovies(filterURL: search_url, start: start)
+            let movies = getMovies(filterURL: search_url)
             for movie in movies{
                 self.viewModelData.append(movie)
             }

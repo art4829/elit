@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if isLoggedIn(){
             self.window?.rootViewController = tabBarController
-            self.window?.makeKeyAndVisible()
+//            self.window?.makeKeyAndVisible()
         }
         let favMovies = FavMovies()
         favMovies.movieList = []
