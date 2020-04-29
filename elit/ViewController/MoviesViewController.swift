@@ -148,6 +148,7 @@ extension MoviesViewController : SwipeCardsDataSource {
     }
     
     func emptyView() -> UIView? {
+        print("end")
         return nil
     }
 

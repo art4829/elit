@@ -100,6 +100,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
             }
 
         }else {
+            print("swipeEndNoCard");
             for (cardIndex, cardView) in visibleCards.reversed().enumerated() {
                 UIView.animate(withDuration: 0.2, animations: {
                     cardView.center = self.center
