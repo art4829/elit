@@ -21,6 +21,7 @@ class MoviesViewController: UIViewController {
     var total_pages = 1
     var nowPlaying = true
     var defaults = UserDefaults.standard
+    var filterViewController : SlideMenuController!
 
     
     //MARK: - Configurations
@@ -42,7 +43,9 @@ class MoviesViewController: UIViewController {
     let transition = SlideInTransition()
 
     @IBAction func didTapFilter(_ sender: UIButton) {
-        guard let filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController") else {return}
+        //Not sure if this has to be "guard"
+//        guard let filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController") else {return}
+        filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController")
 
         filterViewController.modalPresentationStyle = .overCurrentContext
         filterViewController.transitioningDelegate = self
@@ -54,18 +57,28 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if nowPlaying == true{
-             defaults.set(0, forKey: "rating")
-             defaults.set([], forKey: "genreList")
-             defaults.set("All Languages", forKey: "language")
+        viewLoadSetup()
+    }
+    
+    func viewLoadSetup(){
+        // setup view did load here
+        if filterViewController != nil && filterViewController?.appliedFilter == true {
+            nowPlaying = filterViewController.nowPlaying
+            filterURL = filterViewController.filterURL
+            randomPages = [Int]()
+        }
+        if nowPlaying == true {
+            defaults.set(0, forKey: "rating")
+            defaults.set([], forKey: "genreList")
+            defaults.set("All Languages", forKey: "language")
         }
         if favMovies == nil {
             favMovies = FavMovies()
             favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
         }
-//        print("FILTER URL: ", filterURL)
+        //  print("FILTER URL: ", filterURL)
         if nowPlaying == false {
-           // if not filtered, present inital movies data, else get the filters cardmodel array
+        // if not filtered, present inital movies data, else get the filters cardmodel array
             search_url = filterURL
         }
         self.viewModelData = getMovies(filterURL: search_url)
@@ -74,14 +87,13 @@ class MoviesViewController: UIViewController {
         self.configureStackContainer()
         self.stackContainer.translatesAutoresizingMaskIntoConstraints = false
         self.configureNavigationBarButtonItem()
-        
         self.stackContainer.dataSource = self
-        
-        // Do any additional setup after loading the view.
     }
     
     
+    
     func getMovies(filterURL: String) -> [MovieCardModel]{
+        print(filterURL)
            var moviesData = [MovieCardModel]()
            var furl = filterURL
            var url = URL(string: furl)!
@@ -142,7 +154,7 @@ extension MoviesViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = false
-
+        viewDidLoad()
         return transition
     }
   }
@@ -150,7 +162,6 @@ extension MoviesViewController: UIViewControllerTransitioningDelegate {
 
 
 extension MoviesViewController : SwipeCardsDataSource {
-
     func numberOfCardsToShow() -> Int {
         return viewModelData.count
     }

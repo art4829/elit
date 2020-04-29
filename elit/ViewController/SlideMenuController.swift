@@ -25,7 +25,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var scifiBtn: GenreButton!
     @IBOutlet weak var dropDownBtn: UIButton!
     
-    
+    var appliedFilter = false
     var languageParam = "&language="
     var ratingParam = ""
     var genreParam = "&with_genres="
@@ -34,6 +34,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     var dataSource = [String]()
     var genreArray = Genres()
     var filterURL = DISCOVER_URL
+    var nowPlaying = true
     let defaults = UserDefaults.standard
     
     @IBAction func closeFilter(_ sender: UIButton) {
@@ -132,20 +133,15 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         defaults.set((dropDownBtn.titleLabel?.text)!, forKey: "language")
         print(filterURL)
-        let vc = storyboard?.instantiateViewController(identifier: "MoviesViewController") as! MoviesViewController
+
         if filterCount == 0 {
-            vc.nowPlaying = true
+            self.nowPlaying = true
+            self.appliedFilter = false
         }else{
-            vc.nowPlaying = false
-            vc.filterURL = filterURL
-            print("ONLY FILTERS")
-            print(genreIdList)
-            print("filter count: \(filterCount)")
+            self.nowPlaying = false
+            self.appliedFilter = true
         }
-        vc.randomPages = [Int]()
-//        self.present(vc, animated:true, completion:nil)
-        vc.viewDidLoad()
-//        vc.stackContainer.reloadData()
+
         dismiss(animated: true, completion: nil)
     }
     
