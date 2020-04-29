@@ -21,6 +21,14 @@ let ELIT_FONT = "Mukta Mahee"
 
 //
 let LANG_DICT = ["English": "en-US", "Spanish": "es", "Korean": "kr", "Japanese": "ja" ]
+let ACTION_ID = 28
+let ANIMATION_ID = 12
+let COMEDY_ID = 35
+let DRAMA_ID = 18
+let ROMANCE_ID = 10749
+let SCIFI_ID = 878
+let THRILLER_ID = 53
+let GENRE_DICT = ["Action": 28, "Animation": 12, "Comedy": 35, "Drama": 18, "Romance": 10749, "Science Fiction": 878, "Thriller": 53]
 
 
 // URLS

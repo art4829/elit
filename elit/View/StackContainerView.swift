@@ -17,7 +17,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     var cardsToBeVisible: Int = 3
     var cardViews : [SwipeCardView] = []
     var remainingcards: Int = 0
-    
+    var first = true
     let horizontalInset: CGFloat = 10.0
     let verticalInset: CGFloat = 10.0
     
@@ -27,6 +27,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     var dataSource: SwipeCardsDataSource? {
         didSet {
             reloadData()
+            first = false
         }
     }
     //MARK: - Init
@@ -42,16 +43,16 @@ class StackContainerView: UIView, SwipeCardsDelegate {
 
     
     func reloadData() {
-        removeAllCardViews()
+//        removeAllCardViews()
         guard let datasource = dataSource else { return }
         setNeedsLayout()
         layoutIfNeeded()
         numberOfCardsToShow = datasource.numberOfCardsToShow()
         remainingcards = numberOfCardsToShow
-        
-        for i in 0..<min(numberOfCardsToShow,cardsToBeVisible) {
-            addCardView(cardView: datasource.card(at: i), atIndex: i )
-            
+        if first{
+            for i in 0..<min(numberOfCardsToShow,cardsToBeVisible) {
+                addCardView(cardView: datasource.card(at: i), atIndex: i )
+            }
         }
     }
 
@@ -83,6 +84,8 @@ class StackContainerView: UIView, SwipeCardsDelegate {
         }
         cardViews = []
     }
+    
+
     
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }

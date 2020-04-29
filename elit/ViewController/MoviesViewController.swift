@@ -12,11 +12,15 @@ class MoviesViewController: UIViewController {
     //MARK: - Properties
     var viewModelData = [MovieCardModel]()
 
-    
+    var randomPages = [Int]()
+    var replace_text = "page=1"
     var stackContainer : StackContainerView!
     var filterURL = ""
     var search_url = NOW_PLAYING_URL
     var favMovies : FavMovies!
+    var total_pages = 1
+    var nowPlaying = true
+    var defaults = UserDefaults.standard
 
     
     //MARK: - Configurations
@@ -50,14 +54,19 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if nowPlaying == true{
+             defaults.set(0, forKey: "rating")
+             defaults.set([], forKey: "genreList")
+             defaults.set("All Languages", forKey: "language")
+        }
         if favMovies == nil {
             favMovies = FavMovies()
             favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
         }
-        print("FILTER URL: ", filterURL)
-        if filterURL != ""{
-            // if not filtered, present inital movies data, else get the filters cardmodel array
-             search_url = filterURL
+//        print("FILTER URL: ", filterURL)
+        if nowPlaying == false {
+           // if not filtered, present inital movies data, else get the filters cardmodel array
+            search_url = filterURL
         }
         self.viewModelData = getMovies(filterURL: search_url)
         self.stackContainer = StackContainerView()
@@ -73,50 +82,56 @@ class MoviesViewController: UIViewController {
     
     
     func getMovies(filterURL: String) -> [MovieCardModel]{
-        var moviesData = [MovieCardModel]()
-        var furl = filterURL
-        var moviesURLS = [String]()
-        let url = URL(string: furl)!
-        let data = try? Data(contentsOf: url)
-        
-        // get the total pages number
-        if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
-            let total_pages = json["total_pages"] as! Int
-            var page_index = 1
-            var replace_text = "page=\(page_index)"
-            while(page_index < total_pages){
-                // create a list of api urls based on the page numbers
-                furl = furl.replacingOccurrences(of: replace_text, with: "page=\(page_index)")
-                replace_text = "page=\(page_index)"
-                page_index += 1
-                moviesURLS.append(furl)
-                if page_index == 10{
-                    // if pages more than 10, break else app keeps on requesting data and lags.
-                    break
-                }
-            }
-        }
-        print(moviesURLS.count)
-        // for every url, make request and add data to the card model and return it
-       for val in moviesURLS{
-        print(val)
-        let url = URL(string: val)!
-        let data = try? Data(contentsOf: url)
-            if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
-              if let mv = json["results"] as? Array<[String:Any]> {
-                 for m in mv {
-                    if !(m["poster_path"] is NSNull){
-                         let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
-                         moviesData.append(movie)
+           var moviesData = [MovieCardModel]()
+           var furl = filterURL
+           var url = URL(string: furl)!
+           var data = try? Data(contentsOf: url)
+           var randPageNum = 0
+           
+           // get the total pages number
+           if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
+               self.total_pages = json["total_pages"] as! Int
+               while true{
+                randPageNum = Int.random(in: 1 ..< self.total_pages + 1)
+                   if !randomPages.contains(randPageNum){
+                       break
+                   }
+               }
+               randomPages.append(randPageNum)
+           }
+    //       furl = furl.replacingOccurrences(of: replace_text, with: "page=\(randPageNum)")
+            if nowPlaying {
+                while true{
+                    let a = furl.last
+                    if a == "="{
+                        break
                     }
-                 }
-              }
+                furl = String(furl.dropLast())
+                }
+                furl.append("\(randPageNum)")
+            }else{
+                let strIndex = furl.index(furl.startIndex, offsetBy: 154)
+                let endIndex = furl.index(furl.startIndex, offsetBy: 155)
+//                print(randPageNum)
+                furl = furl.replacingCharacters(in: strIndex..<endIndex, with: "\(randPageNum)")
             }
-        }
-        return moviesData
-
-        
-    }
+          
+           // for every url, make request and add data to the card model and return it
+           url = URL(string: furl)!
+           data = try? Data(contentsOf: url)
+           if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
+//             print(url)
+             if let mv = json["results"] as? Array<[String:Any]> {
+                for m in mv {
+                   if !(m["poster_path"] is NSNull){
+                        let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
+                        moviesData.append(movie)
+                   }
+                }
+             }
+           }
+           return moviesData
+       }
 }
 
 extension MoviesViewController: UIViewControllerTransitioningDelegate {
@@ -144,6 +159,19 @@ extension MoviesViewController : SwipeCardsDataSource {
         let card = SwipeCardView()
         card.favMovies = favMovies
         card.dataSource = viewModelData[index]
+        self.viewModelData.remove(at: index)
+        if (index == numberOfCardsToShow() - 2){
+//            print("YESSSSSS")
+            if nowPlaying == false {
+               search_url = filterURL
+            }
+            let movies = getMovies(filterURL: search_url)
+            for movie in movies{
+                self.viewModelData.append(movie)
+            }
+            self.stackContainer.dataSource = self
+        }
+       
         return card
     }
     
@@ -151,6 +179,7 @@ extension MoviesViewController : SwipeCardsDataSource {
         print("end")
         return nil
     }
+    
 
 }
 extension StringProtocol {
