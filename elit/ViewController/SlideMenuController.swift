@@ -38,7 +38,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     let defaults = UserDefaults.standard
     
     @IBAction func closeFilter(_ sender: UIButton) {
-      
+        appliedFilter = false
         dismiss(animated: true)
     }
     override func viewDidLoad() {

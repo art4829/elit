@@ -62,10 +62,15 @@ class MoviesViewController: UIViewController {
     
     func viewLoadSetup(){
         // setup view did load here
-        if filterViewController != nil && filterViewController?.appliedFilter == true {
-            nowPlaying = filterViewController.nowPlaying
-            filterURL = filterViewController.filterURL
-            randomPages = [Int]()
+        if filterViewController != nil {
+            if filterViewController?.appliedFilter == true {
+                nowPlaying = filterViewController.nowPlaying
+                filterURL = filterViewController.filterURL
+                randomPages = [Int]()
+            } else {
+                //Do not apply filter or reload the cards
+                return
+            }
         }
         if nowPlaying == true {
             defaults.set(0, forKey: "rating")
