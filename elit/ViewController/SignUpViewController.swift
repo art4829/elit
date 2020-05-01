@@ -28,6 +28,12 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fullnameEntered.autocorrectionType = .no
+        self.emailEntered.autocorrectionType = .no
+        self.usernameEntered.autocorrectionType = .no
+        self.passwordEntered.autocorrectionType = .no
+        self.confirmPasswordEntered.autocorrectionType = .no
+
         usersList.userList = globalUsersList
     }
     

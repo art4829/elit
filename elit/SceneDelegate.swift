@@ -50,10 +50,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         
-        if isLoggedIn(){
-            self.window?.rootViewController = tabBarController
-//            self.window?.makeKeyAndVisible()
-        }
+//        if isLoggedIn(){
+//            self.window?.rootViewController = tabBarController
+////            self.window?.makeKeyAndVisible()
+//        }
         let favMovies = FavMovies()
         favMovies.movieList = []
     
@@ -98,6 +98,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    
 
+}
+extension NSLayoutConstraint {
+
+    override public var description: String {
+        let id = identifier ?? ""
+        return "id: \(id), constant: \(constant)" //you may print whatever you want here
+    }
 }
 

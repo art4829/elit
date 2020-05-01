@@ -21,13 +21,15 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         usersList.userList = globalUsersList
+        self.usernameEntered.autocorrectionType = .no
+        self.passwordEntered.autocorrectionType = .no
         username = ""
         password = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     @IBAction func goToSignUp(_ sender: Any) {
