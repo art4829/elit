@@ -47,7 +47,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4S6-Lk-Ox8"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="airplayvideo" catalog="system" id="4S6-Lk-Ox8"/>
                     <navigationItem key="navigationItem" id="Jzu-mS-6wG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJk-jk-FoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,7 +323,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="IOE-wr-YwJ"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="IOE-wr-YwJ"/>
                     <navigationItem key="navigationItem" id="Cm2-H5-54D"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmR-sS-nA4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -630,7 +630,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LO-lF-UNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="239" y="646"/>
+            <point key="canvasLocation" x="201" y="607"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1032,9 +1032,11 @@
         <segue reference="ORF-VV-Fr9"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="airplayvideo" catalog="system" width="128" height="98"/>
         <image name="icons8-slider-80.png" width="80" height="80"/>
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark.rectangle" catalog="system" width="128" height="93"/>
     </resources>

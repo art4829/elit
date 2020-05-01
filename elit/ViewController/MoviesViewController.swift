@@ -144,7 +144,8 @@ class MoviesViewController: UIViewController {
              if let mv = json["results"] as? Array<[String:Any]> {
                 for m in mv {
                    if !(m["poster_path"] is NSNull){
-                        let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String))
+                    let rating = "\(m["vote_average"] ?? "")"
+                    let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating )
                         moviesData.append(movie)
                     print(m["poster_path"] as! String)
                    }

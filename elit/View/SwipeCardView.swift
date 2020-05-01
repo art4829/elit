@@ -34,7 +34,23 @@ class SwipeCardView : UIView {
     var dataSource : MovieCardModel? {
         didSet {
             swipeView.backgroundColor = .clear
-            label.text = dataSource?.title
+            
+            if (dataSource!.vote_average != "") {
+                let star = UIImage(systemName: "star")
+                
+                let attachment = NSTextAttachment()
+                attachment.image = star
+                let attachmentString = NSAttributedString(attachment: attachment)
+                let titleString = NSMutableAttributedString(string: dataSource!.title + " ")
+                let ratingString = NSMutableAttributedString(string: " " + String(dataSource!.vote_average))
+
+                titleString.append(attachmentString)
+                titleString.append(ratingString)
+                label.attributedText = titleString
+            } else {
+                label.text = dataSource!.getTitle()
+            }
+            
             guard let image = dataSource?.image else { return }
             imageView.downloaded(from: image)
         }

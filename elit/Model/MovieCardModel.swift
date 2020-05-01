@@ -12,12 +12,19 @@ struct MovieCardModel {
     
     var bgColor: UIColor
     var title : String
+    var vote_average: String
     var image : String
       
-    init(bgColor: UIColor, text: String, image: String) {
+    init(bgColor: UIColor, text: String, image: String, vote_average: String) {
         self.bgColor = bgColor
         self.title = text
         self.image = image
+        if (vote_average == "0") {
+            self.vote_average = ""
+        } else {
+            self.vote_average = vote_average + "/10"
+        }
+        
     }
     
     func getTitle() -> String {
