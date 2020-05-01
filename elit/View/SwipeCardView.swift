@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 class SwipeCardView : UIView {
    
@@ -27,10 +28,12 @@ class SwipeCardView : UIView {
     var favMovies: FavMovies!
     let defaults = UserDefaults.standard
 
+    var parentMargins : UILayoutGuide!
+    var parentSafeArea : UILayoutGuide!
     
     var dataSource : MovieCardModel? {
         didSet {
-            swipeView.backgroundColor = dataSource?.bgColor
+            swipeView.backgroundColor = .clear
             label.text = dataSource?.title
             guard let image = dataSource?.image else { return }
             imageView.downloaded(from: image)
@@ -43,8 +46,9 @@ class SwipeCardView : UIView {
         super.init(frame: .zero)
         configureShadowView()
         configureSwipeView()
-        configureLabelView()
+        
         configureImageView()
+        configureLabelView()
         configureButton()
         addPanGestureOnCards()
         configureTapGesture()
@@ -74,7 +78,7 @@ class SwipeCardView : UIView {
     
     func configureSwipeView() {
         swipeView = UIView()
-        swipeView.layer.cornerRadius = 15
+        swipeView.layer.cornerRadius = 20
         swipeView.clipsToBounds = true
         shadowView.addSubview(swipeView)
         
@@ -87,6 +91,8 @@ class SwipeCardView : UIView {
     
     func configureLabelView() {
         swipeView.addSubview(label)
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .center
@@ -94,21 +100,25 @@ class SwipeCardView : UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leftAnchor.constraint(equalTo: swipeView.leftAnchor).isActive = true
         label.rightAnchor.constraint(equalTo: swipeView.rightAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         label.heightAnchor.constraint(equalToConstant: 85).isActive = true
         
     }
     
     func configureImageView() {
         imageView = UIImageView()
+        
+        imageView.layer.cornerRadius = 35
+        imageView.layer.masksToBounds = true
         swipeView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        imageView.centerXAnchor.constraint(equalTo: swipeView.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: swipeView.centerYAnchor, constant: -30).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: -5).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -85).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5).isActive = true
     }
     
     func configureButton() {

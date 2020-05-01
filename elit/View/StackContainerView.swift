@@ -97,7 +97,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
             for (cardIndex, cardView) in visibleCards.reversed().enumerated() {
                 UIView.animate(withDuration: 0.2, animations: {
                 cardView.center = self.center
-                  self.addCardFrame(index: cardIndex, cardView: cardView)
+                    self.addCardFrame(index: cardIndex, cardView: cardView)
                     self.layoutIfNeeded()
                 })
             }

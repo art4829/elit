@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E69E4832457A4FA00738430 /* FavoriteMoviesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */; };
+		9E7FF41D245C5E63003DD6DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7FF41C245C5E63003DD6DC /* QuartzCore.framework */; };
 		9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */; };
 		9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A70243A802000AE5105 /* SignUpViewController.swift */; };
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesTableVC.swift; sourceTree = "<group>"; };
+		9E7FF41C245C5E63003DD6DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
@@ -87,12 +89,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7FF41D245C5E63003DD6DC /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E7FF41B245C5E63003DD6DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E7FF41C245C5E63003DD6DC /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9EFC3469244E42EF0049A894 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +118,7 @@
 			children = (
 				C965215424363BD4009B14F7 /* elit */,
 				C965215324363BD4009B14F7 /* Products */,
+				9E7FF41B245C5E63003DD6DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

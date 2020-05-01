@@ -21,15 +21,18 @@ class MoviesViewController: UIViewController {
     var total_pages = 1
     var nowPlaying = true
     var defaults = UserDefaults.standard
+    
     var filterViewController : SlideMenuController!
 
     
     //MARK: - Configurations
     func configureStackContainer() {
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true
-        stackContainer.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        stackContainer.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        stackContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: CGFloat(Double(self.view.bounds.height)*0.15)).isActive = true
+        stackContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -CGFloat(Double(self.view.bounds.height)*0.22)).isActive = true
+        stackContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: CGFloat(Double(self.view.bounds.width)*0.1)).isActive = true
+        stackContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -CGFloat(Double(self.view.bounds.width)*0.1)).isActive = true
     }
     func configureNavigationBarButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetTapped))
@@ -116,7 +119,7 @@ class MoviesViewController: UIViewController {
                }
                randomPages.append(randPageNum)
            }
-    //       furl = furl.replacingOccurrences(of: replace_text, with: "page=\(randPageNum)")
+ 
             if nowPlaying {
                 while true{
                     let a = furl.last
@@ -129,7 +132,7 @@ class MoviesViewController: UIViewController {
             }else{
                 let strIndex = furl.index(furl.startIndex, offsetBy: 154)
                 let endIndex = furl.index(furl.startIndex, offsetBy: 155)
-//                print(randPageNum)
+
                 furl = furl.replacingCharacters(in: strIndex..<endIndex, with: "\(randPageNum)")
             }
           
@@ -137,12 +140,13 @@ class MoviesViewController: UIViewController {
            url = URL(string: furl)!
            data = try? Data(contentsOf: url)
            if let json = (try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as? [String:Any]{
-//             print(url)
+
              if let mv = json["results"] as? Array<[String:Any]> {
                 for m in mv {
                    if !(m["poster_path"] is NSNull){
-                        let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w500/" + (m["poster_path"] as! String))
+                        let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String))
                         moviesData.append(movie)
+                    print(m["poster_path"] as! String)
                    }
                 }
              }
