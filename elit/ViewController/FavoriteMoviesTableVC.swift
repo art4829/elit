@@ -15,6 +15,10 @@ class FavoriteMoviesTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if favMovies == nil {
+            favMovies = FavMovies()
+            favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
+        }
         favMovies.movieList = loadMovies()!
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -15,7 +15,8 @@ class SwipeCardView : UIView {
     //MARK: - Properties
     var swipeView : UIView!
     var shadowView : UIView!
-    var imageView: UIImageView!
+    var imageView = UIImageView()
+    var image : UIImage!
   
     var label = UILabel()
     var moreButton = UIButton()
@@ -62,7 +63,6 @@ class SwipeCardView : UIView {
         super.init(frame: .zero)
         configureShadowView()
         configureSwipeView()
-        
         configureImageView()
         configureLabelView()
         configureButton()
@@ -104,26 +104,37 @@ class SwipeCardView : UIView {
         swipeView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor).isActive = true
         swipeView.topAnchor.constraint(equalTo: shadowView.topAnchor).isActive = true
     }
+//    override func layoutSubviews() {
+//        if (imageView.frame.width != 0) {
+//            label.widthAnchor.constraint(equalToConstant: imageView.frame.width * 0.9).isActive = true
+//        }
+//        if (imageView.image != nil) {
+//            print(imageView.image!.size)
+//        }
+//    }
     
     func configureLabelView() {
         swipeView.addSubview(label)
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = 15
         label.clipsToBounds = true
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 17)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftAnchor.constraint(equalTo: swipeView.leftAnchor).isActive = true
-        label.rightAnchor.constraint(equalTo: swipeView.rightAnchor).isActive = true
+
+        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        label.widthAnchor.constraint(equalToConstant: imageView.image?.size.width ?? imageView.bounds.width).isActive = true
+       
+        label.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
         label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         label.heightAnchor.constraint(equalToConstant: 85).isActive = true
         
     }
     
     func configureImageView() {
-        imageView = UIImageView()
-        
+
         imageView.layer.cornerRadius = 35
         imageView.layer.masksToBounds = true
         swipeView.addSubview(imageView)
@@ -131,10 +142,10 @@ class SwipeCardView : UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: -5).isActive = true
+        imageView.topAnchor.constraint(equalTo: swipeView.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -85).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: swipeView.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: swipeView.trailingAnchor).isActive = true
     }
     
     func configureButton() {
@@ -229,8 +240,14 @@ extension UIImageView {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
                 else { return }
+            let group = DispatchGroup()
+            group.enter()
             DispatchQueue.main.async() {
                 self.image = image
+                group.leave()
+            }
+            group.notify(queue: .main) {
+                print(self.image as Any)
             }
         }.resume()
     }
