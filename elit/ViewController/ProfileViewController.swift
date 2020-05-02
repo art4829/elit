@@ -25,9 +25,16 @@ class ProfileViewController: UIViewController {
                 self.current = loadedPerson
             }
         }
-        fullName.text! = current.getFullName()
-        username.text! = current.getUsername()
-        password.text! = current.getPassword()
+        if current == nil {
+            fullName.text! = ""
+            username.text! = ""
+            password.text! = ""
+        } else {
+            fullName.text! = current.getFullName()
+            username.text! = current.getUsername()
+            password.text! = current.getPassword()
+        }
+        
         
     }
     
