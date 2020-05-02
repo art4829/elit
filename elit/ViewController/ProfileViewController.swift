@@ -14,7 +14,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var password: UILabel!
     
-    var loginVC : LoginViewController!
     var current : User!
     
     override func viewDidLoad() {
@@ -51,7 +50,36 @@ class ProfileViewController: UIViewController {
     
 
     @IBAction func logout(_ sender: LoginButton) {
+        
+        var plistDict: Dictionary<String,[Dictionary<String, String>]> = [:]
+        
+        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
+                plistDict[current.getUsername()] = loadedFavMovies.movieList
+            }
+        }
+        
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
+                var tempDict = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! Dictionary<String, [Dictionary<String, String>]>
+                
+                tempDict[current.getUsername()] = plistDict[current.getUsername()]
+            
+                
+                let plistData = try PropertyListSerialization.data(fromPropertyList: tempDict, format: .xml, options: 0)
+               
+
+                try plistData.write(to: path)
+                
+            } catch {
+                print(error)
+            }
+        }
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
         performSegue(withIdentifier: "LogoutSegue", sender: self)
-               UserDefaults.standard.set(false, forKey: "isLoggedIn")
     }
 }

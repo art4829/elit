@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordEntered: UITextField!
     @IBOutlet weak var confirmPasswordEntered: UITextField!
     
-    var usersList = Users()
+    var usersList : Users!
     var fullname = ""
     var email = ""
     var username = ""
@@ -26,9 +26,15 @@ class SignUpViewController: UIViewController {
         performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "SignupToLoginSegue"){
+            let loginVC = segue.destination as! LoginViewController
+            loginVC.usersList = usersList
+        }
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        usersList.userList = globalUsersList
+        print(usersList)
     }
     
     @IBAction func signup(sender: UIButton)  {
@@ -77,7 +83,7 @@ class SignUpViewController: UIViewController {
             
             let u = User(fullName: fullname, email: email, username: username, password: password)
             
-            globalUsersList.append(u)
+            usersList.userList.append(u)
             
             let plistDict: Dictionary<String,Any> = [
                 "fullName": fullname,
@@ -113,7 +119,7 @@ class SignUpViewController: UIViewController {
     func alertUser(message : String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-         alertController.addAction(defaultAction)
+        alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

@@ -24,6 +24,12 @@ class MoviesViewController: UIViewController {
     
     var filterViewController : SlideMenuController!
 
+    var movies = [[String: Any]]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewLoadSetup()
+    }
     
     //MARK: - Configurations
     func configureStackContainer() {
@@ -56,14 +62,20 @@ class MoviesViewController: UIViewController {
     }
     
 
-    var movies = [[String: Any]]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewLoadSetup()
-    }
     
     func viewLoadSetup(){
+        //Set up favMovies
+        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
+                self.favMovies = loadedFavMovies
+            }
+        }
+        if favMovies == nil {
+            favMovies = FavMovies()
+        }
+        
         // setup view did load here
         if filterViewController != nil {
             if filterViewController?.appliedFilter == true {
@@ -80,11 +92,8 @@ class MoviesViewController: UIViewController {
             defaults.set([], forKey: "genreList")
             defaults.set("All Languages", forKey: "language")
         }
-        if favMovies == nil {
-            favMovies = FavMovies()
-            favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
-        }
-        //  print("FILTER URL: ", filterURL)
+
+
         if nowPlaying == false {
         // if not filtered, present inital movies data, else get the filters cardmodel array
             search_url = filterURL

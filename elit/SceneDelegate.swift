@@ -8,19 +8,23 @@
 
 import UIKit
 
-var globalUsersList : [User] = []
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let genreArray = Genres()
     var tabBarController: UITabBarController!
+    var globalUsersList : [User] = []
+    var globalUserFavMovies : [FavMovies] = []
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         
         guard let _ = (scene as? UIWindowScene) else { return }
-         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+        
+        //Read in users plist
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = documentsPathURL.appendingPathComponent("users.plist")
             let pathString = path.path
             do {
@@ -47,28 +51,89 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error)
             }
         }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         
-        if isLoggedIn(){
-            self.window?.rootViewController = tabBarController
-//            self.window?.makeKeyAndVisible()
+        //Read in userFavMovies plist
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+            let pathString = path.path
+            do {
+                if !FileManager.default.fileExists(atPath: pathString) {
+                    let bundle = Bundle.main.path(forResource: "userFavMovies", ofType: "plist")!
+                    try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
+                }
+                
+                let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
+                let tempDict = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! Dictionary<String, [Dictionary<String, String>]>
+                
+                
+                for (username, favs) in tempDict {
+                    let favList = FavMovies()
+                    favList.username = username
+                    favList.movieList = favs
+                    globalUserFavMovies.append(favList)
+                }
+            } catch {
+                print(error)
+            }
         }
-        let favMovies = FavMovies()
-        favMovies.movieList = []
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
+   
+        
+        let loginViewController = window?.rootViewController as? LoginViewController
+
+        
+        
+        let userList = Users()
+        userList.userList = globalUsersList
+        let favMoviesList = FavMoviesList()
+        favMoviesList.favMoviesList = globalUserFavMovies
+        
+        loginViewController!.usersList = userList
+        loginViewController!.favMoviesList = favMoviesList
+
+        
+        //If user has already logged in
+        if isLoggedIn(){
+            //Set the root view to be the home page
+            self.window?.rootViewController = tabBarController
+            
+            //Get the current user
+            //From the current user, get and set the current favMovies
+
+            if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
+                let decoder = JSONDecoder()
+                if let user = try? decoder.decode(User.self, from: savedPerson) {
+                    setCurrentFavMovies(user: user, favMoviesList: favMoviesList)
+                }
+            }
+            //From the current user, get and set the current favMovies
+            
+        }
+        
+//        let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
+//        let profileVC = tabBarController.viewControllers![1] as! ProfileViewController
+//        let favMoviesTableVC = tabBarController.viewControllers![2] as! FavoriteMoviesTableVC
     
-        
-        let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
-        let profileVC = tabBarController.viewControllers![1] as! ProfileViewController
-        let favMoviesTableVC = tabBarController.viewControllers![2] as! FavoriteMoviesTableVC
-        
-        movieVC.favMovies = favMovies
-        favMoviesTableVC.favMovies = favMovies
-        profileVC.loginVC = loginViewController
-        
     }
 
+    func setCurrentFavMovies(user : User, favMoviesList : FavMoviesList){
+        var currentFavMovies = FavMovies()
+        currentFavMovies.username = user.getUsername()
+        
+        for favMovies in favMoviesList.favMoviesList {
+            if favMovies.getUsername() == user.getUsername() {
+                currentFavMovies = favMovies
+            }
+        }
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(currentFavMovies) {
+            UserDefaults.standard.set(encoded, forKey: "favMovies")
+        }
+        UserDefaults.standard.synchronize()
+    }
+    
     fileprivate func isLoggedIn() -> Bool {
            return UserDefaults.standard.bool(forKey: "isLoggedIn")
        }

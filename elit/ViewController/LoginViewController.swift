@@ -13,27 +13,97 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameEntered: UITextField!
     @IBOutlet weak var passwordEntered: UITextField!
     
-    var usersList = Users()
+    var usersList : Users!
+    var favMoviesList : FavMoviesList!
     var username = ""
     var password = ""
     var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        usersList.userList = globalUsersList
+        //If there is a new user signing up
+        
+        if (usersList == nil) {
+            setUsersList()
+        }
+        if (favMoviesList == nil) {
+            setFavMoviesList()
+        }
+
         username = ""
         password = ""
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //navigationController?.setNavigationBarHidden(true, animated: false)
+    func setUsersList() {
+        usersList = Users()
+        //Read in users plist
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = documentsPathURL.appendingPathComponent("users.plist")
+            let pathString = path.path
+            do {
+                if !FileManager.default.fileExists(atPath: pathString) {
+                    let bundle = Bundle.main.path(forResource: "users", ofType: "plist")!
+                    try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
+                }
+                
+                let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
+                let tempArray = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [Dictionary<String, Any>]
+                
+                
+                for dict in tempArray {
+                    let fullName = dict["fullName"]! as! String
+                    let email = dict["email"]! as! String
+                    let username = dict["username"]! as! String
+                    let password = dict["password"]! as! String
+                    
+                    let u = User(fullName: fullName, email: email, username: username, password: password)
+                    
+                    usersList.userList.append(u)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func setFavMoviesList() {
+        favMoviesList = FavMoviesList()
+        //Read in userFavMovies plist
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+            let pathString = path.path
+            do {
+                if !FileManager.default.fileExists(atPath: pathString) {
+                    let bundle = Bundle.main.path(forResource: "userFavMovies", ofType: "plist")!
+                    try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
+                }
+                
+                let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
+                let tempDict = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! Dictionary<String, [Dictionary<String, String>]>
+                
+                
+                for (username, favs) in tempDict {
+                    let favList = FavMovies()
+                    favList.username = username
+                    favList.movieList = favs
+                    favMoviesList.favMoviesList.append(favList)
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
     
     @IBAction func goToSignUp(_ sender: Any) {
         performSegue(withIdentifier: "LoginToSignUpSegue", sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "LoginToSignUpSegue"){
+            let signUpVC = segue.destination as! SignUpViewController
+            signUpVC.usersList = usersList
+        }
+    }
+    
     @IBAction func login(sender: UIButton) {
             
         //Check if the username and password are correct
@@ -41,7 +111,7 @@ class LoginViewController: UIViewController {
             alertUser(message: "Please put in all fields")
             return
         }
-        for user in globalUsersList {
+        for user in usersList.userList {
             if (user.getUsername() == usernameEntered.text! && user.getPassword() == passwordEntered.text!) {
                 username = user.getUsername();
                 password = user.getPassword();
@@ -51,17 +121,33 @@ class LoginViewController: UIViewController {
         if (username != "" && password != "" && user != nil) {
             performSegue(withIdentifier: "LoginToHome", sender: self)
             UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(user) {
-                let defaults = UserDefaults.standard
-                defaults.set(encoded, forKey: "user")
-            }
-            UserDefaults.standard.synchronize()
+            setCurrentUser(user: user)
+            setCurrentFavMovies(user: user)
         } else {
             alertUser(message: "Incorrect Username or Password")
         }
         
         view.endEditing(true) //dismiss the keyboard whenever you have multiple fields
+    }
+    
+    func setCurrentUser(user : User) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(user) {
+            UserDefaults.standard.set(encoded, forKey: "user")
+        }
+        UserDefaults.standard.synchronize()
+    }
+    
+    func setCurrentFavMovies(user : User){
+        var currentFavMovies = FavMovies()
+        currentFavMovies.username = user.getUsername()
+        
+        for favMovies in favMoviesList.favMoviesList {
+            if favMovies.getUsername() == user.getUsername() {
+                currentFavMovies = favMovies
+            }
+        }
+        currentFavMovies.setCurrentFavMovies()
     }
     
     func alertUser(message : String) {

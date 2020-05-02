@@ -56,3 +56,5 @@ class User: NSObject, Encodable, Decodable {
         self.password = password;
     }
 }
+
+

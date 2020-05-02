@@ -11,29 +11,33 @@ import UIKit
 class FavoriteMoviesTableVC: UITableViewController {
 
     var favMovies: FavMovies!
-    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set up favMovies
+        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
+                self.favMovies = loadedFavMovies
+            }
+        }
         if favMovies == nil {
             favMovies = FavMovies()
-            favMovies.movieList = UserDefaults.standard.object(forKey: "parks") as? [String] ?? [String]()
         }
-        favMovies.movieList = loadMovies()!
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
+                self.favMovies = loadedFavMovies
+            }
+        }
+        if favMovies == nil {
+            favMovies = FavMovies()
+        }
         self.tableView.reloadData();
-    }
-    
-    func loadMovies() -> [String]? {
-        let moviesArray = defaults.object(forKey: "movies") as? [String] ?? [String]()
-        return moviesArray
     }
 
     // MARK: - Table view data source
@@ -53,8 +57,12 @@ class FavoriteMoviesTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
 
             // Configure the cell...
-        cell.textLabel?.text = favMovies.movieList[indexPath.row]
-        
+        cell.textLabel?.text = favMovies.movieList[indexPath.row]["title"]
+        var detailText = "No Rating"
+        if (favMovies.movieList[indexPath.row]["rating"]!  != "") {
+             detailText = "Rating: " + favMovies.movieList[indexPath.row]["rating"]!
+        }
+        cell.detailTextLabel?.text = detailText
         return cell
     }
     

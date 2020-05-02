@@ -196,14 +196,15 @@ class SwipeCardView : UIView {
                     self.layoutIfNeeded()
                 }
                 if !favMovies!.hasMovie(movie: cardContent) {
-                    favMovies!.movieList.append(cardContent.getTitle())
+                    let movie = ["title": cardContent.getTitle(), "rating" : cardContent.vote_average]
+                    favMovies!.movieList.append(movie)
                 }
-                print(favMovies!.movieList)
-                defaults.set(favMovies!.movieList, forKey:"movies")
+
+                favMovies.setCurrentFavMovies()
                 return
             }
             //Swipe Left
-            else if card.center.x < -65 {
+            else if card.center.x < -35 {
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)
