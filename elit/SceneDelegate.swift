@@ -49,6 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         
         if isLoggedIn(){
             self.window?.rootViewController = tabBarController
@@ -59,10 +60,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         
         let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
+        let profileVC = tabBarController.viewControllers![1] as! ProfileViewController
         let favMoviesTableVC = tabBarController.viewControllers![2] as! FavoriteMoviesTableVC
         
         movieVC.favMovies = favMovies
         favMoviesTableVC.favMovies = favMovies
+        profileVC.loginVC = loginViewController
         
     }
 

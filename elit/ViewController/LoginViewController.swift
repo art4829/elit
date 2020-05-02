@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     var usersList = Users()
     var username = ""
     var password = ""
+    var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +45,17 @@ class LoginViewController: UIViewController {
             if (user.getUsername() == usernameEntered.text! && user.getPassword() == passwordEntered.text!) {
                 username = user.getUsername();
                 password = user.getPassword();
+                self.user = user
             }
         }
-        if (username != "" && password != "") {
+        if (username != "" && password != "" && user != nil) {
             performSegue(withIdentifier: "LoginToHome", sender: self)
             UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(user) {
+                let defaults = UserDefaults.standard
+                defaults.set(encoded, forKey: "user")
+            }
             UserDefaults.standard.synchronize()
         } else {
             alertUser(message: "Incorrect Username or Password")

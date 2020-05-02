@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class User: NSObject {
+class User: NSObject, Encodable, Decodable {
     private var username: String = ""
     private var password: String = ""
     private var fullName: String = ""

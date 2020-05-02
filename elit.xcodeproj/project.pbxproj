@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9E69E4832457A4FA00738430 /* FavoriteMoviesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */; };
 		9E7FF41D245C5E63003DD6DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7FF41C245C5E63003DD6DC /* QuartzCore.framework */; };
+		9E7FF41F245CE463003DD6DC /* ProfileField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FF41E245CE463003DD6DC /* ProfileField.swift */; };
+		9E7FF421245CEC78003DD6DC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FF420245CEC78003DD6DC /* ProfileViewController.swift */; };
 		9EB74A6F243A7CC400AE5105 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */; };
 		9EB74A71243A802000AE5105 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB74A70243A802000AE5105 /* SignUpViewController.swift */; };
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
@@ -47,6 +49,8 @@
 /* Begin PBXFileReference section */
 		9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesTableVC.swift; sourceTree = "<group>"; };
 		9E7FF41C245C5E63003DD6DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9E7FF41E245CE463003DD6DC /* ProfileField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileField.swift; sourceTree = "<group>"; };
+		9E7FF420245CEC78003DD6DC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9EB74A6E243A7CC400AE5105 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */,
 				EB594D1F243E55A30015A1E9 /* LoginTextField.swift */,
 				EB4C0B19244C096E00E00FDE /* GenreButton.swift */,
+				9E7FF41E245CE463003DD6DC /* ProfileField.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				EBD76DF4244644B000F3A34F /* MoviesViewController.swift */,
 				EBD76DF824464AF900F3A34F /* SlideInTransition.swift */,
 				9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */,
+				9E7FF420245CEC78003DD6DC /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				EB4C0B12244BA5B100E00FDE /* ComosDistrib.swift in Sources */,
 				EBD76DDF2444EF5400F3A34F /* Users.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
+				9E7FF421245CEC78003DD6DC /* ProfileViewController.swift in Sources */,
 				EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */,
 				EB594D19243D08340015A1E9 /* constants.swift in Sources */,
 				EB4E7141244D1C380014DC4C /* Genres.swift in Sources */,
@@ -327,6 +334,7 @@
 				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,
 				EBD76DF924464AF900F3A34F /* SlideInTransition.swift in Sources */,
 				EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */,
+				9E7FF41F245CE463003DD6DC /* ProfileField.swift in Sources */,
 				EBD76DDD2444EF2400F3A34F /* User.swift in Sources */,
 				9EFC346B244E43280049A894 /* SwipeCardView.swift in Sources */,
 			);
