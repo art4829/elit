@@ -32,10 +32,10 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     let transparentView = UIView()
     let tableView = UITableView()
     var dataSource = [String]()
-    var genreArray = Genres()
     var filterURL = DISCOVER_URL
     var nowPlaying = true
     let defaults = UserDefaults.standard
+    var currIndex = -1
     
     @IBAction func closeFilter(_ sender: UIButton) {
         appliedFilter = false

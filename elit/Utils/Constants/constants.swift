@@ -28,7 +28,7 @@ let DRAMA_ID = 18
 let ROMANCE_ID = 10749
 let SCIFI_ID = 878
 let THRILLER_ID = 53
-let GENRE_DICT = ["Action": 28, "Animation": 12, "Comedy": 35, "Drama": 18, "Romance": 10749, "Science Fiction": 878, "Thriller": 53]
+let GENRE_DICT = ["Action": 28, "Animation": 16, "Comedy": 35, "Drama": 18, "Romance": 10749, "Science Fiction": 878, "Thriller": 53, "Adventure": 12, "Crime": 80, "Documentary": 99, "Family": 10751, "Fantasy": 14, "History": 36, "Horror": 27, "Music": 10402, "Mystery": 9648, "TV Movie": 10770, "War": 10752, "Western": 37]
 
 
 // URLS

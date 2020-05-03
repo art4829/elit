@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dlx-Zk-Gvh">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,12 +16,12 @@
         <scene sceneID="d5X-6L-oc6">
             <objects>
                 <viewController storyboardIdentifier="MoviesViewController" title="Movies " id="zBV-Mh-hsQ" customClass="MoviesViewController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ni7-FW-GSR" customClass="GradientView" customModule="elit" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="ni7-FW-GSR" userLabel="GradientView" customClass="GradientView" customModule="elit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHD-fV-6q2">
-                                <rect key="frame" x="24" y="20" width="58" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHD-fV-6q2">
+                                <rect key="frame" x="24" y="64" width="80" height="80"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="icons8-slider-80.png">
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,13 +30,102 @@
                                     <action selector="didTapFilter:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="M93-n6-ZXV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pg-9CS">
+                                <rect key="frame" x="321" y="57" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="jmh-Ve-nfG"/>
+                                    <constraint firstAttribute="width" constant="60" id="kgX-vR-aDc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="folder" catalog="system"/>
+                                <connections>
+                                    <action selector="DescriptionTap:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="LPy-bq-roT"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-lH-sYE" userLabel="DescriptionView">
+                                <rect key="frame" x="31" y="67.333333333333314" width="352" height="672"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8q-TA-abL" userLabel="DescriptionBG">
+                                        <rect key="frame" x="23" y="63.666666666666686" width="306" height="557.66666666666652"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbT-KZ-Wtq">
+                                                <rect key="frame" x="4.9999999999999929" y="17" width="122.33333333333331" height="20"/>
+                                                <fontDescription key="fontDescription" name="Osaka" family="Osaka" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-17-7mT">
+                                                <rect key="frame" x="5.0000000000000142" y="480.33333333333337" width="246.33333333333337" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7z-oO-dqB">
+                                                <rect key="frame" x="5" y="447" width="88" height="20"/>
+                                                <fontDescription key="fontDescription" name="Osaka" family="Osaka" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-ce-ada">
+                                                <rect key="frame" x="0.0" y="36.333333333333343" width="306" height="390.33333333333326"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="IbT-KZ-Wtq" firstAttribute="width" secondItem="w8q-TA-abL" secondAttribute="width" multiplier="0.4" id="2NP-fn-b9V"/>
+                                            <constraint firstItem="k9u-ce-ada" firstAttribute="width" secondItem="w8q-TA-abL" secondAttribute="width" id="TAt-DS-yZ1"/>
+                                            <constraint firstItem="k9u-ce-ada" firstAttribute="centerX" secondItem="w8q-TA-abL" secondAttribute="centerX" id="U4Q-i7-oMx"/>
+                                            <constraint firstItem="cpS-17-7mT" firstAttribute="leading" secondItem="w8q-TA-abL" secondAttribute="leading" constant="5" id="WrR-om-z5e"/>
+                                            <constraint firstItem="k9u-ce-ada" firstAttribute="centerY" secondItem="w8q-TA-abL" secondAttribute="centerY" multiplier="0.83" id="ena-lK-YW6"/>
+                                            <constraint firstItem="k9u-ce-ada" firstAttribute="height" secondItem="w8q-TA-abL" secondAttribute="height" multiplier="0.7" id="jSu-LI-mdt"/>
+                                            <constraint firstItem="IbT-KZ-Wtq" firstAttribute="leading" secondItem="w8q-TA-abL" secondAttribute="leading" constant="5" id="xzP-xA-VwC"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1sP-ga-LKe" userLabel="MovieName">
+                                        <rect key="frame" x="23" y="28.666666666666671" width="306" height="23.333333333333329"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="MOVIE NAME">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="Osaka-Mono"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="K7z-oO-dqB" firstAttribute="leading" secondItem="w8q-TA-abL" secondAttribute="leading" constant="5" id="23L-rH-sSp"/>
+                                    <constraint firstItem="K7z-oO-dqB" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="1.55" id="6Tb-qP-euc"/>
+                                    <constraint firstItem="cpS-17-7mT" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="1.65" id="CKD-DS-C5N"/>
+                                    <constraint firstItem="1sP-ga-LKe" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="0.12" id="FGV-lB-UBL"/>
+                                    <constraint firstItem="1sP-ga-LKe" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.869318" id="FfF-Eu-uxd"/>
+                                    <constraint firstItem="K7z-oO-dqB" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.25" id="Pan-Ey-plp"/>
+                                    <constraint firstItem="1sP-ga-LKe" firstAttribute="centerX" secondItem="QlO-lH-sYE" secondAttribute="centerX" id="UJP-Pg-sck"/>
+                                    <constraint firstItem="cpS-17-7mT" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.7" id="Ve0-pr-jQ6"/>
+                                    <constraint firstItem="IbT-KZ-Wtq" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="0.27" id="Vmc-Iy-y04"/>
+                                    <constraint firstItem="w8q-TA-abL" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="1.02" id="a6q-eR-X9A"/>
+                                    <constraint firstItem="w8q-TA-abL" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.869318" id="b3I-8G-n99"/>
+                                    <constraint firstItem="w8q-TA-abL" firstAttribute="height" secondItem="QlO-lH-sYE" secondAttribute="height" multiplier="0.83" id="d2p-jf-wdS"/>
+                                    <constraint firstItem="w8q-TA-abL" firstAttribute="centerX" secondItem="QlO-lH-sYE" secondAttribute="centerX" id="jt3-gS-o79"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="RR2-Wt-zBf" firstAttribute="trailing" secondItem="BHD-fV-6q2" secondAttribute="trailing" constant="341" id="f46-Yz-266"/>
-                            <constraint firstItem="RR2-Wt-zBf" firstAttribute="bottom" secondItem="BHD-fV-6q2" secondAttribute="bottom" constant="689" id="gFB-bR-4g4"/>
+                            <constraint firstItem="QlO-lH-sYE" firstAttribute="width" secondItem="ni7-FW-GSR" secondAttribute="width" multiplier="0.85" id="3cJ-f6-aOC"/>
+                            <constraint firstItem="QlO-lH-sYE" firstAttribute="centerX" secondItem="ni7-FW-GSR" secondAttribute="centerX" id="GtS-58-UfO"/>
+                            <constraint firstItem="QlO-lH-sYE" firstAttribute="centerY" secondItem="ni7-FW-GSR" secondAttribute="centerY" multiplier="0.9" id="Jl8-bC-7j6"/>
+                            <constraint firstItem="QlO-lH-sYE" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.75" id="NUc-yo-nWG"/>
+                            <constraint firstItem="43Y-pg-9CS" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="13" id="fHc-dp-MOa"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="leading" secondItem="RR2-Wt-zBf" secondAttribute="leading" constant="24" id="h1a-fv-OsC"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="20" id="jMl-tj-urV"/>
+                            <constraint firstItem="RR2-Wt-zBf" firstAttribute="trailing" secondItem="43Y-pg-9CS" secondAttribute="trailing" constant="33" id="pPf-Kt-Weg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RR2-Wt-zBf"/>
                         <userDefinedRuntimeAttributes>
@@ -47,33 +136,36 @@
                                 <color key="value" red="0.84313725490000002" green="0.76862745099999996" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="f46-Yz-266"/>
-                                <exclude reference="gFB-bR-4g4"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="airplayvideo" catalog="system" id="4S6-Lk-Ox8"/>
                     <navigationItem key="navigationItem" id="Jzu-mS-6wG"/>
+                    <connections>
+                        <outlet property="DescriptionLabel" destination="IbT-KZ-Wtq" id="lRJ-zU-GxR"/>
+                        <outlet property="GenreLabel" destination="K7z-oO-dqB" id="hxJ-69-gGy"/>
+                        <outlet property="MovieDescriptionText" destination="k9u-ce-ada" id="Tlx-NT-wBJ"/>
+                        <outlet property="MovieGenresLabel" destination="cpS-17-7mT" id="hwn-hs-Qdk"/>
+                        <outlet property="MovieNameLabel" destination="1sP-ga-LKe" id="icl-xv-MNu"/>
+                        <outlet property="descriptionBG" destination="w8q-TA-abL" id="Lc7-He-9p7"/>
+                        <outlet property="descriptionView" destination="QlO-lH-sYE" id="l2V-HX-uIO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJk-jk-FoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2727.536231884058" y="-389.0625"/>
+            <point key="canvasLocation" x="2726.0869565217395" y="-389.0625"/>
         </scene>
         <!--Filter-->
         <scene sceneID="lNO-VV-ycg">
             <objects>
                 <viewController storyboardIdentifier="SlideMenuController" title="Filter" id="uba-u5-jxD" customClass="SlideMenuController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BBd-df-frL" userLabel="mainView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEF-rp-BGO" userLabel="BackGroundView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAZ-jj-6X8" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="512.5" width="300" height="42"/>
+                                        <rect key="frame" x="41.333333333333343" y="633.33333333333337" width="331.33333333333326" height="42"/>
                                         <color key="backgroundColor" red="0.84313725490000002" green="0.76862745099999996" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="18"/>
                                         <state key="normal" title="Apply Changes">
@@ -89,13 +181,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSr-rU-m9S">
-                                        <rect key="frame" x="10" y="116.5" width="300" height="33.5"/>
+                                        <rect key="frame" x="10" y="147" width="331.33333333333331" height="33.333333333333343"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQ9-uD-YPp" customClass="CosmosView" customModule="elit" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="144" width="137.5" height="25"/>
+                                        <rect key="frame" x="15" y="179.66666666666666" width="152" height="25"/>
                                         <color key="backgroundColor" red="0.20392156859999999" green="0.19215686269999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -119,7 +211,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-5l-Cj8">
-                                        <rect key="frame" x="15" y="385.5" width="300" height="36"/>
+                                        <rect key="frame" x="15" y="477" width="331.33333333333331" height="36"/>
                                         <color key="backgroundColor" red="0.84313725490000002" green="0.76862745099999996" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="14"/>
                                         <state key="normal" title="All Languages">
@@ -130,7 +222,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gCn-5I-gqt">
-                                        <rect key="frame" x="317.5" y="434.5" width="40" height="38.5"/>
+                                        <rect key="frame" x="352.66666666666669" y="537" width="40" height="38.666666666666629"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="53R-Oe-G0e"/>
                                         </constraints>
@@ -152,13 +244,13 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qmn-Zm-egU" userLabel="Vertical Stack">
-                                        <rect key="frame" x="10" y="209.5" width="300" height="133.5"/>
+                                        <rect key="frame" x="10" y="257" width="331.33333333333331" height="163.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lQ-P4-hep" userLabel="ButtonStack 1">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="54.333333333333336"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXA-DI-klu" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="6" width="147" height="32.5"/>
+                                                        <rect key="frame" x="0.0" y="6" width="162.66666666666666" height="42.333333333333336"/>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="11" bottom="8" trailing="8"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Action"/>
@@ -167,13 +259,13 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMt-aS-8ld">
-                                                        <rect key="frame" x="147" y="6" width="6" height="32.5"/>
+                                                        <rect key="frame" x="162.66666666666666" y="6" width="6" height="42.333333333333336"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="6" id="Gwh-Hl-7Nc"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnn-js-kOC" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="153" y="6" width="147" height="32.5"/>
+                                                        <rect key="frame" x="168.66666666666669" y="6" width="162.66666666666669" height="42.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Comedy"/>
                                                         <connections>
@@ -188,10 +280,10 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="6" leading="0.0" bottom="6" trailing="0.0"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7og-gi-MQV" userLabel="ButtonStack 2">
-                                                <rect key="frame" x="0.0" y="44.5" width="300" height="44.5"/>
+                                                <rect key="frame" x="0.0" y="54.333333333333314" width="331.33333333333331" height="54.666666666666657"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GR-qT-4cx" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="6" width="147" height="32.5"/>
+                                                        <rect key="frame" x="0.0" y="6" width="162.66666666666666" height="42.666666666666664"/>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Romance"/>
@@ -200,13 +292,13 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeM-y1-tsm">
-                                                        <rect key="frame" x="147" y="6" width="6" height="32.5"/>
+                                                        <rect key="frame" x="162.66666666666666" y="6" width="6" height="42.666666666666664"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="6" id="4v3-vb-bKx"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sO-wl-T5n" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="153" y="6" width="147" height="32.5"/>
+                                                        <rect key="frame" x="168.66666666666669" y="6" width="162.66666666666669" height="42.666666666666664"/>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="6" leading="8" bottom="6" trailing="8"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Animation"/>
@@ -222,10 +314,10 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="6" leading="0.0" bottom="6" trailing="0.0"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBK-31-WMn" userLabel="ButtonStack 3">
-                                                <rect key="frame" x="0.0" y="89" width="300" height="44.5"/>
+                                                <rect key="frame" x="0.0" y="108.99999999999999" width="331.33333333333331" height="54.333333333333329"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khQ-r7-3nD" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="6" width="96" height="32.5"/>
+                                                        <rect key="frame" x="0.0" y="6" width="106.33333333333333" height="42.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Drama"/>
                                                         <connections>
@@ -233,13 +325,13 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bk-oT-Y9Q">
-                                                        <rect key="frame" x="96" y="6" width="6" height="32.5"/>
+                                                        <rect key="frame" x="106.33333333333333" y="6" width="6" height="42.333333333333336"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="6" id="Oqn-wr-lq4"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-CN-VZ9" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="102" y="6" width="96" height="32.5"/>
+                                                        <rect key="frame" x="112.33333333333334" y="6" width="106.33333333333334" height="42.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Sci-fi"/>
                                                         <connections>
@@ -247,13 +339,13 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TZ-eT-aH1">
-                                                        <rect key="frame" x="198" y="6" width="6" height="32.5"/>
+                                                        <rect key="frame" x="218.66666666666666" y="6" width="6" height="42.333333333333336"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="6" id="PCF-Pg-YD0"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfa-Zs-OFR" customClass="GenreButton" customModule="elit" customModuleProvider="target">
-                                                        <rect key="frame" x="204" y="6" width="96" height="32.5"/>
+                                                        <rect key="frame" x="224.66666666666666" y="6" width="106.66666666666666" height="42.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="13"/>
                                                         <state key="normal" title="Thriller"/>
                                                         <connections>
@@ -274,7 +366,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rh-i9-5Rh">
-                                        <rect key="frame" x="317.5" y="11" width="40" height="37.5"/>
+                                        <rect key="frame" x="352.66666666666669" y="11.666666666666664" width="40" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="BoZ-um-5Er"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="T13-VX-R6G"/>
@@ -288,7 +380,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j0-R2-NsS">
-                                        <rect key="frame" x="37.5" y="75.5" width="300" height="42"/>
+                                        <rect key="frame" x="41.333333333333343" y="97.666666666666657" width="331.33333333333326" height="41.666666666666657"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Filter Movies">
                                                 <attributes>
@@ -301,40 +393,40 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSD-xU-bfN">
-                                        <rect key="frame" x="0.0" y="112.5" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="138" width="414" height="2"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Qhg-Hi-LeI"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOr-8d-KJf">
-                                        <rect key="frame" x="10" y="183.5" width="300" height="33.5"/>
+                                        <rect key="frame" x="10" y="228.66666666666669" width="331.33333333333331" height="33.333333333333314"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDk-wB-PuY">
-                                        <rect key="frame" x="10" y="357" width="300" height="33.5"/>
+                                        <rect key="frame" x="10" y="441.33333333333331" width="331.33333333333331" height="33.333333333333314"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIC-zQ-dqh">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="215.66666666666669" width="414" height="2"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Rrr-iP-A2P"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjR-22-yME">
-                                        <rect key="frame" x="0.0" y="349" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="428.33333333333331" width="414" height="2"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="6hd-gG-yQJ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyL-5R-PTy">
-                                        <rect key="frame" x="0.0" y="432.5" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="530.66666666666663" width="414" height="2"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="0GC-t5-eT6"/>
@@ -417,11 +509,11 @@
             <objects>
                 <viewController title="UserProfileScene" id="HBl-eC-IRq" customClass="ProfileViewController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H7e-SK-gv7" customClass="GradientView" customModule="elit" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcs-up-8j5">
-                                <rect key="frame" x="143.5" y="20" width="88" height="130.5"/>
+                                <rect key="frame" x="163" y="63.999999999999986" width="88" height="130.66666666666663"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -444,7 +536,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REb-zS-V3R">
-                                <rect key="frame" x="152" y="140.5" width="71" height="53.5"/>
+                                <rect key="frame" x="171.66666666666666" y="184.66666666666666" width="71" height="53.333333333333343"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -505,33 +597,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmR-sS-nA4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2728.985507246377" y="360.9375"/>
+            <point key="canvasLocation" x="2700" y="715"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="yYe-Qs-NIO">
             <objects>
                 <tableViewController id="WS0-xh-05u" customClass="FavoriteMoviesTableVC" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MeN-Fr-cbl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" textLabel="Sby-sD-g0f" detailTextLabel="SWB-Di-2eL" style="IBUITableViewCellStyleSubtitle" id="HsG-UZ-r1f">
-                                <rect key="frame" x="0.0" y="28" width="375" height="55.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="55.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HsG-UZ-r1f" id="oIf-r8-FvL">
-                                    <rect key="frame" x="0.0" y="0.0" width="348" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="55.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sby-sD-g0f">
-                                            <rect key="frame" x="16" y="10" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20.000000000000004" y="8.9999999999999982" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SWB-Di-2eL">
-                                            <rect key="frame" x="16" y="31.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="19.999999999999996" y="31.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -577,21 +669,21 @@
             <objects>
                 <viewController id="Dlx-Zk-Gvh" customClass="LoginViewController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Epv-HR-uX9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEf-gn-odZ" customClass="GradientView" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSM-PJ-ZNG" userLabel="Username Stack">
-                                        <rect key="frame" x="75" y="282.5" width="225" height="35"/>
+                                        <rect key="frame" x="82.666666666666671" y="385.66666666666669" width="248.66666666666663" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="P4z-Sw-41g">
-                                                <rect key="frame" x="0.0" y="1.5" width="34" height="32.5"/>
+                                                <rect key="frame" x="0.0" y="1.6666666666666679" width="37.333333333333336" height="32.333333333333336"/>
                                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3ZL-Zi-19C" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="0.0" width="191" height="35"/>
+                                                <rect key="frame" x="37.333333333333329" y="0.0" width="211.33333333333337" height="35"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="username"/>
@@ -605,14 +697,14 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="Password" translatesAutoresizingMaskIntoConstraints="NO" id="Jd9-Dl-22U" userLabel="Password stack">
-                                        <rect key="frame" x="75" y="349.5" width="225" height="35"/>
+                                        <rect key="frame" x="82.666666666666671" y="475.33333333333331" width="248.66666666666663" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="lock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-Pp-dxP">
-                                                <rect key="frame" x="0.0" y="0.5" width="34" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="1" width="37.333333333333336" height="33"/>
                                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="9" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cao-7f-039" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="0.0" width="191" height="35"/>
+                                                <rect key="frame" x="37.333333333333329" y="0.0" width="211.33333333333337" height="35"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="password"/>
@@ -626,13 +718,13 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oe2-9F-LIp">
-                                        <rect key="frame" x="140.5" y="92" width="94" height="149.5"/>
+                                        <rect key="frame" x="155.33333333333334" y="177.33333333333334" width="103.33333333333334" height="93.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhN-V6-veS" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                        <rect key="frame" x="129" y="416.5" width="117" height="42"/>
+                                        <rect key="frame" x="142.33333333333331" y="543" width="129.33333333333331" height="42"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <rect key="contentStretch" x="0.25" y="0.20000000000000001" width="1" height="1"/>
                                         <constraints>
@@ -655,7 +747,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-gZ-fvA" userLabel="SignUp Stack">
-                                        <rect key="frame" x="87.5" y="598.5" width="200" height="37"/>
+                                        <rect key="frame" x="107" y="810.33333333333337" width="200" height="37"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don’t have an account?  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IY3-vB-1kT">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="37"/>
@@ -690,7 +782,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQu-Yw-amU" userLabel="Line View">
-                                        <rect key="frame" x="51.5" y="602.5" width="272" height="1"/>
+                                        <rect key="frame" x="57" y="814.33333333333337" width="300" height="1"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ZLH-Oi-gDs"/>
@@ -755,41 +847,41 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpViewController" id="FTV-jS-FyJ" customClass="SignUpViewController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TfV-HV-c7I">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7T-Hm-jHt" customClass="GradientView" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ehG-Af-jDk">
-                                        <rect key="frame" x="75" y="200" width="225" height="267"/>
+                                        <rect key="frame" x="82.666666666666671" y="268.66666666666663" width="248.66666666666663" height="358.66666666666663"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="th4-YZ-OhR" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="225" height="53.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="248.66666666666666" height="71.666666666666671"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DhP-d8-t4L" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="53.5" width="225" height="53.5"/>
+                                                <rect key="frame" x="0.0" y="71.666666666666629" width="248.66666666666666" height="71.666666666666686"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vOX-a0-ay3" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="107" width="225" height="53"/>
+                                                <rect key="frame" x="0.0" y="143.33333333333331" width="248.66666666666666" height="72"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pWv-Li-Nsn" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="160" width="225" height="53.5"/>
+                                                <rect key="frame" x="0.0" y="215.33333333333331" width="248.66666666666666" height="71.666666666666686"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-zp-UMr" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="213.5" width="225" height="53.5"/>
+                                                <rect key="frame" x="0.0" y="286.99999999999994" width="248.66666666666666" height="71.666666666666686"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -803,7 +895,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roj-Vo-pb1">
-                                        <rect key="frame" x="83.5" y="598.5" width="208" height="37"/>
+                                        <rect key="frame" x="103" y="810.33333333333337" width="208" height="37"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVv-E9-IfQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="158" height="37"/>
@@ -838,14 +930,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1EU-5n-yoG">
-                                        <rect key="frame" x="51.5" y="602.5" width="272" height="1"/>
+                                        <rect key="frame" x="57" y="814.33333333333337" width="300" height="1"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="RI2-XR-eAp"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mg-2q-3YN" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                        <rect key="frame" x="128.5" y="497" width="118" height="42"/>
+                                        <rect key="frame" x="142" y="657.33333333333337" width="130" height="42"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="LS2-wu-XOs"/>
@@ -883,7 +975,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdn-Sc-2wA">
-                                <rect key="frame" x="140.5" y="58.5" width="94" height="149.5"/>
+                                <rect key="frame" x="155.33333333333334" y="104.66666666666667" width="103.33333333333334" height="149.33333333333331"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -921,7 +1013,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xsR-y1-vj9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ryA-jU-UKp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -932,10 +1024,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wos-QU-Rmv"/>
+        <segue reference="w1e-Cd-Z39"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="airplayvideo" catalog="system" width="128" height="98"/>
+        <image name="folder" catalog="system" width="128" height="95"/>
         <image name="icons8-slider-80.png" width="80" height="80"/>
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>

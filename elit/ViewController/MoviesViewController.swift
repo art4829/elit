@@ -21,13 +21,71 @@ class MoviesViewController: UIViewController {
     var total_pages = 1
     var nowPlaying = true
     var defaults = UserDefaults.standard
+    var currIndex = -3
+    var descriptionData = [MovieCardModel]()
     
     var filterViewController : SlideMenuController!
 
     var movies = [[String: Any]]()
     
+    var transparentView = UIView()
+    var whiteBG =  UIView()
+    @IBOutlet weak var MovieNameLabel: UILabel!
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var MovieGenresLabel: UILabel!
+    @IBOutlet weak var GenreLabel: UILabel!
+    @IBOutlet weak var descriptionView: UIView!
+    @IBOutlet weak var MovieDescriptionText: UITextView!
+    
+    @IBOutlet weak var descriptionBG: UIView!
+    @IBAction func DescriptionTap(_ sender: UIButton) {
+        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        transparentView.frame = self.view.frame
+        self.view.addSubview(transparentView)
+        
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
+        let screenSize = UIScreen.main.bounds.size
+        descriptionView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        descriptionView.frame = CGRect(x: screenSize.width * 0.075, y: screenSize.height, width: screenSize.width * 0.85, height: screenSize.height * 0.75)
+        descriptionView.layer.cornerRadius = 20
+        self.view.addSubview(descriptionView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeDescription))
+        
+        transparentView.addGestureRecognizer(tapGesture)
+        transparentView.alpha = 0
+        
+        descriptionBG.layer.cornerRadius = 30
+        descriptionBG.backgroundColor = SOYBEAN.withAlphaComponent(0.3)
+
+        print(currIndex)
+        print(descriptionData)
+        MovieNameLabel.text = self.descriptionData[currIndex].getTitle()
+        MovieDescriptionText.text = self.descriptionData[currIndex].getDescription()
+        MovieGenresLabel.text = self.descriptionData[currIndex].getGenre()
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.descriptionView.isHidden = false
+            self.transparentView.alpha = 0.7
+            self.descriptionView.frame = CGRect(x: screenSize.width * 0.075, y: screenSize.height - (screenSize.height * 0.9), width: screenSize.width * 0.85, height: screenSize.height * 0.75)
+        }, completion: nil )
+      
+    }
+    
+    @objc func removeDescription(){
+        let screenSize = UIScreen.main.bounds.size
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0
+            self.descriptionView.isHidden = true
+
+            self.descriptionView.frame = CGRect(x: screenSize.width * 0.075, y: screenSize.height, width: screenSize.width * 0.85, height: screenSize.height * 0.75)
+        }, completion: nil )
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.descriptionView.isHidden = true
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
+
         guard let tabBar = self.tabBarController?.tabBar else { return }
         tabBar.tintColor = UIColor.white
         tabBar.barTintColor = UIColor.black
@@ -71,6 +129,7 @@ class MoviesViewController: UIViewController {
     
     func viewLoadSetup(){
         //Set up favMovies
+        self.currIndex = -3
         if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
             let decoder = JSONDecoder()
             if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
@@ -87,6 +146,7 @@ class MoviesViewController: UIViewController {
                 nowPlaying = filterViewController.nowPlaying
                 filterURL = filterViewController.filterURL
                 randomPages = [Int]()
+                
             } else {
                 //Do not apply filter or reload the cards
                 return
@@ -104,6 +164,10 @@ class MoviesViewController: UIViewController {
             search_url = filterURL
         }
         self.viewModelData = getMovies(filterURL: search_url)
+        for data in viewModelData{
+            self.descriptionData.append(data)
+        }
+       
         self.stackContainer = StackContainerView()
         self.view.addSubview(self.stackContainer)
         self.configureStackContainer()
@@ -159,7 +223,22 @@ class MoviesViewController: UIViewController {
                 for m in mv {
                    if !(m["poster_path"] is NSNull){
                     let rating = "\(m["vote_average"] ?? "")"
-                    let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating )
+                    let glist = m["genre_ids"] as! [Int]
+                    print(glist)
+                    var genreString = ""
+                    if glist.count == 0{
+                        genreString = "None"
+                    } else{
+                        for g in glist{
+                           let key = (GENRE_DICT as NSDictionary).allKeys(for: g) as! [String]
+                           let value = key[0]
+                           genreString.append(value + ",")
+                       }
+                         genreString = String(genreString.dropLast())
+                    }
+                   
+                    print(genreString)
+                    let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating, description: m["overview"] as! String, genreList: genreString)
                         moviesData.append(movie)
                     print(m["poster_path"] as! String)
                    }
@@ -193,6 +272,9 @@ extension MoviesViewController : SwipeCardsDataSource {
     func card(at index: Int) -> SwipeCardView {
         let card = SwipeCardView()
         card.favMovies = favMovies
+        print("CARD, \(index)")
+        self.currIndex += 1
+        print(viewModelData[index].getTitle())
         card.dataSource = viewModelData[index]
         self.viewModelData.remove(at: index)
         if (index == numberOfCardsToShow() - 2){
