@@ -26,8 +26,15 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
 
         let finalWidth = toViewController.view.bounds.width * 0.6
-        let finalHeight = toViewController.view.bounds.height
+        
+        
+        
+        let tHeight = toViewController.tabBarController?.tabBar.frame.height ?? 49.0
+     
+        print("here: \(tHeight)")
 
+        let finalHeight = toViewController.view.bounds.height - tHeight
+        
         if isPresenting {
             // Add dimming view
             dimmingView.backgroundColor = .black
@@ -36,9 +43,9 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
             dimmingView.frame = containerView.bounds
             // Add menu view controller to container
             containerView.addSubview(toViewController.view)
-
+            let safe = toViewController.view.safeAreaInsets
             // Init frame off the screen
-            toViewController.view.frame = CGRect(x: -finalWidth, y: 0, width: finalWidth, height: finalHeight)
+            toViewController.view.frame = CGRect(x: -finalWidth, y: safe.top, width: finalWidth, height: finalHeight - safe.top - safe.bottom)
         }
 
         // Move on screen

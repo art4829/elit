@@ -28,6 +28,11 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let tabBar = self.tabBarController?.tabBar else { return }
+        tabBar.tintColor = UIColor.white
+        tabBar.barTintColor = UIColor.black
+        tabBar.unselectedItemTintColor = SOYBEAN.withAlphaComponent(0.6)
+        
         viewLoadSetup()
     }
     

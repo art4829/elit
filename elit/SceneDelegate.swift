@@ -82,7 +82,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
    
         
         let loginViewController = window?.rootViewController as? LoginViewController
-
         
         
         let userList = Users()

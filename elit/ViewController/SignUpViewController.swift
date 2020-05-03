@@ -37,6 +37,7 @@ class SignUpViewController: UIViewController {
         print(usersList)
     }
     
+  
     @IBAction func signup(sender: UIButton)  {
         //Check not empty strings:
         if (fullnameEntered.text! == "" || emailEntered.text! == "" || usernameEntered.text! == "" || passwordEntered.text! == "" || confirmPasswordEntered.text! == "") {
