@@ -61,6 +61,7 @@ class SwipeCardView : UIView {
     //MARK: - Init
      override init(frame: CGRect) {
         super.init(frame: .zero)
+        self.restorationIdentifier = "SwipeCardView"
         configureShadowView()
         configureSwipeView()
         configureImageView()

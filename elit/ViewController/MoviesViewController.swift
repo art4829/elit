@@ -22,6 +22,7 @@ class MoviesViewController: UIViewController {
     var nowPlaying = true
     var defaults = UserDefaults.standard
     var currIndex = -3
+
     var descriptionData = [MovieCardModel]()
     
     var filterViewController : SlideMenuController!
@@ -39,6 +40,19 @@ class MoviesViewController: UIViewController {
     
     @IBOutlet weak var descriptionBG: UIView!
     @IBAction func DescriptionTap(_ sender: UIButton) {
+        
+        var currentStack : [UIView] = []
+        var currentCard : MovieCardModel
+
+        for view in self.view.subviews {
+            if view.restorationIdentifier == "StackContainerView" {
+                currentStack = view.subviews
+            }
+        }
+        //The currentStack has 3 items. The currentCard is the last item in the list
+        currentCard = (currentStack[2] as! SwipeCardView).dataSource!
+        print(currentCard.getTitle())
+        
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         transparentView.frame = self.view.frame
         self.view.addSubview(transparentView)
@@ -60,6 +74,7 @@ class MoviesViewController: UIViewController {
 
         print(currIndex)
         print(descriptionData)
+
         MovieNameLabel.text = self.descriptionData[currIndex].getTitle()
         MovieDescriptionText.text = self.descriptionData[currIndex].getDescription()
         MovieGenresLabel.text = self.descriptionData[currIndex].getGenre()
@@ -265,9 +280,12 @@ extension MoviesViewController: UIViewControllerTransitioningDelegate {
 
 
 extension MoviesViewController : SwipeCardsDataSource {
+
+    
     func numberOfCardsToShow() -> Int {
         return viewModelData.count
     }
+    
     
     func card(at index: Int) -> SwipeCardView {
         let card = SwipeCardView()
@@ -278,7 +296,7 @@ extension MoviesViewController : SwipeCardsDataSource {
         card.dataSource = viewModelData[index]
         self.viewModelData.remove(at: index)
         if (index == numberOfCardsToShow() - 2){
-//            print("YESSSSSS")
+
             if nowPlaying == false {
                search_url = filterURL
             }
@@ -291,6 +309,7 @@ extension MoviesViewController : SwipeCardsDataSource {
        
         return card
     }
+ 
     
     func emptyView() -> UIView? {
         print("end")

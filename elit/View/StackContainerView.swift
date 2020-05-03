@@ -34,6 +34,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .clear
+        self.restorationIdentifier = "StackContainerView"
         
     }
     
