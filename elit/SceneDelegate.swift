@@ -100,16 +100,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //Get the current user
             //From the current user, get and set the current favMovies
-
             if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
                 let decoder = JSONDecoder()
                 if let user = try? decoder.decode(User.self, from: savedPerson) {
                     setCurrentFavMovies(user: user, favMoviesList: favMoviesList)
                 }
             }
-            //From the current user, get and set the current favMovies
-            
         }
+        
+        let profileVC = tabBarController?.viewControllers![1] as? ProfileViewController
+        profileVC!.usersList = userList
+        profileVC!.favMoviesList = favMoviesList
         
 //        let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
 //        let profileVC = tabBarController.viewControllers![1] as! ProfileViewController

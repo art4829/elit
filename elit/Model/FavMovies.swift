@@ -27,15 +27,6 @@ class FavMovies: NSObject, Encodable, Decodable{
         return false
     }
     
-//    func getCurrentFavMovies() -> FavMovies{
-//        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-//            let decoder = JSONDecoder()
-//            if let favMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-//                return favMovies
-//            }
-//        }
-//        return FavMovies()
-//    }
     
     func setCurrentFavMovies() {
         let encoder = JSONEncoder()

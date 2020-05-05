@@ -32,11 +32,7 @@ class SignUpViewController: UIViewController {
             loginVC.usersList = usersList
         }
     }
-    
-    override func viewDidLoad() {
-        print(usersList)
-    }
-    
+
   
     @IBAction func signup(sender: UIButton)  {
         //Check not empty strings:

@@ -513,7 +513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcs-up-8j5">
-                                <rect key="frame" x="163" y="63.999999999999986" width="88" height="130.66666666666663"/>
+                                <rect key="frame" x="0.0" y="63.999999999999986" width="414" height="130.66666666666663"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -536,46 +536,58 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REb-zS-V3R">
-                                <rect key="frame" x="171.66666666666666" y="184.66666666666666" width="71" height="53.333333333333343"/>
+                                <rect key="frame" x="0.0" y="184.66666666666666" width="414" height="53.333333333333343"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBD-H6-rxg">
-                                <rect key="frame" x="61" y="239" width="103" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBD-H6-rxg">
+                                <rect key="frame" x="50" y="248.66666666666663" width="103" height="40"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="607-b1-8jz" customClass="ProfileField" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="91" y="287" width="76" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-xW-5KA">
-                                <rect key="frame" x="65" y="330" width="95" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-xW-5KA">
+                                <rect key="frame" x="50" y="338.33333333333331" width="95" height="40"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7w-35-jBE" customClass="ProfileField" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="91" y="378" width="74" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRh-tg-G3T" customClass="LoginButton" customModule="elit" customModuleProvider="target">
+                                <rect key="frame" x="103.66666666666669" y="477.66666666666669" width="207" height="30"/>
+                                <state key="normal" title="Update Profile"/>
+                                <connections>
+                                    <action selector="updateProfile:" destination="HBl-eC-IRq" eventType="touchUpInside" id="mHM-sl-jlh"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PR9-fs-fqI" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
+                                <rect key="frame" x="70" y="296" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-JH-J2A" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
+                                <rect key="frame" x="70" y="386" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="REb-zS-V3R" firstAttribute="top" secondItem="lcs-up-8j5" secondAttribute="bottom" constant="-10" id="355-GM-9Gt"/>
+                            <constraint firstItem="xRh-tg-G3T" firstAttribute="width" secondItem="H7e-SK-gv7" secondAttribute="width" multiplier="0.5" id="8g1-gb-Idq"/>
+                            <constraint firstItem="xRh-tg-G3T" firstAttribute="centerY" secondItem="H7e-SK-gv7" secondAttribute="centerY" multiplier="1.1" id="9xi-r8-AZK"/>
+                            <constraint firstItem="REb-zS-V3R" firstAttribute="width" secondItem="H7e-SK-gv7" secondAttribute="width" id="HQz-PE-afS"/>
+                            <constraint firstItem="xRh-tg-G3T" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="IUq-If-j7R"/>
                             <constraint firstItem="lcs-up-8j5" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="Kfk-UK-1TM"/>
                             <constraint firstItem="REb-zS-V3R" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="RtL-Qf-wS0"/>
+                            <constraint firstItem="tdk-xW-5KA" firstAttribute="centerY" secondItem="H7e-SK-gv7" secondAttribute="centerY" multiplier="0.8" id="YV3-b3-5dm"/>
+                            <constraint firstItem="lcs-up-8j5" firstAttribute="width" secondItem="H7e-SK-gv7" secondAttribute="width" id="eIi-So-jGP"/>
                             <constraint firstItem="lcs-up-8j5" firstAttribute="top" secondItem="ecO-Oe-mpW" secondAttribute="top" constant="20" id="eaj-ml-sig"/>
+                            <constraint firstItem="WBD-H6-rxg" firstAttribute="leading" secondItem="ecO-Oe-mpW" secondAttribute="leading" constant="50" id="lDv-nn-8Nl"/>
+                            <constraint firstItem="tdk-xW-5KA" firstAttribute="leading" secondItem="ecO-Oe-mpW" secondAttribute="leading" constant="50" id="xfh-KV-IK9"/>
+                            <constraint firstItem="WBD-H6-rxg" firstAttribute="centerY" secondItem="H7e-SK-gv7" secondAttribute="centerY" multiplier="0.6" id="z2m-fh-eKJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ecO-Oe-mpW"/>
                         <userDefinedRuntimeAttributes>
@@ -591,15 +603,15 @@
                     <navigationItem key="navigationItem" id="Cm2-H5-54D"/>
                     <connections>
                         <outlet property="fullName" destination="REb-zS-V3R" id="qvz-Dd-lNA"/>
-                        <outlet property="password" destination="m7w-35-jBE" id="qbZ-s3-4V1"/>
-                        <outlet property="username" destination="607-b1-8jz" id="655-Jn-4u5"/>
+                        <outlet property="password" destination="lCE-JH-J2A" id="8hy-Ab-EKT"/>
+                        <outlet property="username" destination="PR9-fs-fqI" id="Ze6-qV-ZBO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmR-sS-nA4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2700" y="715"/>
+            <point key="canvasLocation" x="3608.6956521739135" y="714.50892857142856"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorite Movies TableVC-->
         <scene sceneID="yYe-Qs-NIO">
             <objects>
                 <tableViewController id="WS0-xh-05u" customClass="FavoriteMoviesTableVC" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
@@ -608,11 +620,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" textLabel="Sby-sD-g0f" detailTextLabel="SWB-Di-2eL" style="IBUITableViewCellStyleSubtitle" id="HsG-UZ-r1f">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" textLabel="Sby-sD-g0f" detailTextLabel="SWB-Di-2eL" style="IBUITableViewCellStyleSubtitle" id="HsG-UZ-r1f">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HsG-UZ-r1f" id="oIf-r8-FvL">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="55.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sby-sD-g0f">
@@ -638,11 +650,11 @@
                             <outlet property="delegate" destination="WS0-xh-05u" id="TNa-sP-I8X"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="star.fill" catalog="system" id="NwS-g1-q3u"/>
+                    <navigationItem key="navigationItem" id="C1Y-44-qj5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LO-lF-UNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="201" y="607"/>
+            <point key="canvasLocation" x="1110.144927536232" y="606.69642857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -657,7 +669,7 @@
                     <connections>
                         <segue destination="zBV-Mh-hsQ" kind="relationship" relationship="viewControllers" id="7kL-fv-Gfh"/>
                         <segue destination="HBl-eC-IRq" kind="relationship" relationship="viewControllers" id="y2D-Kx-0Ff"/>
-                        <segue destination="WS0-xh-05u" kind="relationship" relationship="viewControllers" id="B1a-Ib-ERE"/>
+                        <segue destination="eLG-cG-uPN" kind="relationship" relationship="viewControllers" id="B1a-Ib-ERE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -718,7 +730,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oe2-9F-LIp">
-                                        <rect key="frame" x="155.33333333333334" y="177.33333333333334" width="103.33333333333334" height="93.333333333333343"/>
+                                        <rect key="frame" x="155.33333333333334" y="149.33333333333331" width="103.33333333333334" height="149.33333333333331"/>
                                         <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -1021,6 +1033,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="he2-OR-ljY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="200" y="-553"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="hyd-n1-XM3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eLG-cG-uPN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star.fill" catalog="system" id="NwS-g1-q3u"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sxk-2n-dhz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WS0-xh-05u" kind="relationship" relationship="rootViewController" id="eln-Te-B5p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sci-4V-UGO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200.00000000000003" y="606.69642857142856"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
