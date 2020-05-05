@@ -21,26 +21,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHD-fV-6q2">
-                                <rect key="frame" x="24" y="64" width="80" height="80"/>
+                                <rect key="frame" x="24" y="64" width="100" height="100"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
-                                <state key="normal" image="icons8-slider-80.png">
+                                <state key="normal" image="icons8-slider-100.png">
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapFilter:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="M93-n6-ZXV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pg-9CS">
-                                <rect key="frame" x="321" y="57" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jmh-Ve-nfG"/>
-                                    <constraint firstAttribute="width" constant="60" id="kgX-vR-aDc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="folder" catalog="system"/>
-                                <connections>
-                                    <action selector="DescriptionTap:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="LPy-bq-roT"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-lH-sYE" userLabel="DescriptionView">
@@ -56,7 +43,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-17-7mT">
-                                                <rect key="frame" x="5.0000000000000142" y="480.33333333333337" width="246.33333333333337" height="20.333333333333314"/>
+                                                <rect key="frame" x="5" y="480.33333333333337" width="316.66666666666669" height="20.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -71,7 +58,7 @@
                                                 <rect key="frame" x="0.0" y="36.333333333333343" width="306" height="390.33333333333326"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -107,7 +94,7 @@
                                     <constraint firstItem="1sP-ga-LKe" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.869318" id="FfF-Eu-uxd"/>
                                     <constraint firstItem="K7z-oO-dqB" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.25" id="Pan-Ey-plp"/>
                                     <constraint firstItem="1sP-ga-LKe" firstAttribute="centerX" secondItem="QlO-lH-sYE" secondAttribute="centerX" id="UJP-Pg-sck"/>
-                                    <constraint firstItem="cpS-17-7mT" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.7" id="Ve0-pr-jQ6"/>
+                                    <constraint firstItem="cpS-17-7mT" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.9" id="Ve0-pr-jQ6"/>
                                     <constraint firstItem="IbT-KZ-Wtq" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="0.27" id="Vmc-Iy-y04"/>
                                     <constraint firstItem="w8q-TA-abL" firstAttribute="centerY" secondItem="QlO-lH-sYE" secondAttribute="centerY" multiplier="1.02" id="a6q-eR-X9A"/>
                                     <constraint firstItem="w8q-TA-abL" firstAttribute="width" secondItem="QlO-lH-sYE" secondAttribute="width" multiplier="0.869318" id="b3I-8G-n99"/>
@@ -122,10 +109,8 @@
                             <constraint firstItem="QlO-lH-sYE" firstAttribute="centerX" secondItem="ni7-FW-GSR" secondAttribute="centerX" id="GtS-58-UfO"/>
                             <constraint firstItem="QlO-lH-sYE" firstAttribute="centerY" secondItem="ni7-FW-GSR" secondAttribute="centerY" multiplier="0.9" id="Jl8-bC-7j6"/>
                             <constraint firstItem="QlO-lH-sYE" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.75" id="NUc-yo-nWG"/>
-                            <constraint firstItem="43Y-pg-9CS" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="13" id="fHc-dp-MOa"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="leading" secondItem="RR2-Wt-zBf" secondAttribute="leading" constant="24" id="h1a-fv-OsC"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="20" id="jMl-tj-urV"/>
-                            <constraint firstItem="RR2-Wt-zBf" firstAttribute="trailing" secondItem="43Y-pg-9CS" secondAttribute="trailing" constant="33" id="pPf-Kt-Weg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RR2-Wt-zBf"/>
                         <userDefinedRuntimeAttributes>
@@ -513,7 +498,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcs-up-8j5">
-                                <rect key="frame" x="163" y="63.999999999999986" width="88" height="130.66666666666663"/>
+                                <rect key="frame" x="145" y="63.999999999999993" width="124" height="23.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -536,7 +521,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REb-zS-V3R">
-                                <rect key="frame" x="171.66666666666666" y="184.66666666666666" width="71" height="53.333333333333343"/>
+                                <rect key="frame" x="41.333333333333343" y="107.66666666666667" width="331.33333333333326" height="53.333333333333329"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -572,10 +557,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="REb-zS-V3R" firstAttribute="top" secondItem="lcs-up-8j5" secondAttribute="bottom" constant="-10" id="355-GM-9Gt"/>
+                            <constraint firstItem="REb-zS-V3R" firstAttribute="top" secondItem="lcs-up-8j5" secondAttribute="bottom" constant="20" id="355-GM-9Gt"/>
+                            <constraint firstItem="REb-zS-V3R" firstAttribute="centerY" secondItem="H7e-SK-gv7" secondAttribute="centerY" multiplier="0.3" id="92e-Vp-TI7"/>
                             <constraint firstItem="lcs-up-8j5" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="Kfk-UK-1TM"/>
+                            <constraint firstItem="REb-zS-V3R" firstAttribute="width" secondItem="H7e-SK-gv7" secondAttribute="width" multiplier="0.8" id="PGO-Gb-LcZ"/>
                             <constraint firstItem="REb-zS-V3R" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="RtL-Qf-wS0"/>
                             <constraint firstItem="lcs-up-8j5" firstAttribute="top" secondItem="ecO-Oe-mpW" secondAttribute="top" constant="20" id="eaj-ml-sig"/>
+                            <constraint firstItem="lcs-up-8j5" firstAttribute="width" secondItem="H7e-SK-gv7" secondAttribute="width" multiplier="0.3" id="fG5-u8-Yvd"/>
+                            <constraint firstItem="REb-zS-V3R" firstAttribute="centerX" secondItem="H7e-SK-gv7" secondAttribute="centerX" id="uFT-Vk-odV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ecO-Oe-mpW"/>
                         <userDefinedRuntimeAttributes>
@@ -718,7 +707,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oe2-9F-LIp">
-                                        <rect key="frame" x="155.33333333333334" y="177.33333333333334" width="103.33333333333334" height="93.333333333333343"/>
+                                        <rect key="frame" x="155.33333333333334" y="149.33333333333331" width="103.33333333333334" height="149.33333333333331"/>
                                         <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -1028,8 +1017,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="airplayvideo" catalog="system" width="128" height="98"/>
-        <image name="folder" catalog="system" width="128" height="95"/>
-        <image name="icons8-slider-80.png" width="80" height="80"/>
+        <image name="icons8-slider-100.png" width="100" height="100"/>
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>

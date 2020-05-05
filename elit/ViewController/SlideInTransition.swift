@@ -19,20 +19,13 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-
         guard let toViewController = transitionContext.viewController(forKey: .to),
             let fromViewController = transitionContext.viewController(forKey: .from) else { return }
 
         let containerView = transitionContext.containerView
 
         let finalWidth = toViewController.view.bounds.width * 0.6
-        
-        
-        
-        let tHeight = toViewController.tabBarController?.tabBar.frame.height ?? 49.0
-     
-        print("here: \(tHeight)")
-
+        let tHeight = toViewController.tabBarController?.tabBar.frame.height ?? CGFloat(TAB_BAR_HEIGHT)
         let finalHeight = toViewController.view.bounds.height - tHeight
         
         if isPresenting {

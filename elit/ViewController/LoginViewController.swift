@@ -2,7 +2,8 @@
 //  LoginViewController.swift
 //  elit
 //
-//  Created by Abigail Tran on 4/5/20.
+//  ViewController to monitor and control logins of user.
+//  Created by Abhaya Tamrakar and Abigail Tran on 4/5/20.
 //  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
 //
 
@@ -22,18 +23,26 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //If there is a new user signing up
-        
+        if CheckInternet.Connection() == false{
+            let alert = UIAlertController(title: "Alert", message: "You are not connected to the Internet", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {(action:UIAlertAction!) in
+               exit(0)
+            }))
+            DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+            }
+        }
         if (usersList == nil) {
             setUsersList()
         }
         if (favMoviesList == nil) {
             setFavMoviesList()
         }
-
         username = ""
         password = ""
     }
     
+    // set users from plist
     func setUsersList() {
         usersList = Users()
         //Read in users plist
@@ -48,7 +57,6 @@ class LoginViewController: UIViewController {
                 
                 let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
                 let tempArray = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [Dictionary<String, Any>]
-                
                 
                 for dict in tempArray {
                     let fullName = dict["fullName"]! as! String
@@ -66,6 +74,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // Set Favorite Movies for users from plist
     func setFavMoviesList() {
         favMoviesList = FavMoviesList()
         //Read in userFavMovies plist
