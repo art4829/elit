@@ -11,6 +11,7 @@ import UIKit
 
 // Color Constants
 let ECLIPSE = UIColor(red:0.20, green:0.19, blue:0.28, alpha:1.00)
+let LIGHT_ECLIPSE = UIColor(red:0.39, green:0.38, blue:0.49, alpha:1.00)
 let SOYBEAN = UIColor(red:0.84, green:0.77, blue:0.62, alpha:1.00)
 
 // Api key

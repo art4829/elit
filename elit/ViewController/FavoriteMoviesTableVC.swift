@@ -14,6 +14,8 @@ class FavoriteMoviesTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.backgroundColor = ECLIPSE.withAlphaComponent(0.9)
+        
         //Set up favMovies
         if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
             let decoder = JSONDecoder()
@@ -63,6 +65,13 @@ class FavoriteMoviesTableVC: UITableViewController {
              detailText = "Rating: " + favMovies.movieList[indexPath.row]["rating"]!
         }
         cell.detailTextLabel?.text = detailText
+        cell.textLabel?.textColor = UIColor.white
+        cell.detailTextLabel?.textColor = UIColor.white
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor.clear
+        } else {
+            cell.backgroundColor = LIGHT_ECLIPSE
+        }
         return cell
     }
     
