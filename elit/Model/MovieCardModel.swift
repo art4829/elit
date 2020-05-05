@@ -26,7 +26,10 @@ struct MovieCardModel {
         if (vote_average == "0") {
             self.vote_average = ""
         } else {
-            self.vote_average = vote_average + "/10"
+            //Change rating to base 5
+            let rating = (Double(vote_average)!)/10 * 5
+            let ratingStr :String = String(format:"%.1f", rating)
+            self.vote_average = ratingStr + "/5"
         }
     }
     

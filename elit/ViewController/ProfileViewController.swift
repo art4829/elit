@@ -11,8 +11,8 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var fullName: UILabel!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: LoginTextField!
+    @IBOutlet weak var username: LoginTextField!
     
     
     var current : User!
@@ -45,8 +45,8 @@ class ProfileViewController: UIViewController {
             password.text! = ""
         } else {
             fullName.text! = current.getFullName()
-            username.text = current.getUsername()
-            password.text = current.getPassword()
+            username.placeholder = current.getUsername()
+            password.placeholder = current.getPassword()
         }
         if (usersList == nil) {
             setUsersList()

@@ -111,10 +111,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileVC = tabBarController?.viewControllers![1] as? ProfileViewController
         profileVC!.usersList = userList
         profileVC!.favMoviesList = favMoviesList
-        
-//        let movieVC = tabBarController.viewControllers![0] as! MoviesViewController
-//        let profileVC = tabBarController.viewControllers![1] as! ProfileViewController
-//        let favMoviesTableVC = tabBarController.viewControllers![2] as! FavoriteMoviesTableVC
     
     }
 

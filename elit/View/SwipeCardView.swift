@@ -42,8 +42,8 @@ class SwipeCardView : UIView {
                 let attachment = NSTextAttachment()
                 attachment.image = star
                 let attachmentString = NSAttributedString(attachment: attachment)
-                let titleString = NSMutableAttributedString(string: dataSource!.title + " ")
-                let ratingString = NSMutableAttributedString(string: " " + String(dataSource!.vote_average))
+                let titleString = NSMutableAttributedString(string: dataSource!.title + " - ")
+                let ratingString = NSMutableAttributedString(string: String(dataSource!.vote_average))
 
                 titleString.append(attachmentString)
                 titleString.append(ratingString)
