@@ -13,16 +13,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let genreArray = Genres()
     var tabBarController: UITabBarController!
     var globalUsersList : [User] = []
     var globalUserFavMovies : [FavMovies] = []
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-        
         guard let _ = (scene as? UIWindowScene) else { return }
-        
         //Read in users plist
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = documentsPathURL.appendingPathComponent("users.plist")
@@ -76,13 +72,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error)
             }
         }
+      
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
-   
-        
         let loginViewController = window?.rootViewController as? LoginViewController
-        
         
         let userList = Users()
         userList.userList = globalUsersList
@@ -91,10 +85,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         loginViewController!.usersList = userList
         loginViewController!.favMoviesList = favMoviesList
-
         
         //If user has already logged in
-        if isLoggedIn(){
+        if isLoggedIn() && CheckInternet.Connection(){
             //Set the root view to be the home page
             self.window?.rootViewController = tabBarController
             

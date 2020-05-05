@@ -2,7 +2,8 @@
 //  SignUpViewController.swift
 //  elit
 //
-//  Created by Abigail Tran on 4/5/20.
+//  ViewController for signing up a new user
+//  Created by Abhaya Tamrakar and Abigail Tran on 4/5/20.
 //  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
 //
 

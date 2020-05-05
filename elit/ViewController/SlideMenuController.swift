@@ -2,7 +2,8 @@
 //  SlideMenuController.swift
 //  elit
 //
-//  Created by Abhaya Tamrakar on 4/14/20.
+//  ViewController to control the filter slide menu.
+//  Created by Abhaya Tamrakar and Abigail Tran on 4/14/20.
 //  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
 //
 import Foundation
@@ -13,8 +14,6 @@ class CellClass: UITableViewCell {
 }
 
 class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var actionbtn: GenreButton!
     @IBOutlet weak var comedyBtn: GenreButton!
@@ -37,12 +36,14 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     let defaults = UserDefaults.standard
     var currIndex = -1
     
+    // Function that closes the filter menu
     @IBAction func closeFilter(_ sender: UIButton) {
         appliedFilter = false
         dismiss(animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set default values saved in NSUserDefaults
         rating.rating = defaults.double(forKey: "rating")
         dropDownBtn.setTitle(defaults.string(forKey: "language"), for: .normal)
         let genresbtn = defaults.object(forKey: "genreList") as? [Int] ?? [Int]()
@@ -69,7 +70,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
-        
     }
     
        // MARK: - IBActions
@@ -106,6 +106,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         scifiBtn.buttonPressed()
     }
     
+    // Function to apply all filters to the movies
     @IBAction func applyFilter(_ sender: UIButton) {
         var filterCount = 0
         if rating.rating != 0 {
@@ -141,11 +142,11 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             self.nowPlaying = false
             self.appliedFilter = true
         }
-
         dismiss(animated: true, completion: nil)
     }
     
 
+    // Get GenreIdList from selected buttons
     func getGenreIdList() -> [Int]{
         var genreIdList = [Int]()
         if self.actionbtn.isOn {
@@ -174,6 +175,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // Clear filters
     @IBAction func clearClicked(_ sender: UIButton) {
         rating.rating = 0
         dropDownBtn.setTitle("All Languages", for: .normal)
@@ -184,6 +186,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     
   
     // MARK: - DropDownMenu Config
+    // Language Selector dropdown menu
      func addTansparentView(frame: CGRect){
          let window = UIApplication.shared.windows.first { $0.isKeyWindow }
          transparentView.frame = window?.frame ?? self.view.frame
@@ -233,9 +236,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dropDownBtn.setTitle(dataSource[indexPath.row], for: .normal)
-  
         removeTransparentView()
     }
-
-   
 }
