@@ -1,37 +1,42 @@
 //
-//  ProfileViewController.swift
+//  ProfileUpdateViewController.swift
 //  elit
 //
-//  Created by Abigail Tran on 5/1/20.
+//  Created by Abigail Tran on 5/4/20.
 //  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
-    @IBOutlet weak var fullName: UILabel!
-    @IBOutlet weak var password: LoginTextField!
-    @IBOutlet weak var username: LoginTextField!
-    
-    
+class ProfileUpdateViewController: UIViewController {
     var current : User!
     var usersList : Users!
     var favMovies: FavMovies!
     var favMoviesList: FavMoviesList!
     
+    @IBOutlet weak var fullname: UITextField!
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-    }
-    
-    func setupView() {
-        if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedPerson = try? decoder.decode(User.self, from: savedPerson) {
-                self.current = loadedPerson
+        
+        if (current == nil) {
+            if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
+                let decoder = JSONDecoder()
+                if let loadedPerson = try? decoder.decode(User.self, from: savedPerson) {
+                    self.current = loadedPerson
+                }
             }
         }
+        
+        //Populate fields with current info
+        fullname.text = current.getFullName()
+        username.text = current.getUsername()
+        password.text = current.getPassword()
+        
         //Set up favMovies
         if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
             let decoder = JSONDecoder()
@@ -39,56 +44,42 @@ class ProfileViewController: UIViewController {
                 self.favMovies = loadedFavMovies
             }
         }
-        if current == nil {
-            fullName.text! = ""
-            username.text! = ""
-            password.text! = ""
-        } else {
-            fullName.text! = current.getFullName()
-            username.placeholder = current.getUsername()
-            password.placeholder = current.getPassword()
-        }
-        if (usersList == nil) {
-            setUsersList()
-        }
-        if (favMoviesList == nil) {
-            setFavMoviesList()
-        }
-    }
-    
-    @IBAction func updateProfile(_ sender: UIButton) {
-        //Check empty strings:
-        if (username.text == "") {
-            username.text = current.getUsername()
-        }
-        if (password.text == "") {
-            password.text = current.getPassword()
-        }
         
-        //If the user didn't change anything, do nothing
-        if (username.text == current.getUsername() && password.text! == current.getPassword()) {
+        setUsersList()
+        
+        setFavMoviesList()
+
+    }
+
+    
+    @IBAction func saveProfile(_ sender: UIButton) {
+        let oldUserName = current.getUsername()
+        //Check empty strings:
+        if (fullname.text! == "" || username.text! == "" || password.text! == "") {
+            alertUser(message: "Please don't leave any field empty!")
             return
         }
         
-        let oldUserName = current.getUsername()
+        //If the user didn't change anything, close the window
+        if (fullname.text! == current.getFullName() && username.text! == current.getUsername() && password.text! == current.getPassword()) {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
         //Check username existed (not the current username)
         for oldUser in usersList.userList {
             if (oldUser.getUsername() != oldUserName && username!.text! == oldUser.getUsername()) {
-                alertUser(message: "Please choose a different username", title: "Error")
-                username.text = current.getUsername()
-                password.text = current.getPassword()
+                alertUser(message: "Please choose a different username")
+                username.text = ""
                 return
             }
         }
         
+        
         //Set current user
+        current.set(fullName: fullname.text!)
         current.set(username: username.text!)
         current.set(password: password.text!)
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(current) {
-            UserDefaults.standard.set(encoded, forKey: "user")
-        }
-        UserDefaults.standard.synchronize()
+        setCurrentUser(user: current)
         
         //new username
         let newUserName = current.getUsername()
@@ -102,7 +93,6 @@ class ProfileViewController: UIViewController {
                 usersList.userList.append(current)
             }
         }
-        
         //Save the new user
         if let documentsPathURL2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path2 = documentsPathURL2.appendingPathComponent("users.plist")
@@ -117,7 +107,7 @@ class ProfileViewController: UIViewController {
                         if let index = tempArray.firstIndex(of: u) {
                             let oldUser = tempArray.remove(at: index)
                             let newUser : Dictionary<String,String> = [
-                                "fullName": oldUser["fullName"]!,
+                                "fullName": fullname.text!,
                                 "email": oldUser["email"]!,
                                 "username": username.text!,
                                 "password": password.text!
@@ -135,6 +125,7 @@ class ProfileViewController: UIViewController {
                 print(error)
             }
         }
+        
         
         //If the username change:
         if (newUserName != oldUserName) {
@@ -170,53 +161,40 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
+    
         
-        alertUser(message: "User info updated", title:"Updated!")
-        self.setupView()
+//        self.dismiss(animated: true) {
+//          if let parent = self.presentingViewController {
+//            let viewProfileVC = parent as! ProfileViewController
+//            viewProfileVC.loadView()
+//          }
+//        }
+        performSegue(withIdentifier: "ViewProfile", sender: self)
     }
     
-    func alertUser(message : String, title : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "ViewProfile"){
+            let profileVC = segue.destination as! ProfileViewController
+            profileVC.current = current
+            profileVC.usersList = usersList
+        }
+    }
+    
+    func alertUser(message : String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func logout(_ sender: LoginButton) {
-        
-        var plistDict: Dictionary<String,[Dictionary<String, String>]> = [:]
-        
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                plistDict[current.getUsername()] = loadedFavMovies.movieList
-            }
+    func setCurrentUser(user : User) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(user) {
+            UserDefaults.standard.set(encoded, forKey: "user")
         }
-        
-        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
-
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
-                var tempDict = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! Dictionary<String, [Dictionary<String, String>]>
-                
-                tempDict[current.getUsername()] = plistDict[current.getUsername()]
-            
-                
-                let plistData = try PropertyListSerialization.data(fromPropertyList: tempDict, format: .xml, options: 0)
-               
-
-                try plistData.write(to: path)
-                
-            } catch {
-                print(error)
-            }
-        }
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        performSegue(withIdentifier: "LogoutSegue", sender: self)
+        UserDefaults.standard.synchronize()
     }
-
-    
+        
     func setUsersList() {
         usersList = Users()
         //Read in users plist
@@ -276,6 +254,15 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

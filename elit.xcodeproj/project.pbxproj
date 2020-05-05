@@ -22,7 +22,6 @@
 		9EFC346B244E43280049A894 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346A244E43280049A894 /* SwipeCardView.swift */; };
 		9EFC346D244E43520049A894 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346C244E43520049A894 /* StackContainerView.swift */; };
 		9EFC346F244E43960049A894 /* SwipeCardsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346E244E43960049A894 /* SwipeCardsDataSource.swift */; };
-		9EFC3471244E6AA40049A894 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC3470244E6AA40049A894 /* Movie.swift */; };
 		C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215524363BD4009B14F7 /* AppDelegate.swift */; };
 		C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965215724363BD4009B14F7 /* SceneDelegate.swift */; };
 		C965215F24363BD4009B14F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C965215D24363BD4009B14F7 /* Main.storyboard */; };
@@ -55,11 +54,11 @@
 		9EB74A70243A802000AE5105 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		9EB74A75243BE2E700AE5105 /* users.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
+		9EE70478246021F10093181E /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
 		9EFC3465244E41F70049A894 /* MovieCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardModel.swift; sourceTree = "<group>"; };
 		9EFC346A244E43280049A894 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 		9EFC346C244E43520049A894 /* StackContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
 		9EFC346E244E43960049A894 /* SwipeCardsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsDataSource.swift; sourceTree = "<group>"; };
-		9EFC3470244E6AA40049A894 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C965215224363BD4009B14F7 /* elit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C965215524363BD4009B14F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C965215724363BD4009B14F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +185,7 @@
 				EBD76DF824464AF900F3A34F /* SlideInTransition.swift */,
 				9E69E4822457A4FA00738430 /* FavoriteMoviesTableVC.swift */,
 				9E7FF420245CEC78003DD6DC /* ProfileViewController.swift */,
+				9EE70478246021F10093181E /* ProfileUpdateViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -300,12 +300,12 @@
 				EB4C0B12244BA5B100E00FDE /* ComosDistrib.swift in Sources */,
 				EBD76DDF2444EF5400F3A34F /* Users.swift in Sources */,
 				C965215624363BD4009B14F7 /* AppDelegate.swift in Sources */,
+				9EE70479246021F10093181E /* ProfileUpdateViewController.swift in Sources */,
 				9E7FF421245CEC78003DD6DC /* ProfileViewController.swift in Sources */,
 				EB594D20243E55A30015A1E9 /* LoginTextField.swift in Sources */,
 				EB594D19243D08340015A1E9 /* constants.swift in Sources */,
 				EB4C0B1A244C096E00E00FDE /* GenreButton.swift in Sources */,
 				EBD76DF5244644B000F3A34F /* MoviesViewController.swift in Sources */,
-				9EFC3471244E6AA40049A894 /* Movie.swift in Sources */,
 				C965215824363BD4009B14F7 /* SceneDelegate.swift in Sources */,
 				9E69E4832457A4FA00738430 /* FavoriteMoviesTableVC.swift in Sources */,
 				EB594D16243CDA100015A1E9 /* GradientView.swift in Sources */,

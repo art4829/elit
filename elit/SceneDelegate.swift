@@ -100,6 +100,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
+        
+        let profileVC = tabBarController?.viewControllers![1] as? ProfileViewController
+        profileVC!.usersList = userList
+        profileVC!.favMoviesList = favMoviesList
+    
     }
 
     func setCurrentFavMovies(user : User, favMoviesList : FavMoviesList){
