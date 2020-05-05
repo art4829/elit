@@ -8,42 +8,27 @@
 
 import UIKit
 
-class FavoriteMoviesTableVC: UITableViewController {
+class FavoritesTableController: UITableViewController {
 
+    let defaults = UserDefaults.standard
     var favMovies: FavMovies!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = ECLIPSE.withAlphaComponent(0.9)
-        
-        //Set up favMovies
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                self.favMovies = loadedFavMovies
-            }
-        }
-        if favMovies == nil {
-            favMovies = FavMovies()
-        }
+        setUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                self.favMovies = loadedFavMovies
-            }
-        }
-        if favMovies == nil {
-            favMovies = FavMovies()
-        }
+        setUpView()
         self.tableView.reloadData();
+    }
+    
+    func setUpView() {
+        self.favMovies = Helper.getCurrentFavMovies()
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -79,37 +64,30 @@ class FavoriteMoviesTableVC: UITableViewController {
         isEditing = !isEditing
     }
     
-
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             favMovies.movieList.remove(at: indexPath.row)
-            favMovies.setCurrentFavMovies()
+            Helper.setCurrentFavMovies(favMovies: favMovies)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {
         }    
     }
     
-
-    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let itemToMove = favMovies.movieList[fromIndexPath.row]
         favMovies.movieList.remove(at: fromIndexPath.row)
         favMovies.movieList.insert(itemToMove, at: to.row)
-        favMovies.setCurrentFavMovies()
+        Helper.setCurrentFavMovies(favMovies: favMovies)
     }
-    
-
     
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
 
     /*
     // MARK: - Navigation

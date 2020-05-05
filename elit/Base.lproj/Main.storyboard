@@ -30,19 +30,6 @@
                                     <action selector="didTapFilter:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="M93-n6-ZXV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pg-9CS">
-                                <rect key="frame" x="321" y="57" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jmh-Ve-nfG"/>
-                                    <constraint firstAttribute="width" constant="60" id="kgX-vR-aDc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="folder" catalog="system"/>
-                                <connections>
-                                    <action selector="DescriptionTap:" destination="zBV-Mh-hsQ" eventType="touchUpInside" id="LPy-bq-roT"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-lH-sYE" userLabel="DescriptionView">
                                 <rect key="frame" x="31" y="67.333333333333314" width="352" height="672"/>
                                 <subviews>
@@ -56,7 +43,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-17-7mT">
-                                                <rect key="frame" x="5.0000000000000142" y="480.33333333333337" width="246.33333333333337" height="20.333333333333314"/>
+                                                <rect key="frame" x="5.0000000000000142" y="480.33333333333337" width="246.33333333333337" height="20.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -87,7 +74,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1sP-ga-LKe" userLabel="MovieName">
-                                        <rect key="frame" x="23" y="28.666666666666671" width="306" height="23.333333333333329"/>
+                                        <rect key="frame" x="23" y="28.666666666666671" width="306" height="23"/>
                                         <attributedString key="attributedText">
                                             <fragment content="MOVIE NAME">
                                                 <attributes>
@@ -124,8 +111,6 @@
                             <constraint firstItem="QlO-lH-sYE" firstAttribute="centerY" secondItem="ni7-FW-GSR" secondAttribute="centerY" multiplier="0.9" id="Jl8-bC-7j6"/>
                             <constraint firstItem="QlO-lH-sYE" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.75" id="NUc-yo-nWG"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="width" secondItem="ni7-FW-GSR" secondAttribute="width" multiplier="0.15" id="W70-DK-cUj"/>
-                            <constraint firstItem="43Y-pg-9CS" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="13" id="fHc-dp-MOa"/>
-                            <constraint firstItem="RR2-Wt-zBf" firstAttribute="trailing" secondItem="43Y-pg-9CS" secondAttribute="trailing" constant="33" id="pPf-Kt-Weg"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="centerY" secondItem="ni7-FW-GSR" secondAttribute="centerY" multiplier="0.2" id="tox-s2-M2r"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.1" id="v47-z9-chS"/>
                         </constraints>
@@ -189,7 +174,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQ9-uD-YPp" customClass="CosmosView" customModule="elit" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="179.66666666666666" width="152" height="25"/>
+                                        <rect key="frame" x="15" y="179.66666666666666" width="414" height="25"/>
                                         <color key="backgroundColor" red="0.20392156859999999" green="0.19215686269999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -440,7 +425,7 @@
                                     <constraint firstItem="Qmn-Zm-egU" firstAttribute="centerY" secondItem="sEF-rp-BGO" secondAttribute="centerY" multiplier="0.828" id="3rl-Go-NaY"/>
                                     <constraint firstItem="wQ9-uD-YPp" firstAttribute="leading" secondItem="sEF-rp-BGO" secondAttribute="leading" constant="15" id="4H2-MB-6K3"/>
                                     <constraint firstItem="CSr-rU-m9S" firstAttribute="centerY" secondItem="sEF-rp-BGO" secondAttribute="centerY" multiplier="0.4" id="5dv-wg-KUr"/>
-                                    <constraint firstItem="wQ9-uD-YPp" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" multiplier="0.36715" id="7Tv-0c-7IG"/>
+                                    <constraint firstItem="wQ9-uD-YPp" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" id="7Tv-0c-7IG"/>
                                     <constraint firstItem="2j0-R2-NsS" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" multiplier="0.8" id="FAC-yc-0xd"/>
                                     <constraint firstItem="CSr-rU-m9S" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" multiplier="0.8" id="FqT-lU-FA5"/>
                                     <constraint firstItem="uIC-zQ-dqh" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" id="G8r-vI-2QL"/>
@@ -458,6 +443,7 @@
                                     <constraint firstItem="8Rh-i9-5Rh" firstAttribute="top" secondItem="sEF-rp-BGO" secondAttribute="top" constant="10" id="PiT-lS-Bcf"/>
                                     <constraint firstItem="2j0-R2-NsS" firstAttribute="centerX" secondItem="sEF-rp-BGO" secondAttribute="centerX" id="RkI-fZ-F1p"/>
                                     <constraint firstItem="2j0-R2-NsS" firstAttribute="centerY" secondItem="sEF-rp-BGO" secondAttribute="centerY" multiplier="0.29" id="Tad-TT-QUP"/>
+                                    <constraint firstItem="wQ9-uD-YPp" firstAttribute="height" secondItem="sEF-rp-BGO" secondAttribute="height" multiplier="0.0305623" id="Ts5-QT-wkU"/>
                                     <constraint firstItem="tDk-wB-PuY" firstAttribute="centerY" secondItem="sEF-rp-BGO" secondAttribute="centerY" multiplier="1.12" id="UyZ-t2-hvd"/>
                                     <constraint firstItem="tDk-wB-PuY" firstAttribute="width" secondItem="sEF-rp-BGO" secondAttribute="width" multiplier="0.8" id="VSz-Sw-8WM"/>
                                     <constraint firstItem="tjR-22-yME" firstAttribute="centerX" secondItem="sEF-rp-BGO" secondAttribute="centerX" id="WfL-89-lDQ"/>
@@ -521,7 +507,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXP-Ha-rbO" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="258.66666666666669" y="651" width="103.66666666666669" height="42"/>
+                                <rect key="frame" x="258.66666666666669" y="651.66666666666663" width="103.66666666666669" height="41"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -537,7 +523,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REb-zS-V3R">
-                                <rect key="frame" x="0.0" y="184.66666666666666" width="414" height="53.333333333333343"/>
+                                <rect key="frame" x="0.0" y="184.66666666666666" width="414" height="53.666666666666657"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -555,7 +541,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRh-tg-G3T" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="103.66666666666669" y="471.66666666666669" width="207" height="42.000000000000057"/>
+                                <rect key="frame" x="103.66666666666669" y="477.66666666666669" width="207" height="30"/>
                                 <state key="normal" title="Update Profile">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -657,7 +643,7 @@
         <!--Favorite Movies-->
         <scene sceneID="yYe-Qs-NIO">
             <objects>
-                <tableViewController id="WS0-xh-05u" customClass="FavoriteMoviesTableVC" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WS0-xh-05u" customClass="FavoritesTableController" customModule="elit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MeN-Fr-cbl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1122,7 +1108,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="airplayvideo" catalog="system" width="128" height="98"/>
-        <image name="folder" catalog="system" width="128" height="95"/>
         <image name="icons8-slider-80.png" width="80" height="80"/>
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>

@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var tabBarController: UITabBarController!
     var globalUsersList : [User] = []
     var globalUserFavMovies : [FavMovies] = []
-
+    let defaults = UserDefaults.standard
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         //Read in users plist
@@ -93,12 +94,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //Get the current user
             //From the current user, get and set the current favMovies
-            if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
-                let decoder = JSONDecoder()
-                if let user = try? decoder.decode(User.self, from: savedPerson) {
-                    setCurrentFavMovies(user: user, favMoviesList: favMoviesList)
-                }
-            }
+            let currentUser = Helper.getCurrentUser()
+            setCurrentFavMovies(user: currentUser, favMoviesList: favMoviesList)
         }
         
         let profileVC = tabBarController?.viewControllers![1] as? ProfileViewController
@@ -116,16 +113,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 currentFavMovies = favMovies
             }
         }
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(currentFavMovies) {
-            UserDefaults.standard.set(encoded, forKey: "favMovies")
-        }
-        UserDefaults.standard.synchronize()
+        Helper.setCurrentFavMovies(favMovies: currentFavMovies)
     }
     
     fileprivate func isLoggedIn() -> Bool {
-           return UserDefaults.standard.bool(forKey: "isLoggedIn")
-       }
+        return defaults.bool(forKey: "isLoggedIn")
+    }
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

@@ -10,36 +10,85 @@ import UIKit
 
 class MoviesViewController: UIViewController {
     //MARK: - Properties
-    var viewModelData = [MovieCardModel]()
-
+    var defaults = UserDefaults.standard
+    
+    var movieCardsData = [MovieCard]()
+    var favMovies : FavMovies!
+    
     var randomPages = [Int]()
-    var stackContainer : StackContainerView!
+    var total_pages = 1
+    
     var filterURL = ""
     var search_url = NOW_PLAYING_URL
-    var favMovies : FavMovies!
-    var total_pages = 1
     var nowPlaying = true
-    var defaults = UserDefaults.standard
-    var descriptionData = [MovieCardModel]()
-    var filterViewController : SlideMenuController!
-
-    var movies = [[String: Any]]()
     
+    var stackContainer : StackContainerView!
+    var filterViewController : SlideMenuController!
     var transparentView = UIView()
     var whiteBG =  UIView()
+    
     @IBOutlet weak var MovieNameLabel: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var MovieGenresLabel: UILabel!
     @IBOutlet weak var GenreLabel: UILabel!
     @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var MovieDescriptionText: UITextView!
-    
     @IBOutlet weak var descriptionBG: UIView!
     
-    @objc func showDescription(){
-        var currentStack : [UIView] = []
-        var currentCard : MovieCardModel
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.descriptionView.isHidden = true
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
 
+        guard let tabBar = self.tabBarController?.tabBar else { return }
+        tabBar.tintColor = UIColor.white
+        tabBar.barTintColor = UIColor.black
+        tabBar.unselectedItemTintColor = SOYBEAN.withAlphaComponent(0.6)
+        
+        viewLoadSetup()
+    }
+    
+    //MARK: - Load Movies
+    func viewLoadSetup(){
+        //Set up favMovies
+        self.favMovies = Helper.getCurrentFavMovies()
+        
+        // setup view did load here
+        if filterViewController != nil {
+            if filterViewController?.appliedFilter == true {
+                nowPlaying = filterViewController.nowPlaying
+                filterURL = filterViewController.filterURL
+                randomPages = [Int]()
+                
+            } else {
+                //Do not apply filter or reload the cards
+                return
+            }
+        }
+        if nowPlaying == true {
+            defaults.set(0, forKey: "rating")
+            defaults.set([], forKey: "genreList")
+            defaults.set("All Languages", forKey: "language")
+        }
+
+
+        if nowPlaying == false {
+        // if not filtered, present inital movies data, else get the filters cardmodel array
+            search_url = filterURL
+        }
+        self.movieCardsData = getMovies(filterURL: search_url)
+        self.stackContainer = StackContainerView()
+        self.view.addSubview(self.stackContainer)
+        self.configureStackContainer()
+        self.stackContainer.translatesAutoresizingMaskIntoConstraints = false
+        self.configureNavigationBarButtonItem()
+        self.stackContainer.dataSource = self
+    }
+    
+    @objc func showDescription(){
+        //Get the current card
+        var currentStack : [UIView] = []
+        var currentCard : MovieCard
         for view in self.view.subviews {
           if view.restorationIdentifier == "StackContainerView" {
               currentStack = view.subviews
@@ -47,8 +96,8 @@ class MoviesViewController: UIViewController {
         }
         //The currentStack has 3 items. The currentCard is the last item in the list
         currentCard = (currentStack[2] as! SwipeCardView).dataSource!
-        print(currentCard.getTitle())
 
+        //Configure the description view
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         transparentView.frame = self.view.frame
         self.view.addSubview(transparentView)
@@ -92,28 +141,15 @@ class MoviesViewController: UIViewController {
         }, completion: nil )
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.descriptionView.isHidden = true
-        descriptionView.translatesAutoresizingMaskIntoConstraints = false
-
-        guard let tabBar = self.tabBarController?.tabBar else { return }
-        tabBar.tintColor = UIColor.white
-        tabBar.barTintColor = UIColor.black
-        tabBar.unselectedItemTintColor = SOYBEAN.withAlphaComponent(0.6)
-        
-        viewLoadSetup()
-    }
-    
     //MARK: - Configurations
     func configureStackContainer() {
-//        self.view.translatesAutoresizingMaskIntoConstraints = false
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackContainer.topAnchor.constraint(equalTo: self.view.topAnchor, constant: CGFloat(Double(self.view.bounds.height)*0.15)).isActive = true
         stackContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -CGFloat(Double(self.view.bounds.height)*0.22)).isActive = true
         stackContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: CGFloat(Double(self.view.bounds.width)*0.1)).isActive = true
         stackContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -CGFloat(Double(self.view.bounds.width)*0.1)).isActive = true
     }
+    
     func configureNavigationBarButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetTapped))
     }
@@ -126,8 +162,6 @@ class MoviesViewController: UIViewController {
     let transition = SlideInTransition()
 
     @IBAction func didTapFilter(_ sender: UIButton) {
-        //Not sure if this has to be "guard"
-//        guard let filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController") else {return}
         filterViewController = storyboard?.instantiateViewController(identifier: "SlideMenuController")
 
         filterViewController.modalPresentationStyle = .overCurrentContext
@@ -135,58 +169,11 @@ class MoviesViewController: UIViewController {
         present(filterViewController, animated: true)
     }
     
-
-    
-    //MARK: - Load Movies
-    func viewLoadSetup(){
-        //Set up favMovies
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                self.favMovies = loadedFavMovies
-            }
-        }
-        if favMovies == nil {
-            favMovies = FavMovies()
-        }
-        
-        // setup view did load here
-        if filterViewController != nil {
-            if filterViewController?.appliedFilter == true {
-                nowPlaying = filterViewController.nowPlaying
-                filterURL = filterViewController.filterURL
-                randomPages = [Int]()
-                
-            } else {
-                //Do not apply filter or reload the cards
-                return
-            }
-        }
-        if nowPlaying == true {
-            defaults.set(0, forKey: "rating")
-            defaults.set([], forKey: "genreList")
-            defaults.set("All Languages", forKey: "language")
-        }
-
-
-        if nowPlaying == false {
-        // if not filtered, present inital movies data, else get the filters cardmodel array
-            search_url = filterURL
-        }
-        self.viewModelData = getMovies(filterURL: search_url)
-        self.stackContainer = StackContainerView()
-        self.view.addSubview(self.stackContainer)
-        self.configureStackContainer()
-        self.stackContainer.translatesAutoresizingMaskIntoConstraints = false
-        self.configureNavigationBarButtonItem()
-        self.stackContainer.dataSource = self
-    }
     
     
     // Function to get all movies
-    func getMovies(filterURL: String) -> [MovieCardModel]{
-        print(filterURL)
-           var moviesData = [MovieCardModel]()
+    func getMovies(filterURL: String) -> [MovieCard]{
+           var moviesData = [MovieCard]()
            var furl = filterURL
            var url = URL(string: furl)!
            var data = try? Data(contentsOf: url)
@@ -230,7 +217,6 @@ class MoviesViewController: UIViewController {
                    if !(m["poster_path"] is NSNull){
                     let rating = "\(m["vote_average"] ?? "")"
                     let glist = m["genre_ids"] as! [Int]
-                    print(glist)
                     var genreString = ""
                     if glist.count == 0{
                         genreString = DEFAULT_GENRE
@@ -244,9 +230,8 @@ class MoviesViewController: UIViewController {
                     }
                    
                     let overview = m["overview"] as! String == "" ? DEFAULT_DESCRIPTIONS : m["overview"] as! String
-                    let movie = MovieCardModel(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating, description: overview, genreList: genreString)
+                    let movie = MovieCard(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating, description: overview, genreList: genreString)
                         moviesData.append(movie)
-                    print(m["poster_path"] as! String)
                    }
                 }
              }
@@ -255,6 +240,7 @@ class MoviesViewController: UIViewController {
        }
 }
 
+//Extention for swiping transition
 extension MoviesViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true
@@ -268,26 +254,24 @@ extension MoviesViewController: UIViewControllerTransitioningDelegate {
     }
   }
 
-
-
+//Extenstion to configure movie cards stack
 extension MoviesViewController : SwipeCardsDataSource {
-    
     func numberOfCardsToShow() -> Int {
-        return viewModelData.count
+        return movieCardsData.count
     }
 
     func card(at index: Int) -> SwipeCardView {
         let card = SwipeCardView()
         card.favMovies = favMovies
-        card.dataSource = viewModelData[index]
-        self.viewModelData.remove(at: index)
+        card.dataSource = movieCardsData[index]
+        self.movieCardsData.remove(at: index)
         if (index == numberOfCardsToShow() - 2){
             if nowPlaying == false {
                search_url = filterURL
             }
             let movies = getMovies(filterURL: search_url)
             for movie in movies{
-                self.viewModelData.append(movie)
+                self.movieCardsData.append(movie)
             }
             self.stackContainer.dataSource = self
         }
@@ -296,9 +280,7 @@ extension MoviesViewController : SwipeCardsDataSource {
         return card
     }
  
-    
     func emptyView() -> UIView? {
-        print("end")
         return nil
     }
 }

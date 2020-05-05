@@ -15,7 +15,7 @@ class FavMovies: NSObject, Encodable, Decodable{
     func getUsername() -> String {
         username
     }
-    func hasMovie(movie : MovieCardModel) -> Bool {
+    func hasMovie(movie : MovieCard) -> Bool {
         for dict in self.movieList {
             for (key, value) in dict {
                 if (key == "title" && value == movie.getTitle()) {
@@ -25,14 +25,5 @@ class FavMovies: NSObject, Encodable, Decodable{
 
         }
         return false
-    }
-    
-    
-    func setCurrentFavMovies() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(self) {
-            UserDefaults.standard.set(encoded, forKey: "favMovies")
-        }
-        UserDefaults.standard.synchronize()
     }
 }

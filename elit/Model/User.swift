@@ -21,9 +21,13 @@ class User: NSObject, Encodable, Decodable {
         self.set(email: email)
         self.set(password: password)
         self.set(username: username)
-        
     }
     
+    convenience override init() {
+        self.init(fullName: "", email: "", username: "", password: "")
+    }
+    
+    //Getters and Setters
     func getFullName() -> String {
         fullName
     }

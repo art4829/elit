@@ -30,21 +30,19 @@ class StackContainerView: UIView, SwipeCardsDelegate {
             first = false
         }
     }
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .clear
         self.restorationIdentifier = "StackContainerView"
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     func reloadData() {
-//        removeAllCardViews()
         guard let datasource = dataSource else { return }
         setNeedsLayout()
         layoutIfNeeded()
@@ -58,7 +56,6 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     }
 
     //MARK: - Configurations
-
     private func addCardView(cardView: SwipeCardView, atIndex index: Int) {
         cardView.delegate = self
         addCardFrame(index: index, cardView: cardView)
@@ -86,8 +83,6 @@ class StackContainerView: UIView, SwipeCardsDelegate {
         cardViews = []
     }
     
-
-    
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
@@ -102,9 +97,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
                     self.layoutIfNeeded()
                 })
             }
-
-        }else {
-            print("swipeEndNoCard");
+        } else {
             for (cardIndex, cardView) in visibleCards.reversed().enumerated() {
                 UIView.animate(withDuration: 0.2, animations: {
                     cardView.center = self.center
@@ -114,6 +107,4 @@ class StackContainerView: UIView, SwipeCardsDelegate {
             }
         }
     }
-    
-
 }

@@ -133,7 +133,6 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             filterCount += 1
         }
         defaults.set((dropDownBtn.titleLabel?.text)!, forKey: "language")
-        print(filterURL)
 
         if filterCount == 0 {
             self.nowPlaying = true

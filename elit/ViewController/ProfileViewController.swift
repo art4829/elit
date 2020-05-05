@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: LoginTextField!
     @IBOutlet weak var username: LoginTextField!
     
-    
+    let defaults = UserDefaults.standard
     var current : User!
     var usersList : Users!
     var favMovies: FavMovies!
@@ -28,25 +28,19 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         setupView()
     }
     
+    //When user hit enter key, the keyboard should go away
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        textField.resignFirstResponder()
        return true
     }
     
     func setupView() {
-        if let savedPerson = UserDefaults.standard.object(forKey: "user") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedPerson = try? decoder.decode(User.self, from: savedPerson) {
-                self.current = loadedPerson
-            }
-        }
+        //Set uup current user
+        self.current = Helper.getCurrentUser()
+        
         //Set up favMovies
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                self.favMovies = loadedFavMovies
-            }
-        }
+        self.favMovies = Helper.getCurrentFavMovies()
+
         if current == nil {
             fullName.text! = ""
             username.text! = ""
@@ -57,10 +51,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             password.placeholder = current.getPassword()
         }
         if (usersList == nil) {
-            setUsersList()
+            usersList = Helper.setUsersList()
         }
         if (favMoviesList == nil) {
-            setFavMoviesList()
+            favMoviesList = Helper.setFavMoviesList()
         }
     }
     
@@ -82,7 +76,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         //Check username existed (not the current username)
         for oldUser in usersList.userList {
             if (oldUser.getUsername() != oldUserName && username!.text! == oldUser.getUsername()) {
-                alertUser(message: "Please choose a different username", title: "Error")
+                Helper.alertUser(controller: self, message: "Please choose a different username", title: "Error")
                 username.text = current.getUsername()
                 password.text = current.getPassword()
                 return
@@ -92,11 +86,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         //Set current user
         current.set(username: username.text!)
         current.set(password: password.text!)
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(current) {
-            UserDefaults.standard.set(encoded, forKey: "user")
-        }
-        UserDefaults.standard.synchronize()
+        Helper.setCurrentUser(user: current)
         
         //new username
         let newUserName = current.getUsername()
@@ -148,7 +138,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         if (newUserName != oldUserName) {
             //Update the current faveMovies
             favMovies.username = newUserName
-            favMovies.setCurrentFavMovies()
+            Helper.setCurrentFavMovies(favMovies: favMovies)
             
             //Replace the faveMovies in the faveMoviesList
             for oldFavMovies in favMoviesList.favMoviesList {
@@ -160,7 +150,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             //Save the new favMoviesList
             if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
-                print(path.path)
 
                 do {
                     let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
@@ -168,7 +157,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                     tempDict.removeValue(forKey: oldUserName)
                     tempDict[newUserName] = favMovies.movieList
                 
-                    
                     let plistData = try PropertyListSerialization.data(fromPropertyList: tempDict, format: .xml, options: 0)
 
                     try plistData.write(to: path)
@@ -179,27 +167,16 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        alertUser(message: "User info updated", title:"Updated!")
+        Helper.alertUser(controller: self, message: "User info updated", title: "Updated!")
         self.setupView()
-    }
-    
-    func alertUser(message : String, title : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func logout(_ sender: LoginButton) {
         
         var plistDict: Dictionary<String,[Dictionary<String, String>]> = [:]
         
-        if let savedFavMovies = UserDefaults.standard.object(forKey: "favMovies") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
-                plistDict[current.getUsername()] = loadedFavMovies.movieList
-            }
-        }
+        let loadedFavMovies = Helper.getCurrentFavMovies()
+        plistDict[current.getUsername()] = loadedFavMovies.movieList
         
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
@@ -220,70 +197,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 print(error)
             }
         }
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        defaults.set(false, forKey: "isLoggedIn")
         performSegue(withIdentifier: "LogoutSegue", sender: self)
     }
-
-    
-    func setUsersList() {
-        usersList = Users()
-        //Read in users plist
-        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("users.plist")
-            let pathString = path.path
-            do {
-                if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "users", ofType: "plist")!
-                    try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
-                }
-                
-                let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
-                let tempArray = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [Dictionary<String, Any>]
-                
-                
-                for dict in tempArray {
-                    let fullName = dict["fullName"]! as! String
-                    let email = dict["email"]! as! String
-                    let username = dict["username"]! as! String
-                    let password = dict["password"]! as! String
-                    
-                    let u = User(fullName: fullName, email: email, username: username, password: password)
-                    
-                    usersList.userList.append(u)
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func setFavMoviesList() {
-        favMoviesList = FavMoviesList()
-        //Read in userFavMovies plist
-        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
-            let pathString = path.path
-            do {
-                if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "userFavMovies", ofType: "plist")!
-                    try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
-                }
-                
-                let data = try Data(contentsOf: URL(fileURLWithPath: pathString))
-                let tempDict = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! Dictionary<String, [Dictionary<String, String>]>
-                
-                
-                for (username, favs) in tempDict {
-                    let favList = FavMovies()
-                    favList.username = username
-                    favList.movieList = favs
-                    favMoviesList.favMoviesList.append(favList)
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-
 }

@@ -23,12 +23,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var username = ""
     var password = ""
     
-    @IBAction func goToLogin(_ sender: UIButton) {
-        performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (usersList == nil) {
+            usersList = Helper.setUsersList()
+        }
         self.hideKeyboardWhenTappedAround()
         fullnameEntered.delegate = self
         emailEntered.delegate = self
@@ -37,46 +36,40 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         confirmPasswordEntered.delegate = self
     }
     
+    //If the user press return / hit enter key, the keyboard will dissapear
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        textField.resignFirstResponder()
        return true
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "SignupToLoginSegue"){
-            let loginVC = segue.destination as! LoginViewController
-            loginVC.usersList = usersList
-        }
-    }
-
   
     @IBAction func signup(sender: UIButton)  {
         //Check not empty strings:
         if (fullnameEntered.text! == "" || emailEntered.text! == "" || usernameEntered.text! == "" || passwordEntered.text! == "" || confirmPasswordEntered.text! == "") {
-            alertUser(message: "Please enter all required fields!")
+            
+            Helper.alertUser(controller: self, message: "Please enter all required fields!", title: "Error")
             return
         }
         
-        //Check username existed
+        //Check if the username existed
         for user in usersList.userList {
             if (usernameEntered!.text! == user.getUsername()) {
-                alertUser(message: "Please choose a different username")
+                Helper.alertUser(controller: self, message: "Please choose a different username", title: "Error")
                 usernameEntered.text = ""
                 return
             }
         }
         
-        //Check email format:
+        //Check the email format:
         if (!isValidEmail(emailEntered.text!)) {
-            alertUser(message: "Invalid email format")
+            Helper.alertUser(controller: self, message: "Invalid email format", title: "Error")
             emailEntered.text = ""
             return
         }
         
-        //Check email existed
+        //Check if the email existed
         for user in usersList.userList {
             if (emailEntered!.text! == user.getEmail()) {
-                alertUser(message: "Please choose a different email")
+                Helper.alertUser(controller: self, message: "Please choose a different email", title: "Error")
                 emailEntered.text = ""
                 return
             }
@@ -84,7 +77,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         //Check confirmedPassword == password
         if (passwordEntered.text! != confirmPasswordEntered.text!){
-            alertUser(message: "Passwords entered are not the same")
+            Helper.alertUser(controller: self, message: "Passwords entered are not the same", title: "Error")
             passwordEntered.text = ""
             confirmPasswordEntered.text = ""
             return
@@ -98,42 +91,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             usersList.userList.append(u)
             
-            let plistDict: Dictionary<String,Any> = [
+            let plistDict: Dictionary<String,String> = [
                 "fullName": fullname,
                 "email": email,
                 "username": username,
                 "password": password
             ]
             
-            if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let path = documentsPathURL.appendingPathComponent("users.plist")
-
-                do {
-                   
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
-                    var tempArray = try PropertyListSerialization.propertyList(from: data, format: nil) as! [Dictionary<String, Any>]
-                    
-                    tempArray.append(plistDict)
-                
-                    
-                    let plistData = try PropertyListSerialization.data(fromPropertyList: tempArray, format: .xml, options: 0)
-                   
-
-                    try plistData.write(to: path)
-                    
-                } catch {
-                    print(error)
-                }
-            }
+            Helper.saveUsersList(plistDict: plistDict)
+            
             performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
         }
     }
     
-    func alertUser(message : String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+    @IBAction func goToLogin(_ sender: UIButton) {
+        performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
+    }
+    //Prepare the data for Signup-to-Login segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "SignupToLoginSegue"){
+            let loginVC = segue.destination as! LoginViewController
+            loginVC.usersList = usersList
+        }
     }
     
     func isValidEmail(_ email: String) -> Bool {
