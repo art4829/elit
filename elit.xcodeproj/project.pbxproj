@@ -19,7 +19,6 @@
 		9EB74A73243BD8F000AE5105 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A72243BD8F000AE5105 /* Pacifico.ttf */; };
 		9EB74A76243BE2E700AE5105 /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EB74A75243BE2E700AE5105 /* users.plist */; };
 		9EE70479246021F10093181E /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE70478246021F10093181E /* ProfileUpdateViewController.swift */; };
-		9EE7047D2460F2530093181E /* GradientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7047C2460F2530093181E /* GradientTableView.swift */; };
 		9EFC3466244E41F70049A894 /* MovieCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC3465244E41F70049A894 /* MovieCardModel.swift */; };
 		9EFC346B244E43280049A894 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346A244E43280049A894 /* SwipeCardView.swift */; };
 		9EFC346D244E43520049A894 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC346C244E43520049A894 /* StackContainerView.swift */; };
@@ -62,7 +61,6 @@
 		9EB74A72243BD8F000AE5105 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		9EB74A75243BE2E700AE5105 /* users.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
 		9EE70478246021F10093181E /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
-		9EE7047C2460F2530093181E /* GradientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTableView.swift; sourceTree = "<group>"; };
 		9EFC3465244E41F70049A894 /* MovieCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardModel.swift; sourceTree = "<group>"; };
 		9EFC346A244E43280049A894 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 		9EFC346C244E43520049A894 /* StackContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
@@ -119,6 +117,11 @@
 			children = (
 				9EFC346A244E43280049A894 /* SwipeCardView.swift */,
 				9EFC346C244E43520049A894 /* StackContainerView.swift */,
+				EB594D15243CDA100015A1E9 /* GradientView.swift */,
+				EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */,
+				EB594D1F243E55A30015A1E9 /* LoginTextField.swift */,
+				EB4C0B19244C096E00E00FDE /* GenreButton.swift */,
+				9E7FF41E245CE463003DD6DC /* ProfileField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,7 +150,6 @@
 				EBD76DE82446245300F3A34F /* Utils */,
 				EBD76DE52446228200F3A34F /* Model */,
 				EBD76DE42446225C00F3A34F /* ViewController */,
-				EB594D1A243E41D20015A1E9 /* CustomClasses */,
 				C965215524363BD4009B14F7 /* AppDelegate.swift */,
 				C965215724363BD4009B14F7 /* SceneDelegate.swift */,
 				C965215D24363BD4009B14F7 /* Main.storyboard */,
@@ -174,19 +176,6 @@
 				9EB74A72243BD8F000AE5105 /* Pacifico.ttf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		EB594D1A243E41D20015A1E9 /* CustomClasses */ = {
-			isa = PBXGroup;
-			children = (
-				EB594D15243CDA100015A1E9 /* GradientView.swift */,
-				EB594D1B243E42200015A1E9 /* Signin_SignupButton.swift */,
-				EB594D1F243E55A30015A1E9 /* LoginTextField.swift */,
-				EB4C0B19244C096E00E00FDE /* GenreButton.swift */,
-				9E7FF41E245CE463003DD6DC /* ProfileField.swift */,
-				9EE7047C2460F2530093181E /* GradientTableView.swift */,
-			);
-			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 		EBD76DE42446225C00F3A34F /* ViewController */ = {
@@ -344,7 +333,6 @@
 				EBD76DF924464AF900F3A34F /* SlideInTransition.swift in Sources */,
 				EB594D1C243E42200015A1E9 /* Signin_SignupButton.swift in Sources */,
 				9E7FF41F245CE463003DD6DC /* ProfileField.swift in Sources */,
-				9EE7047D2460F2530093181E /* GradientTableView.swift in Sources */,
 				9E7FF427245D7211003DD6DC /* FavMoviesList.swift in Sources */,
 				9E7FF425245D7131003DD6DC /* FavMovies.swift in Sources */,
 				EBD76DDD2444EF2400F3A34F /* User.swift in Sources */,
