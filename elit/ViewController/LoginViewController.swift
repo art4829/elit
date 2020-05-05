@@ -9,7 +9,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameEntered: UITextField!
     @IBOutlet weak var passwordEntered: UITextField!
@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         //If there is a new user signing up
         if CheckInternet.Connection() == false{
             let alert = UIAlertController(title: "Alert", message: "You are not connected to the Internet", preferredStyle: .alert)
@@ -40,6 +41,13 @@ class LoginViewController: UIViewController {
         }
         username = ""
         password = ""
+        usernameEntered.delegate = self
+        passwordEntered.delegate = self 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+       return true
     }
     
     // set users from plist
@@ -170,4 +178,16 @@ class LoginViewController: UIViewController {
         sender.resignFirstResponder()
     }
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

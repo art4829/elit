@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var fullnameEntered: UITextField!
     @IBOutlet weak var emailEntered: UITextField!
@@ -25,6 +25,21 @@ class SignUpViewController: UIViewController {
     
     @IBAction func goToLogin(_ sender: UIButton) {
         performSegue(withIdentifier: "SignupToLoginSegue", sender: self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        fullnameEntered.delegate = self
+        emailEntered.delegate = self
+        usernameEntered.delegate = self
+        passwordEntered.delegate = self
+        confirmPasswordEntered.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+       return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

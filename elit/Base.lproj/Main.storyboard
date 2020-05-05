@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHD-fV-6q2">
-                                <rect key="frame" x="10.333333333333336" y="22.333333333333329" width="62.000000000000007" height="134.33333333333337"/>
+                                <rect key="frame" x="10.333333333333336" y="44.666666666666664" width="62.000000000000007" height="89.666666666666686"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="icons8-slider-80.png">
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,7 +127,7 @@
                             <constraint firstItem="43Y-pg-9CS" firstAttribute="top" secondItem="RR2-Wt-zBf" secondAttribute="top" constant="13" id="fHc-dp-MOa"/>
                             <constraint firstItem="RR2-Wt-zBf" firstAttribute="trailing" secondItem="43Y-pg-9CS" secondAttribute="trailing" constant="33" id="pPf-Kt-Weg"/>
                             <constraint firstItem="BHD-fV-6q2" firstAttribute="centerY" secondItem="ni7-FW-GSR" secondAttribute="centerY" multiplier="0.2" id="tox-s2-M2r"/>
-                            <constraint firstItem="BHD-fV-6q2" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.15" id="v47-z9-chS"/>
+                            <constraint firstItem="BHD-fV-6q2" firstAttribute="height" secondItem="ni7-FW-GSR" secondAttribute="height" multiplier="0.1" id="v47-z9-chS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RR2-Wt-zBf"/>
                         <userDefinedRuntimeAttributes>
@@ -578,10 +578,10 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pks-Fb-BoF" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="62" y="385.66666666666669" width="207" height="35"/>
+                                <rect key="frame" x="62" y="386.33333333333331" width="207" height="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="username"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
                                     <action selector="textFieldReturnWithSender:" destination="Dlx-Zk-Gvh" eventType="editingDidEnd" id="UFJ-mP-lJe"/>
                                 </connections>
@@ -776,7 +776,7 @@
                                                 <rect key="frame" x="37.333333333333329" y="0.0" width="211.33333333333337" height="35"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                                                 <connections>
                                                     <action selector="textFieldReturnWithSender:" destination="Dlx-Zk-Gvh" eventType="editingDidEnd" id="rnQ-Mb-K4i"/>
                                                 </connections>
@@ -947,13 +947,13 @@
                                                 <rect key="frame" x="0.0" y="215.33333333333331" width="248.66666666666666" height="71.666666666666686"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-zp-UMr" customClass="LoginTextField" customModule="elit" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="286.99999999999994" width="248.66666666666666" height="71.666666666666686"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                         <constraints>

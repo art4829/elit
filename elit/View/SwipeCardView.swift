@@ -120,6 +120,7 @@ class SwipeCardView : UIView {
         label.clipsToBounds = true
         label.backgroundColor = .white
         label.textColor = .black
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 17)
         label.translatesAutoresizingMaskIntoConstraints = false
