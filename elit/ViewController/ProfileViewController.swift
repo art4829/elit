@@ -76,7 +76,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         //Check username existed (not the current username)
         for oldUser in usersList.userList {
             if (oldUser.getUsername() != oldUserName && username!.text! == oldUser.getUsername()) {
-                Helper.alertUser(controller: self, message: "Please choose a different username", title: "Error")
+                Helper.alertUser(controller: self, message: CHOOSE_DIFFERENT_USERNAME, title: "Error")
                 username.text = current.getUsername()
                 password.text = current.getPassword()
                 return
@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         
         //Save the new user
         if let documentsPathURL2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path2 = documentsPathURL2.appendingPathComponent("users.plist")
+            let path2 = documentsPathURL2.appendingPathComponent(USERS_PLIST + ".plist")
 
             do {
                 let data2 = try Data(contentsOf: URL(fileURLWithPath: path2.path))
@@ -149,7 +149,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             
             //Save the new favMoviesList
             if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+                let path = documentsPathURL.appendingPathComponent(FAV_MOVIES_PLIST + ".plist")
 
                 do {
                     let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
@@ -167,7 +167,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        Helper.alertUser(controller: self, message: "User info updated", title: "Updated!")
+        Helper.alertUser(controller: self, message: USER_UDPATED, title: "Updated!")
         self.setupView()
     }
     
@@ -179,7 +179,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         plistDict[current.getUsername()] = loadedFavMovies.movieList
         
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+            let path = documentsPathURL.appendingPathComponent(FAV_MOVIES_PLIST + ".plist")
 
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path.path))
@@ -197,7 +197,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 print(error)
             }
         }
-        defaults.set(false, forKey: "isLoggedIn")
+        defaults.set(false, forKey: IS_LOGIN)
         performSegue(withIdentifier: "LogoutSegue", sender: self)
     }
 }

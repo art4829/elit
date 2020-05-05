@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         //If there is a new user signing up
         if CheckInternet.Connection() == false{
-            let alert = UIAlertController(title: "Alert", message: "You are not connected to the Internet", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Alert", message: NO_INTERNET, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {(action:UIAlertAction!) in
                exit(0)
             }))
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func login(sender: UIButton) {
         //Check if the username and password are empty
         if (usernameEntered.text! == "" || passwordEntered.text! == "") {
-            Helper.alertUser(controller: self, message: "Please put in all fields", title: "Error")
+            Helper.alertUser(controller: self, message: PUT_ALL_FIELDS, title: "Error")
             return
         }
         //Check is the login information are correct
@@ -82,11 +82,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         if (username != "" && password != "" && user != nil) {
             performSegue(withIdentifier: "LoginToHome", sender: self)
-            defaults.set(true, forKey: "isLoggedIn")
+            defaults.set(true, forKey: IS_LOGIN)
             Helper.setCurrentUser(user: user)
             setCurrentFavMoviesForUser(user: user)
         } else {
-            Helper.alertUser(controller: self, message: "Incorrect Username or Password", title: "Error")
+            Helper.alertUser(controller: self, message: INCORRECT_USERNAME_PASSWORD, title: "Error")
         }
         
         view.endEditing(true) //dismiss the keyboard whenever you have multiple fields

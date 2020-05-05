@@ -66,9 +66,9 @@ class MoviesViewController: UIViewController {
             }
         }
         if nowPlaying == true {
-            defaults.set(0, forKey: "rating")
-            defaults.set([], forKey: "genreList")
-            defaults.set("All Languages", forKey: "language")
+            defaults.set(0, forKey: RATING)
+            defaults.set([], forKey: GENRE)
+            defaults.set(ALL_LANGUAGES, forKey: LANGUAGE)
         }
 
 
@@ -230,7 +230,7 @@ class MoviesViewController: UIViewController {
                     }
                    
                     let overview = m["overview"] as! String == "" ? DEFAULT_DESCRIPTIONS : m["overview"] as! String
-                    let movie = MovieCard(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: "https://image.tmdb.org/t/p/w780/" + (m["poster_path"] as! String), vote_average: rating, description: overview, genreList: genreString)
+                    let movie = MovieCard(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), text: m["title"] as! String, image: IMAGE_URL + (m["poster_path"] as! String), vote_average: rating, description: overview, genreList: genreString)
                         moviesData.append(movie)
                    }
                 }

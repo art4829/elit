@@ -44,9 +44,9 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // set default values saved in NSUserDefaults
-        rating.rating = defaults.double(forKey: "rating")
-        dropDownBtn.setTitle(defaults.string(forKey: "language"), for: .normal)
-        let genresbtn = defaults.object(forKey: "genreList") as? [Int] ?? [Int]()
+        rating.rating = defaults.double(forKey: RATING)
+        dropDownBtn.setTitle(defaults.string(forKey: LANGUAGE), for: .normal)
+        let genresbtn = defaults.object(forKey: GENRE) as? [Int] ?? [Int]()
         for id in genresbtn{
             switch id {
             case ACTION_ID:
@@ -114,7 +114,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             filterURL = DISCOVER_URL+"\(ratingParam)"
             filterCount += 1
         }
-        defaults.set(rating.rating, forKey: "rating")
+        defaults.set(rating.rating, forKey: RATING)
         let genreIdList = getGenreIdList()
         if genreIdList.count != 0{
             for (idx, element) in genreIdList.enumerated() {
@@ -128,11 +128,11 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
             filterURL = filterURL+"\(genreParam)"
             filterCount += 1
         }
-        if dropDownBtn.titleLabel?.text != "All Languages"{
+        if dropDownBtn.titleLabel?.text != ALL_LANGUAGES{
             filterURL = filterURL + "\(languageParam)\(LANG_DICT[(dropDownBtn.titleLabel?.text)!]!)"
             filterCount += 1
         }
-        defaults.set((dropDownBtn.titleLabel?.text)!, forKey: "language")
+        defaults.set((dropDownBtn.titleLabel?.text)!, forKey: LANGUAGE)
 
         if filterCount == 0 {
             self.nowPlaying = true
@@ -169,7 +169,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
         if self.scifiBtn.isOn {
             genreIdList.append(GENRE_DICT["Science Fiction"]!)
        }
-        defaults.set(genreIdList, forKey: "genreList")
+        defaults.set(genreIdList, forKey: GENRE)
         return genreIdList
         
     }
@@ -177,7 +177,7 @@ class SlideMenuController: UIViewController, UITableViewDelegate, UITableViewDat
     // Clear filters
     @IBAction func clearClicked(_ sender: UIButton) {
         rating.rating = 0
-        dropDownBtn.setTitle("All Languages", for: .normal)
+        dropDownBtn.setTitle(ALL_LANGUAGES, for: .normal)
         for btn in [self.actionbtn, self.comedyBtn, self.dramaBtn, self.animationBtn, self.romanceBtn, self.thrillerBtn, self.scifiBtn]{
             btn?.reset()
         }

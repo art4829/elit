@@ -46,14 +46,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //Check not empty strings:
         if (fullnameEntered.text! == "" || emailEntered.text! == "" || usernameEntered.text! == "" || passwordEntered.text! == "" || confirmPasswordEntered.text! == "") {
             
-            Helper.alertUser(controller: self, message: "Please enter all required fields!", title: "Error")
+            Helper.alertUser(controller: self, message: PUT_ALL_FIELDS, title: "Error")
             return
         }
         
         //Check if the username existed
         for user in usersList.userList {
             if (usernameEntered!.text! == user.getUsername()) {
-                Helper.alertUser(controller: self, message: "Please choose a different username", title: "Error")
+                Helper.alertUser(controller: self, message: CHOOSE_DIFFERENT_USERNAME, title: "Error")
                 usernameEntered.text = ""
                 return
             }
@@ -61,7 +61,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         //Check the email format:
         if (!isValidEmail(emailEntered.text!)) {
-            Helper.alertUser(controller: self, message: "Invalid email format", title: "Error")
+            Helper.alertUser(controller: self, message: INVALID_EMAIL, title: "Error")
             emailEntered.text = ""
             return
         }
@@ -69,7 +69,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //Check if the email existed
         for user in usersList.userList {
             if (emailEntered!.text! == user.getEmail()) {
-                Helper.alertUser(controller: self, message: "Please choose a different email", title: "Error")
+                Helper.alertUser(controller: self, message: CHOOSE_DIFFERENT_EMAIL, title: "Error")
                 emailEntered.text = ""
                 return
             }
@@ -77,7 +77,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         //Check confirmedPassword == password
         if (passwordEntered.text! != confirmPasswordEntered.text!){
-            Helper.alertUser(controller: self, message: "Passwords entered are not the same", title: "Error")
+            Helper.alertUser(controller: self, message: CONFIRM_PASSWORD, title: "Error")
             passwordEntered.text = ""
             confirmPasswordEntered.text = ""
             return

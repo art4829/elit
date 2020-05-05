@@ -507,7 +507,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXP-Ha-rbO" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="258.66666666666669" y="651.66666666666663" width="103.66666666666669" height="41"/>
+                                <rect key="frame" x="258.66666666666669" y="651" width="103.66666666666669" height="42"/>
                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="17"/>
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -541,7 +541,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRh-tg-G3T" customClass="LoginButton" customModule="elit" customModuleProvider="target">
-                                <rect key="frame" x="103.66666666666669" y="477.66666666666669" width="207" height="30"/>
+                                <rect key="frame" x="103.66666666666669" y="471.66666666666669" width="207" height="42.000000000000057"/>
                                 <state key="normal" title="Update Profile">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -688,7 +688,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorite Movies" id="C1Y-44-qj5">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="fjN-kl-5m6">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="fjN-kl-5m6">
                             <connections>
                                 <action selector="startEditing:" destination="WS0-xh-05u" id="meC-zp-J7c"/>
                             </connections>
@@ -1112,6 +1112,7 @@
         <image name="lock" catalog="system" width="128" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark.square" catalog="system" width="128" height="114"/>
     </resources>

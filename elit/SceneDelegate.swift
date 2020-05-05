@@ -22,11 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         //Read in users plist
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("users.plist")
+            let path = documentsPathURL.appendingPathComponent(USERS_PLIST + ".plist")
             let pathString = path.path
             do {
                 if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "users", ofType: "plist")!
+                    let bundle = Bundle.main.path(forResource: USERS_PLIST, ofType: "plist")!
                     try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
                 }
                 
@@ -51,11 +51,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Read in userFavMovies plist
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+            let path = documentsPathURL.appendingPathComponent(FAV_MOVIES_PLIST + ".plist")
             let pathString = path.path
             do {
                 if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "userFavMovies", ofType: "plist")!
+                    let bundle = Bundle.main.path(forResource: FAV_MOVIES_PLIST, ofType: "plist")!
                     try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
                 }
                 
@@ -117,7 +117,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     fileprivate func isLoggedIn() -> Bool {
-        return defaults.bool(forKey: "isLoggedIn")
+        return defaults.bool(forKey: IS_LOGIN)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

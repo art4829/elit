@@ -16,11 +16,11 @@ class Helper{
         let usersList = Users()
         //Read in users plist
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("users.plist")
+            let path = documentsPathURL.appendingPathComponent(USERS_PLIST + ".plist")
             let pathString = path.path
             do {
                 if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "users", ofType: "plist")!
+                    let bundle = Bundle.main.path(forResource: USERS_PLIST, ofType: "plist")!
                     try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
                 }
                 
@@ -46,7 +46,7 @@ class Helper{
     
     static func saveUsersList(plistDict : Dictionary<String,String>) -> Void {
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("users.plist")
+            let path = documentsPathURL.appendingPathComponent(USERS_PLIST + ".plist")
 
             do {
                
@@ -70,11 +70,11 @@ class Helper{
         let favMoviesList = FavMoviesList()
         //Read in userFavMovies plist
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = documentsPathURL.appendingPathComponent("userFavMovies.plist")
+            let path = documentsPathURL.appendingPathComponent(FAV_MOVIES_PLIST + ".plist")
             let pathString = path.path
             do {
                 if !FileManager.default.fileExists(atPath: pathString) {
-                    let bundle = Bundle.main.path(forResource: "userFavMovies", ofType: "plist")!
+                    let bundle = Bundle.main.path(forResource: FAV_MOVIES_PLIST, ofType: "plist")!
                     try FileManager.default.copyItem(atPath: bundle, toPath: pathString)
                 }
                 
@@ -99,13 +99,13 @@ class Helper{
     static func setCurrentUser(user : User) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(user) {
-            defaults.set(encoded, forKey: "user")
+            defaults.set(encoded, forKey: USER)
         }
         defaults.synchronize()
     }
     
     static func getCurrentUser() -> User {
-        if let savedPerson = defaults.object(forKey: "user") as? Data {
+        if let savedPerson = defaults.object(forKey: USER) as? Data {
             let decoder = JSONDecoder()
             if let loadedPerson = try? decoder.decode(User.self, from: savedPerson) {
                 return loadedPerson
@@ -117,13 +117,13 @@ class Helper{
     static func setCurrentFavMovies(favMovies: FavMovies) -> Void {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(favMovies) {
-            defaults.set(encoded, forKey: "favMovies")
+            defaults.set(encoded, forKey: FAV_MOVIES)
         }
         defaults.synchronize()
     }
     
     static func getCurrentFavMovies() -> FavMovies {
-        if let savedFavMovies = defaults.object(forKey: "favMovies") as? Data {
+        if let savedFavMovies = defaults.object(forKey: FAV_MOVIES) as? Data {
             let decoder = JSONDecoder()
             if let loadedFavMovies = try? decoder.decode(FavMovies.self, from: savedFavMovies) {
                 return loadedFavMovies
