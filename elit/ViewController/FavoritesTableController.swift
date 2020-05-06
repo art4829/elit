@@ -57,6 +57,7 @@ class FavoritesTableController: UITableViewController {
         } else {
             cell.backgroundColor = LIGHT_ECLIPSE
         }
+        cell.tintColor = UIColor.white
         return cell
     }
     
@@ -88,6 +89,7 @@ class FavoritesTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
 
     /*
     // MARK: - Navigation
