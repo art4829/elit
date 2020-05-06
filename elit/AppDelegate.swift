@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  elit
 //
-//  Created by XCodeClub on 2020-04-02.
-//  Copyright © 2020 Abhaya Tamrakar and Abigail Tran. All rights reserved.
+//  Created by Abigail Tran and Abhaya Tamrakar on 2020-04-02.
+//  Copyright © 2020 Abigail Tran and Abhaya Tamrakar. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  Signin_SignupButton.swift
 //  elit
 //
-//  Created by Abhaya Tamrakar on 4/8/20.
-//  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
+//  Created by Abigail Tran and Abhaya Tamrakaron 4/8/20.
+//  Copyright © 2020 Abigail Tran and Abhaya Tamrakar. All rights reserved.
 //
 
 import Foundation

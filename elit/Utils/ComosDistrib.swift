@@ -2,7 +2,7 @@
 // ----------------------------
 //
 // StarFillMode.swift
-//
+// Created by Abigail Tran and Abhaya Tamrakar on 4/7/20.
 // ----------------------------
 import Foundation
 

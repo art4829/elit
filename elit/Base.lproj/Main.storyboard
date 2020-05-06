@@ -773,7 +773,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oe2-9F-LIp">
-                                        <rect key="frame" x="155.33333333333334" y="149.33333333333331" width="103.33333333333334" height="149.33333333333331"/>
+                                        <rect key="frame" x="145" y="149.33333333333331" width="124" height="149.33333333333331"/>
                                         <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -854,7 +854,7 @@
                                     <constraint firstItem="8Aq-gZ-fvA" firstAttribute="centerY" secondItem="TEf-gn-odZ" secondAttribute="centerY" multiplier="1.85" id="7zO-93-A43"/>
                                     <constraint firstItem="dhN-V6-veS" firstAttribute="centerX" secondItem="TEf-gn-odZ" secondAttribute="centerX" id="DO6-dM-BY2"/>
                                     <constraint firstItem="Jd9-Dl-22U" firstAttribute="height" secondItem="VSM-PJ-ZNG" secondAttribute="height" id="FJx-eI-imf"/>
-                                    <constraint firstItem="oe2-9F-LIp" firstAttribute="width" secondItem="TEf-gn-odZ" secondAttribute="width" multiplier="0.25" id="RA7-Rg-cgQ"/>
+                                    <constraint firstItem="oe2-9F-LIp" firstAttribute="width" secondItem="TEf-gn-odZ" secondAttribute="width" multiplier="0.3" id="RA7-Rg-cgQ"/>
                                     <constraint firstItem="8Aq-gZ-fvA" firstAttribute="centerX" secondItem="TEf-gn-odZ" secondAttribute="centerX" id="SAl-B6-oxy"/>
                                     <constraint firstItem="oe2-9F-LIp" firstAttribute="centerY" secondItem="TEf-gn-odZ" secondAttribute="centerY" multiplier="0.5" id="SUI-qW-uuw"/>
                                     <constraint firstItem="Jd9-Dl-22U" firstAttribute="centerY" secondItem="TEf-gn-odZ" secondAttribute="centerY" multiplier="1.1" id="WQ7-uU-taV"/>
@@ -1030,7 +1030,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdn-Sc-2wA">
-                                <rect key="frame" x="155.33333333333334" y="104.66666666666667" width="103.33333333333334" height="149.33333333333331"/>
+                                <rect key="frame" x="145" y="104.66666666666667" width="124" height="149.33333333333331"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="80"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -1043,7 +1043,7 @@
                             <constraint firstItem="z7T-Hm-jHt" firstAttribute="top" secondItem="TfV-HV-c7I" secondAttribute="top" id="Ege-1o-sBm"/>
                             <constraint firstItem="z7T-Hm-jHt" firstAttribute="leading" secondItem="TfV-HV-c7I" secondAttribute="leading" id="Gkj-cf-eO8"/>
                             <constraint firstItem="kdn-Sc-2wA" firstAttribute="centerY" secondItem="TfV-HV-c7I" secondAttribute="centerY" multiplier="0.4" id="K1h-HR-O2e"/>
-                            <constraint firstItem="kdn-Sc-2wA" firstAttribute="width" secondItem="z7T-Hm-jHt" secondAttribute="width" multiplier="0.25" id="aKX-5v-HBn"/>
+                            <constraint firstItem="kdn-Sc-2wA" firstAttribute="width" secondItem="z7T-Hm-jHt" secondAttribute="width" multiplier="0.3" id="aKX-5v-HBn"/>
                             <constraint firstAttribute="bottom" secondItem="z7T-Hm-jHt" secondAttribute="bottom" id="uS6-lh-36r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MfY-6n-Cdf"/>

@@ -2,8 +2,8 @@
 //  ProfileViewController.swift
 //  elit
 //
-//  Created by Abigail Tran on 5/1/20.
-//  Copyright © 2020 Abhaya Tamrakar. All rights reserved.
+//  Created by Abigail Tran and Abhaya Tamrakar on 5/1/20.
+//  Copyright © 2020 Abigail Tran and Abhaya Tamrakar. All rights reserved.
 //
 
 import UIKit
