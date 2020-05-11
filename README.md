@@ -54,6 +54,3 @@ Swiping right means that the user is considering to watch it in the future. It a
 ## Final Thoughts
 This was our first IOS Project and we had a lot of fun building it. While we utilized many concepts we learned in class, we also did our own research and learned alot from it. We really appreciate [The Movie Database](https://www.themoviedb.org/) for their APIs as this project would not have been possible without them. For people trying to implement similar concepts, we definetly suggest looking for tutorials online. While they are helpful, we **strongly** recommend using them as a reference and not simply following and copying what they teach. If you have any suggestions for our application, please let us know! Thank you.
 
-
-
-
